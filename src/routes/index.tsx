@@ -255,7 +255,7 @@ function PetalNavigator() {
 
 
       {/* Larger screens: circular petal layout */}
-      <div className="relative mx-auto mt-14 h-[520px] sm:h-[560px] w-full max-w-[560px] hidden md:block">
+      <div className="relative mx-auto mt-14 h-[520px] sm:h-[560px] w-full max-w-[560px]">
         {petals.map((p, idx) => {
           const angle = (idx / petals.length) * Math.PI * 2 - Math.PI / 2;
           const radius = 185;
