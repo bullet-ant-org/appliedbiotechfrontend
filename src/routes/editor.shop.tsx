@@ -230,6 +230,7 @@ function ItemModal({ open, onClose, editing, onSave, loading, collectionsList, c
   const [status, setStatus] = useState<string>(editing?.status ?? "active");
   const [description, setDescription] = useState(editing?.description ?? "");
   const [img, setImg] = useState<string | undefined>(editing?.img);
+  const [imgFile, setImgFile] = useState<File | null>(null);
   const [tagsInput, setTagsInput] = useState((editing?.tags || []).join(", "));
   const [shippingNote, setShippingNote] = useState(editing?.shippingNote || "");
   const [shippingFee, setShippingFee] = useState(editing?.shippingFee || 0);
@@ -242,7 +243,7 @@ function ItemModal({ open, onClose, editing, onSave, loading, collectionsList, c
         <PrimaryBtn disabled={loading} onClick={() => {
           if (!name.trim()) return toast.error("Name required");
           onSave({
-            id: editing?.id ?? "", name, price: +price, stock: +stock, category, status, description, img: img ?? "",
+            id: editing?.id ?? "", name, price: +price, stock: +stock, category, status, description, img: imgFile || img || "",
             tags: tagsInput.split(",").map(t => t.trim()).filter(Boolean),
             shippingNote, shippingFee: Number(shippingFee), shippingType, pickupAvailable,
           });
@@ -250,7 +251,13 @@ function ItemModal({ open, onClose, editing, onSave, loading, collectionsList, c
           {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save"}
         </PrimaryBtn></>}>
       <div className="space-y-4">
-        <ImageUpload label="Product image" value={img} onChange={setImg} />
+        <ImageUpload 
+          label="Product image" 
+          value={img} 
+          onChange={(v, f) => { 
+            setImg(typeof v === 'string' ? v : undefined); 
+            if (f) setImgFile(f); 
+          }} />
         <Field label="Product name"><input className={inputCls} value={name} onChange={(e) => setName(e.target.value)} /></Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label={`Price (${currencySymbol})`}><input type="number" className={inputCls} value={price} onChange={(e) => setPrice(+e.target.value)} /></Field>

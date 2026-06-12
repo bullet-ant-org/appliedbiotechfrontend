@@ -249,6 +249,7 @@ function ProductModal({ open, onClose, editing, onSave, loading, collectionsList
   const [status, setStatus] = useState<string>(editing?.status || "active");
   const [description, setDescription] = useState(editing?.description || "");
   const [img, setImg] = useState<string | undefined>(editing?.img);
+  const [imgFile, setImgFile] = useState<File | null>(null);
   const [tagsInput, setTagsInput] = useState((editing?.tags || []).join(", "));
   const [shippingNote, setShippingNote] = useState(editing?.shippingNote || "");
   const [shippingFee, setShippingFee] = useState(editing?.shippingFee || 0);
@@ -260,7 +261,7 @@ function ProductModal({ open, onClose, editing, onSave, loading, collectionsList
       footer={<>
         <GhostBtn onClick={onClose}>Cancel</GhostBtn>
         <PrimaryBtn disabled={loading} onClick={() => onSave({
-          id: editing?.id, name, price: Number(price), stock: Number(stock), category, status, img, description,
+          id: editing?.id, name, price: Number(price), stock: Number(stock), category, status, img: imgFile || img, description,
           tags: tagsInput.split(",").map(t => t.trim()).filter(Boolean),
           shippingNote, shippingFee: Number(shippingFee), shippingType, pickupAvailable,
         })}>
@@ -268,7 +269,13 @@ function ProductModal({ open, onClose, editing, onSave, loading, collectionsList
         </PrimaryBtn>
       </>}>
       <div className="space-y-4">
-        <ImageUpload label="Product image" value={img} onChange={setImg} />
+        <ImageUpload 
+          label="Product image" 
+          value={img} 
+          onChange={(v, f) => { 
+            setImg(typeof v === 'string' ? v : undefined); 
+            if (f) setImgFile(f); 
+          }} />
         <Field label="Product name"><input className={inputCls} value={name} onChange={(e) => setName(e.target.value)} /></Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label={`Price (${currencySymbol})`}><input type="number" className={inputCls} value={price} onChange={(e) => setPrice(+e.target.value)} /></Field>

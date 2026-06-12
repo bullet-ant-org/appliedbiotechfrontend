@@ -253,27 +253,6 @@ function PetalNavigator() {
         <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Six ways to take action. Choose what matters to you and step right in.</p>
       </div>
 
-      {/* Mobile / small screens: simple responsive grid */}
-      <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto md:hidden">
-        {petals.map((p, idx) => (
-          <motion.div
-            key={p.label}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.05 }}
-          >
-            <Link
-              to={p.to}
-              className={`group flex flex-col items-center justify-center gap-1.5 text-center rounded-2xl p-4 aspect-square text-white font-semibold shadow-brand transition-transform hover:scale-105 bg-gradient-to-br ${p.bg}`}
-            >
-              <p.I className="h-6 w-6" />
-              <span className="text-xs font-bold leading-tight">{p.label}</span>
-              <span className="text-[9px] text-white/70 leading-tight">{p.sub}</span>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
 
       {/* Larger screens: circular petal layout */}
       <div className="relative mx-auto mt-14 h-[520px] sm:h-[560px] w-full max-w-[560px] hidden md:block">
