@@ -22,23 +22,32 @@ function CollectionDetailPage() {
   useEffect(() => {
     fetchData(`/api/v1/collections/${id}`)
       .then((res) => {
-        if (res) setCollection(res);
+        if (res) {
+          // Handle both direct objects and nested responses (e.g., { collection: ... })
+          const data = res.collection || res.data || res;
+          setCollection(data);
+        }
         else setNotFound(true);
       })
       .catch(() => setNotFound(true));
   }, [fetchData, id]);
 
-  const items = (collection?.items || []).map((p: any) => ({
-    id: p._id,
-    name: p.productName,
-    price: p.price,
-    stock: p.stock,
-    img: p.productImage,
-    category: p.category,
-    description: p.description,
-    rating: 5,
-    tags: p.tags || [],
-  }));
+  // Normalize and filter items
+  const items = (collection?.items || [])
+    .filter((p: any) => typeof p === 'object' && p !== null) // Ensure products are populated objects
+    .map((p: any) => ({
+      id: p._id || p.id,
+      name: p.productName || p.name,
+      price: p.price,
+      stock: p.stock,
+      img: p.productImage || p.image || p.img,
+      category: p.category,
+      description: p.description,
+      rating: 5,
+      tags: p.tags || [],
+      status: p.status || "active",
+    }))
+    .filter((p: any) => p.status === "active"); // Only show published products to customers
 
   return (
     <div className="min-h-screen bg-background">
