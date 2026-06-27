@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Package, ArrowRight, AlertCircle, ShoppingBag, Download, Copy, Check, GraduationCap, CalendarDays } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { useAcademy } from "@/lib/academy";
 import useFetch from "@/hooks/useFetch";
 import { z } from "zod";
 
@@ -26,6 +27,7 @@ function VerifyPage() {
   const [downloading, setDownloading] = useState(false);
   const receiptRef = useRef<HTMLDivElement>(null);
   const { fetchData } = useFetch();
+  const { enroll } = useAcademy();
 
   useEffect(() => {
     if (!reference) { setStatus("error"); return; }
@@ -37,6 +39,21 @@ function VerifyPage() {
           if (res && res._id) {
             setOrderDetails(res);
             setStatus("success");
+            // Sync any academy course items into local enrollments
+            const courseItems: any[] = res.courseItems || [];
+            for (const item of courseItems) {
+              const course = item.course;
+              if (!course || !course._id) continue;
+              enroll({
+                courseId: course._id,
+                title: course.courseTitle || course.title || "Course",
+                cover: course.image || "",
+                price: course.price || item.price || 0,
+                pages: Array.isArray(course.outline) ? course.outline : [],
+                pageImages: [],
+                practicalDate: item.practicalDate || undefined,
+              });
+            }
             return;
           }
         } catch (_) {}
@@ -250,4 +267,4 @@ function MetaRow({ label, value }: { label: string; value: React.ReactNode }) {
       <span className="text-gray-900 font-medium text-right">{value}</span>
     </div>
   );
-}
+                                  }
