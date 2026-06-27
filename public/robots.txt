@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /editor
+Disallow: /login
+Disallow: /forgot-password
+
+Sitemap: https://applied-biotech-demo.lovable.app/sitemap.xml
