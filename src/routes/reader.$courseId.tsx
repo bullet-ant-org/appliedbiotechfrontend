@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
-import { ACADEMY_TOKEN_KEY } from "@/lib/academy";
+import { ACADEMY_TOKEN_KEY, backendFetch } from "@/lib/academy";
 import { ArrowLeft, ArrowRight, BookOpen, Eye, X, Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -36,7 +36,7 @@ function Reader() {
     setPageLoading(true);
     setPageError(null);
     try {
-      const res = await fetch(
+      const res = await backendFetch(
         `/api/v1/academy/course/${courseId}/secure-read-stream?page=${page + 1}`,
         { headers: token ? { Authorization: `Bearer ${token}` } : {} }
       );
@@ -65,7 +65,7 @@ function Reader() {
       // Silently pre-fetch next page
       const nextPage = page + 1;
       if (!cache.current[nextPage]) {
-        fetch(`/api/v1/academy/course/${courseId}/secure-read-stream?page=${nextPage + 1}`,
+        backendFetch(`/api/v1/academy/course/${courseId}/secure-read-stream?page=${nextPage + 1}`,
           { headers: token ? { Authorization: `Bearer ${token}` } : {} })
           .then(r => r.ok ? r.json() : null)
           .then(d => { if (d?.streamUrl) cache.current[nextPage] = d.streamUrl; })
@@ -245,4 +245,4 @@ function Reader() {
       )}
     </div>
   );
-}
+            }
