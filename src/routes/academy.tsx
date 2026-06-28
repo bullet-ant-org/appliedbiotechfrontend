@@ -108,7 +108,15 @@ function AcademyPage() {
 
   async function confirmBuy() {
     if (!selected) return;
-    // Write academy item into shared academy-cart slot so shop/cart can pick it up
+
+    // Must be logged into academy account so backend can link the purchase
+    const token = localStorage.getItem("ab.academy.token");
+    if (!token) {
+      toast.error("Please sign in to your Academy account before purchasing a course.");
+      setShowAuth(true);
+      return;
+    }
+
     const ACADEMY_CART_KEY = "ab.shop.academy_cart";
     try {
       const existing: any[] = JSON.parse(localStorage.getItem(ACADEMY_CART_KEY) || "[]");
@@ -120,7 +128,7 @@ function AcademyPage() {
           price: selected.price,
           img: selected.img || "",
           courseType: selected.courseType || "modular",
-          practicalDate: practical.length > 0 ? practical.join("|") : "",
+          practicalDate: practical.length > 0 ? practical[0] : "",
         });
         localStorage.setItem(ACADEMY_CART_KEY, JSON.stringify(existing));
       }
@@ -556,4 +564,4 @@ function MiniStat({ I, k, v }: { I: typeof BookOpen; k: string; v: string }) {
       <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{v}</div>
     </div>
   );
-}
+            }
