@@ -148,7 +148,7 @@ function CheckoutPage() {
           })),
           courseItems: academyItems.map(i => ({
             course: i.id,
-            practicalDate: i.practicalDate || "",
+            practicalDate: i.practicalDate ? i.practicalDate.split("|")[0] : "",
             price: i.price,
           })),
           academyUserId: academyItems.length > 0 ? getAcademyUserId() : null,
@@ -287,7 +287,7 @@ function CheckoutPage() {
                           orderType: academyItems.length > 0 && effectiveItems.length === 0 ? "academy" : "shop",
                           email, phone, shippingAddress, totalAmount: total,
                           items: effectiveItems.map(it => ({ product: it.id, quantity: it.qty, price: it.price })),
-                          courseItems: academyItems.map(i => ({ course: i.id, practicalDate: i.practicalDate || "", price: i.price })),
+                          courseItems: academyItems.map(i => ({ course: i.id, practicalDate: i.practicalDate ? i.practicalDate.split("|")[0] : "", price: i.price })),
                           academyUserId: getAcademyUserId(),
                         })
                       });
@@ -383,4 +383,4 @@ const input = "w-full h-10 rounded-xl border border-input bg-background px-3 tex
 function Field({ label, children }: any) { return <label className="block text-sm"><span className="font-medium">{label}</span><div className="mt-1.5">{children}</div></label>; }
 function Section({ title, children }: any) {
   return <div className="bg-card border border-border rounded-2xl p-6 space-y-3"><h3 className="font-display font-bold text-lg">{title}</h3>{children}</div>;
-}
+                     }
