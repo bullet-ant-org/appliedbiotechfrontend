@@ -79,7 +79,7 @@ import { Route as ShopProductIdRouteImport } from './routes/shop.product.$id'
 import { Route as ShopCategorySlugRouteImport } from './routes/shop.category.$slug'
 import { Route as EditorAcademyIdRouteImport } from './routes/editor.academy.$id'
 import { Route as AdminAcademyIdRouteImport } from './routes/admin.academy.$id'
-import { Route as AcademyReadCourseIdRouteImport } from './routes/academy.read.$courseId'
+import { Route as AcademyReadCourseIdRouteImport } from './routes/reader.$courseId'
 
 const VerifyRoute = VerifyRouteImport.update({
   id: '/verify',
@@ -432,9 +432,9 @@ const AdminAcademyIdRoute = AdminAcademyIdRouteImport.update({
   getParentRoute: () => AdminAcademyRoute,
 } as any)
 const AcademyReadCourseIdRoute = AcademyReadCourseIdRouteImport.update({
-  id: '/read/$courseId',
-  path: '/read/$courseId',
-  getParentRoute: () => AcademyRoute,
+  id: '/reader/$courseId',
+  path: '/reader/$courseId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -503,7 +503,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/editor/': typeof EditorIndexRoute
   '/shop/': typeof ShopIndexRoute
-  '/academy/read/$courseId': typeof AcademyReadCourseIdRoute
+  '/reader/$courseId': typeof AcademyReadCourseIdRoute
   '/admin/academy/$id': typeof AdminAcademyIdRoute
   '/editor/academy/$id': typeof EditorAcademyIdRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
@@ -573,7 +573,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/editor': typeof EditorIndexRoute
   '/shop': typeof ShopIndexRoute
-  '/academy/read/$courseId': typeof AcademyReadCourseIdRoute
+  '/reader/$courseId': typeof AcademyReadCourseIdRoute
   '/admin/academy/$id': typeof AdminAcademyIdRoute
   '/editor/academy/$id': typeof EditorAcademyIdRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
@@ -647,7 +647,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/editor/': typeof EditorIndexRoute
   '/shop/': typeof ShopIndexRoute
-  '/academy/read/$courseId': typeof AcademyReadCourseIdRoute
+  '/reader/$courseId': typeof AcademyReadCourseIdRoute
   '/admin/academy/$id': typeof AdminAcademyIdRoute
   '/editor/academy/$id': typeof EditorAcademyIdRoute
   '/shop/category/$slug': typeof ShopCategorySlugRoute
@@ -722,7 +722,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/editor/'
     | '/shop/'
-    | '/academy/read/$courseId'
+    | '/reader/$courseId'
     | '/admin/academy/$id'
     | '/editor/academy/$id'
     | '/shop/category/$slug'
@@ -792,7 +792,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/editor'
     | '/shop'
-    | '/academy/read/$courseId'
+    | '/reader/$courseId'
     | '/admin/academy/$id'
     | '/editor/academy/$id'
     | '/shop/category/$slug'
@@ -865,7 +865,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/editor/'
     | '/shop/'
-    | '/academy/read/$courseId'
+    | '/reader/$courseId'
     | '/admin/academy/$id'
     | '/editor/academy/$id'
     | '/shop/category/$slug'
@@ -1388,10 +1388,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAcademyIdRouteImport
       parentRoute: typeof AdminAcademyRoute
     }
-    '/academy/read/$courseId': {
-      id: '/academy/read/$courseId'
+    '/reader/$courseId': {
+      id: '/reader/$courseId'
       path: '/read/$courseId'
-      fullPath: '/academy/read/$courseId'
+      fullPath: '/reader/$courseId'
       preLoaderRoute: typeof AcademyReadCourseIdRouteImport
       parentRoute: typeof AcademyRoute
     }
@@ -1615,4 +1615,4 @@ declare module '@tanstack/react-start' {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
   }
-}
+  }
