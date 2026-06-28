@@ -383,4 +383,4 @@ const input = "w-full h-10 rounded-xl border border-input bg-background px-3 tex
 function Field({ label, children }: any) { return <label className="block text-sm"><span className="font-medium">{label}</span><div className="mt-1.5">{children}</div></label>; }
 function Section({ title, children }: any) {
   return <div className="bg-card border border-border rounded-2xl p-6 space-y-3"><h3 className="font-display font-bold text-lg">{title}</h3>{children}</div>;
-                     }
+                                           }
