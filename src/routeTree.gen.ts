@@ -73,7 +73,6 @@ import { Route as AdminCareersRouteImport } from './routes/admin.careers'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminAcademyRouteImport } from './routes/admin.academy'
 import { Route as AcademyDashboardRouteImport } from './routes/academy.dashboard'
-import { Route as AcademyCheckoutRouteImport } from './routes/academy.checkout'
 import { Route as ShopSectionKeyRouteImport } from './routes/shop.section.$key'
 import { Route as ShopProductIdRouteImport } from './routes/shop.product.$id'
 import { Route as ShopCategorySlugRouteImport } from './routes/shop.category.$slug'
@@ -528,7 +527,6 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/verify': typeof VerifyRoute
-  '/academy/checkout': typeof AcademyCheckoutRoute
   '/academy/dashboard': typeof AcademyDashboardRoute
   '/admin/academy': typeof AdminAcademyRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -602,7 +600,6 @@ export interface FileRoutesById {
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/verify': typeof VerifyRoute
-  '/academy/checkout': typeof AcademyCheckoutRoute
   '/academy/dashboard': typeof AcademyDashboardRoute
   '/admin/academy': typeof AdminAcademyRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -677,7 +674,6 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/verify'
-    | '/academy/checkout'
     | '/academy/dashboard'
     | '/admin/academy'
     | '/admin/analytics'
@@ -747,7 +743,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/verify'
-    | '/academy/checkout'
     | '/academy/dashboard'
     | '/admin/academy'
     | '/admin/analytics'
@@ -820,7 +815,6 @@ export interface FileRouteTypes {
     | '/shop'
     | '/sitemap.xml'
     | '/verify'
-    | '/academy/checkout'
     | '/academy/dashboard'
     | '/admin/academy'
     | '/admin/analytics'
@@ -1346,13 +1340,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AcademyDashboardRouteImport
       parentRoute: typeof AcademyRoute
     }
-    '/academy/checkout': {
-      id: '/academy/checkout'
-      path: '/checkout'
-      fullPath: '/academy/checkout'
-      preLoaderRoute: typeof AcademyCheckoutRouteImport
-      parentRoute: typeof AcademyRoute
-    }
     '/shop/section/$key': {
       id: '/shop/section/$key'
       path: '/section/$key'
@@ -1399,13 +1386,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AcademyRouteChildren {
-  AcademyCheckoutRoute: typeof AcademyCheckoutRoute
   AcademyDashboardRoute: typeof AcademyDashboardRoute
   AcademyReadCourseIdRoute: typeof AcademyReadCourseIdRoute
 }
 
 const AcademyRouteChildren: AcademyRouteChildren = {
-  AcademyCheckoutRoute: AcademyCheckoutRoute,
   AcademyDashboardRoute: AcademyDashboardRoute,
   AcademyReadCourseIdRoute: AcademyReadCourseIdRoute,
 }
