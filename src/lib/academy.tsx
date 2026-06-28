@@ -120,7 +120,6 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
       id: String((serverUser as any).id || (serverUser as any)._id || ""),
       email: String(serverUser.email || (serverUser as any).username || "").toLowerCase().trim(),
       name: String(serverUser.name || (serverUser as any).fullName || (serverUser as any).username || "Student"),
-      // include any other fields your app expects, e.g. role
       role: String((serverUser as any).role || "student").toLowerCase()
     } as AcademyUser;
     try {
@@ -128,6 +127,45 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
       if (token) localStorage.setItem(ACADEMY_TOKEN_KEY, token);
     } catch {}
     setUser(next);
+
+    // Fetch purchased courses from backend and sync into local enrollments
+    if (token) {
+      try {
+        const res = await fetch("/api/v1/academy/auth/me", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (res.ok) {
+          const profile = await res.json();
+          const purchased: any[] = profile.purchasedCourses || [];
+          if (purchased.length > 0) {
+            setEnrollments(prev => {
+              const merged = [...prev];
+              for (const p of purchased) {
+                const course = p.course;
+                if (!course || !course._id) continue;
+                const courseId = course._id;
+                const alreadyIn = merged.some(e => e.courseId === courseId);
+                if (!alreadyIn) {
+                  merged.push({
+                    courseId,
+                    title: course.courseTitle || course.title || "Course",
+                    cover: course.image || "",
+                    price: course.price || 0,
+                    pages: Array.isArray(course.outline) ? course.outline : [],
+                    pageImages: [],
+                    currentPage: 0,
+                    practicalDate: p.practicalDate || undefined,
+                    purchasedAt: new Date(p.purchasedAt || Date.now()).getTime(),
+                  });
+                }
+              }
+              return merged;
+            });
+          }
+        }
+      } catch {}
+    }
+
     toast.success(`Welcome back, ${next.name.split(" ")[0] || "Student"}`);
     return next;
   }, []);

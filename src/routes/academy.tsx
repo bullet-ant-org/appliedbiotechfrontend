@@ -556,42 +556,4 @@ function MiniStat({ I, k, v }: { I: typeof BookOpen; k: string; v: string }) {
       <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{v}</div>
     </div>
   );
-            }                const courseId = course._id;
-                const alreadyIn = merged.some(e => e.courseId === courseId);
-                if (!alreadyIn) {
-                  merged.push({
-                    courseId,
-                    title: course.courseTitle || course.title || "Course",
-                    cover: course.image || "",
-                    price: course.price || 0,
-                    pages: Array.isArray(course.outline) ? course.outline : [],
-                    pageImages: [],
-                    currentPage: 0,
-                    practicalDate: p.practicalDate || undefined,
-                    purchasedAt: new Date(p.purchasedAt || Date.now()).getTime(),
-                  });
-                }
-              }
-              return merged;
-            });
-          }
-        }
-      } catch {}
-    }
-
-    toast.success(`Welcome back, ${next.name.split(" ")[0] || "Student"}`);
-    return next;
-  }, []);
-
-  return (
-    <Ctx.Provider value={{ user, enrollments, signIn, signUp, signOut, enroll, isEnrolled, setPage, setPracticalDate, progressPct, getEnrollment, signInFromServer }}>
-      {children}
-    </Ctx.Provider>
-  );
 }
-
-export function useAcademy() {
-  const v = useContext(Ctx);
-  if (!v) throw new Error("useAcademy must be used within AcademyProvider");
-  return v;
-                          }

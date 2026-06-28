@@ -343,7 +343,7 @@ function FeaturedGoldSection() {
   return (
     <section className="relative py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0" style={{ background: "linear-gradient(75deg, #5c3a05 0%, #92670f 14%, #c9961f 28%, #f0c33d 42%, #fbe18a 56%, #f0c33d 70%, #c9961f 84%, #7a5208 100%)" }} />
-      <div className="absolute bg-none inset-0 opacity-40 mix-blend-overlay" />
+      <div className="absolute inset-0 opacity-40 mix-blend-overlay" style={{ background: "linear-gradient(75deg, transparent 0%, rgba(255,255,255,0.7) 48%, transparent 60%)" }} />
       <div className="absolute inset-0 bg-black/10" />
 
       <div className="relative mx-auto max-w-5xl">
@@ -369,7 +369,7 @@ function FeaturedGoldSection() {
           </div>
 
           <div
-            className=" rounded-[2rem] p-8 lg:p-10"
+            className="bg-white/90 backdrop-blur-md rounded-[2rem] p-8 lg:p-10 shadow-2xl border border-white/50"
             style={{ transition: "opacity 0.4s ease, transform 0.4s ease", opacity: zoomed ? 1 : 0, transform: zoomed ? "translateY(0)" : "translateY(12px)" }}
           >
             <h3 className="font-display text-2xl md:text-3xl font-extrabold text-[#241502] leading-tight">{name}</h3>

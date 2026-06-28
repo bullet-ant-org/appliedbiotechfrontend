@@ -267,4 +267,4 @@ function MetaRow({ label, value }: { label: string; value: React.ReactNode }) {
       <span className="text-gray-900 font-medium text-right">{value}</span>
     </div>
   );
-                                  }
+}
