@@ -79,7 +79,9 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
   const signOut = useCallback(() => {
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(ACADEMY_TOKEN_KEY);
+    localStorage.removeItem(ENROLL_KEY);
     setUser(null);
+    setEnrollments([]);
     toast.success("Signed out of Academy");
   }, []);
 
