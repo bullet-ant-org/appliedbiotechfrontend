@@ -69,7 +69,7 @@ function AcademyPage() {
         navigate({ to: "/academy/dashboard" });
         return;
       }
-      navigate({ to: "/academy/read/$courseId", params: { courseId: c.id } });
+      navigate({ to: "/reader/$courseId", params: { courseId: c.id } });
       return;
     }
     setSelected(c);
@@ -200,7 +200,7 @@ function AcademyPage() {
                     <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Last page read</div>
                     <div className="mt-1 font-semibold leading-snug truncate">{academy.enrollments[0].title}</div>
                     <div className="text-xs text-muted-foreground mt-0.5">Page {academy.enrollments[0].currentPage + 1}</div>
-                    <Link to="/academy/read/$courseId" params={{ courseId: academy.enrollments[0].courseId }} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand hover:underline">Continue reading <ArrowRight className="h-4 w-4" /></Link>
+                    <Link to="/reader/$courseId" params={{ courseId: academy.enrollments[0].courseId }} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand hover:underline">Continue reading <ArrowRight className="h-4 w-4" /></Link>
                   </div>
                 )}
                 <div className="flex flex-wrap gap-2">
@@ -415,7 +415,7 @@ function AcademyPage() {
                           {e.practicalDate && <div className="mt-1 text-xs text-muted-foreground">Practical: {new Date(e.practicalDate).toLocaleDateString()}</div>}
                           <div className="mt-3 h-1.5 rounded-full bg-secondary overflow-hidden"><div className="h-full gradient-brand" style={{ width: `${pct}%` }} /></div>
                           <div className="mt-1 text-xs text-muted-foreground">{pct}% complete</div>
-                          <Link to="/academy/read/$courseId" params={{ courseId: e.courseId }} className="mt-4 w-full h-10 rounded-xl gradient-brand text-brand-foreground text-sm font-semibold inline-flex items-center justify-center gap-2">Continue reading <ArrowRight className="h-4 w-4" /></Link>
+                          <Link to="/reader/$courseId" params={{ courseId: e.courseId }} className="mt-4 w-full h-10 rounded-xl gradient-brand text-brand-foreground text-sm font-semibold inline-flex items-center justify-center gap-2">Continue reading <ArrowRight className="h-4 w-4" /></Link>
                         </>
                       )}
                     </div>
@@ -539,7 +539,7 @@ function AcademyPage() {
                 {academy.isEnrolled(selected.id) ? (
                   selected.courseType === "training"
                     ? <button onClick={() => { setSelected(null); navigate({ to: "/academy/dashboard" }); }} className="w-full h-11 rounded-xl gradient-brand text-brand-foreground text-sm font-bold inline-flex items-center justify-center gap-2"><BookOpen className="h-4 w-4" /> View in library</button>
-                    : <Link to="/academy/read/$courseId" params={{ courseId: selected.id }} onClick={() => setSelected(null)} className="block w-full h-11 rounded-xl gradient-brand text-brand-foreground text-sm font-bold inline-flex items-center justify-center">Open reader</Link>
+                    : <Link to="/reader/$courseId" params={{ courseId: selected.id }} onClick={() => setSelected(null)} className="block w-full h-11 rounded-xl gradient-brand text-brand-foreground text-sm font-bold inline-flex items-center justify-center">Open reader</Link>
                 ) : (
                   <button onClick={confirmBuy} className="w-full h-11 rounded-xl gradient-brand text-brand-foreground text-sm font-bold">
                     {selected.courseType === "training" ? "Enroll now" : "Buy now"}
@@ -564,4 +564,4 @@ function MiniStat({ I, k, v }: { I: typeof BookOpen; k: string; v: string }) {
       <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{v}</div>
     </div>
   );
-            }
+      }
