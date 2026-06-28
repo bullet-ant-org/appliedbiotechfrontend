@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, ReactNode } from "react";
 import { Navbar } from "@/components/site/Navbar";
-import { useAcademy, ACADEMY_TOKEN_KEY } from "@/lib/academy";
+import { useAcademy, ACADEMY_TOKEN_KEY, backendFetch } from "@/lib/academy";
 import { BookOpen, LayoutDashboard, User, LogOut, ArrowRight, MessageCircle, Calendar, Award, Clock, Menu, X, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/academy/dashboard")({
@@ -23,7 +23,7 @@ function AcademyDashboard() {
     if (!user) return;
     const token = localStorage.getItem(ACADEMY_TOKEN_KEY);
     if (!token) { setLoadingCourses(false); return; }
-    fetch("/api/v1/academy/auth/me", { headers: { Authorization: `Bearer ${token}` } })
+    backendFetch("/api/v1/academy/auth/me", { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.ok ? r.json() : null)
       .then(profile => {
         if (!profile) return;
@@ -228,4 +228,4 @@ function Info({ label, value }: { label: string; value: string }) {
       <div className="mt-1 font-display font-bold">{value}</div>
     </div>
   );
-}
+                          }
