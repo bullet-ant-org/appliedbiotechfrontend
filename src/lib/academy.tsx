@@ -1,5 +1,23 @@
-import { createContext, useCallback, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import { toast } from "sonner";
+
+const BACKEND_URL = (() => {
+  const env = import.meta.env.VITE_BACKEND_URL as string | undefined;
+  if (typeof window !== "undefined" &&
+    !window.location.hostname.includes("localhost") &&
+    !window.location.hostname.includes("127.0.0.1")) {
+    if (!env || env.includes("localhost") || env.includes("127.0.0.1")) {
+      return "https://appliedbiotechbackend.onrender.com";
+    }
+  }
+  return env || "https://appliedbiotechbackend.onrender.com";
+})();
+
+export function backendFetch(path: string, options?: RequestInit) {
+  const base = BACKEND_URL.replace(/\/$/, "");
+  const p = path.startsWith("/") ? path : `/${path}`;
+  return fetch(`${base}${p}`, options);
+}
 
 export type AcademyUser = { id?: string; _id?: string; email: string; name: string; phone?: string; role?: string };
 export type Enrollment = {
@@ -42,6 +60,7 @@ function readJSON<T>(k: string, fallback: T): T {
 export function AcademyProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AcademyUser | null>(null);
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
+  const hasSynced = useRef(false);
 
   useEffect(() => {
     const storedUser = readJSON<AcademyUser | null>(USER_KEY, null);
@@ -49,43 +68,43 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
     setUser(storedUser);
     setEnrollments(storedEnrollments);
 
-    // If already logged in, silently re-sync purchased courses from backend
-    // This ensures courses show on any new device/browser after login
+    if (hasSynced.current) return;
     const token = localStorage.getItem(ACADEMY_TOKEN_KEY);
-    if (storedUser && token) {
-      fetch("/api/v1/academy/auth/me", {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-        .then(r => r.ok ? r.json() : null)
-        .then(profile => {
-          if (!profile) return;
-          const purchased: any[] = profile.purchasedCourses || [];
-          if (purchased.length === 0) return;
-          setEnrollments(prev => {
-            const merged = [...prev];
-            for (const p of purchased) {
-              const course = p.course;
-              if (!course || !course._id) continue;
-              const alreadyIn = merged.some(e => e.courseId === course._id);
-              if (!alreadyIn) {
-                merged.push({
-                  courseId: course._id,
-                  title: course.courseTitle || course.title || "Course",
-                  cover: course.image || "",
-                  price: course.price || 0,
-                  pages: Array.isArray(course.outline) ? course.outline : [],
-                  pageImages: [],
-                  currentPage: 0,
-                  practicalDate: p.practicalDate || undefined,
-                  purchasedAt: new Date(p.purchasedAt || Date.now()).getTime(),
-                });
-              }
+    if (!storedUser || !token) return;
+    hasSynced.current = true;
+
+    backendFetch("/api/v1/academy/auth/me", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(r => r.ok ? r.json() : null)
+      .then(profile => {
+        if (!profile) return;
+        const purchased: any[] = profile.purchasedCourses || [];
+        if (purchased.length === 0) return;
+        setEnrollments(prev => {
+          const merged = [...prev];
+          for (const p of purchased) {
+            const course = p.course;
+            if (!course || !course._id) continue;
+            const alreadyIn = merged.some(e => e.courseId === course._id);
+            if (!alreadyIn) {
+              merged.push({
+                courseId: course._id,
+                title: course.courseTitle || course.title || "Course",
+                cover: course.image || "",
+                price: course.price || 0,
+                pages: Array.isArray(course.outline) ? course.outline : [],
+                pageImages: [],
+                currentPage: 0,
+                practicalDate: p.practicalDate || undefined,
+                purchasedAt: new Date(p.purchasedAt || Date.now()).getTime(),
+              });
             }
-            return merged;
-          });
-        })
-        .catch(() => {});
-    }
+          }
+          return merged;
+        });
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -173,7 +192,7 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
     // Fetch purchased courses from backend and sync into local enrollments
     if (token) {
       try {
-        const res = await fetch("/api/v1/academy/auth/me", {
+        const res = await backendFetch("/api/v1/academy/auth/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -223,4 +242,4 @@ export function useAcademy() {
   const v = useContext(Ctx);
   if (!v) throw new Error("useAcademy must be used within AcademyProvider");
   return v;
-}
+                                                       }
