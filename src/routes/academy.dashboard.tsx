@@ -115,7 +115,7 @@ function AcademyDashboard() {
                         <>
                           <div className="mt-2 font-display text-xl font-bold">{c.courseTitle || c.title}</div>
                           {latest.practicalDate && <div className="mt-1 text-sm text-muted-foreground flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> Practical: {latest.practicalDate}</div>}
-                          <Link to="/academy/read/$courseId" params={{ courseId: c._id }} className="mt-5 inline-flex items-center gap-2 h-11 px-5 rounded-xl gradient-brand text-brand-foreground text-sm font-bold">
+                          <Link to="/reader/$courseId" params={{ courseId: c._id }} className="mt-5 inline-flex items-center gap-2 h-11 px-5 rounded-xl gradient-brand text-brand-foreground text-sm font-bold">
                             Continue reading <ArrowRight className="h-4 w-4" />
                           </Link>
                         </>
@@ -158,7 +158,7 @@ function AcademyDashboard() {
                           <h3 className="font-display font-bold leading-snug">{c.courseTitle || c.title}</h3>
                           {p.practicalDate && (() => { try { const d = new Date(p.practicalDate); return !isNaN(d.getTime()) ? <div className="mt-1 text-xs text-muted-foreground flex items-center gap-1"><Calendar className="h-3 w-3" /> Practical: {d.toLocaleDateString()}</div> : <div className="mt-1 text-xs text-muted-foreground flex items-center gap-1"><Calendar className="h-3 w-3" /> Practical: {p.practicalDate}</div>; } catch { return null; } })()}
                           <div className="mt-1 text-xs text-muted-foreground">Purchased: {new Date(p.purchasedAt || c.createdAt).toLocaleDateString()}</div>
-                          <Link to="/academy/read/$courseId" params={{ courseId: c._id }}
+                          <Link to="/reader/$courseId" params={{ courseId: c._id }}
                             className="mt-4 w-full h-10 rounded-xl gradient-brand text-brand-foreground text-sm font-semibold inline-flex items-center justify-center gap-2">
                             Open reader <ArrowRight className="h-4 w-4" />
                           </Link>
@@ -228,4 +228,4 @@ function Info({ label, value }: { label: string; value: string }) {
       <div className="mt-1 font-display font-bold">{value}</div>
     </div>
   );
-                          }
+}
