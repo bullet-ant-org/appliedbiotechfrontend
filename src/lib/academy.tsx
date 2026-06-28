@@ -44,8 +44,48 @@ export function AcademyProvider({ children }: { children: ReactNode }) {
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
 
   useEffect(() => {
-    setUser(readJSON<AcademyUser | null>(USER_KEY, null));
-    setEnrollments(readJSON<Enrollment[]>(ENROLL_KEY, []));
+    const storedUser = readJSON<AcademyUser | null>(USER_KEY, null);
+    const storedEnrollments = readJSON<Enrollment[]>(ENROLL_KEY, []);
+    setUser(storedUser);
+    setEnrollments(storedEnrollments);
+
+    // If already logged in, silently re-sync purchased courses from backend
+    // This ensures courses show on any new device/browser after login
+    const token = localStorage.getItem(ACADEMY_TOKEN_KEY);
+    if (storedUser && token) {
+      fetch("/api/v1/academy/auth/me", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(r => r.ok ? r.json() : null)
+        .then(profile => {
+          if (!profile) return;
+          const purchased: any[] = profile.purchasedCourses || [];
+          if (purchased.length === 0) return;
+          setEnrollments(prev => {
+            const merged = [...prev];
+            for (const p of purchased) {
+              const course = p.course;
+              if (!course || !course._id) continue;
+              const alreadyIn = merged.some(e => e.courseId === course._id);
+              if (!alreadyIn) {
+                merged.push({
+                  courseId: course._id,
+                  title: course.courseTitle || course.title || "Course",
+                  cover: course.image || "",
+                  price: course.price || 0,
+                  pages: Array.isArray(course.outline) ? course.outline : [],
+                  pageImages: [],
+                  currentPage: 0,
+                  practicalDate: p.practicalDate || undefined,
+                  purchasedAt: new Date(p.purchasedAt || Date.now()).getTime(),
+                });
+              }
+            }
+            return merged;
+          });
+        })
+        .catch(() => {});
+    }
   }, []);
 
   useEffect(() => {
