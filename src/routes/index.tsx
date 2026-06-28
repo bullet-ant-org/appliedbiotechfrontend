@@ -62,9 +62,16 @@ const HERO_SLIDES = [
     cta: { label: "Start Learning", to: "/academy" as const },
   },
   {
+    headline: "Championing Biotechnology solutions in Africa",
+    sub: "From groundbreaking research to real-world impact, we develop innovative biotechnology solutions that address Africa's most pressing challenges and shape a healthier, more sustainable future.",
+    img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput.jpg",
+    alt: "Abstract virus morphology with DNA strands",
+    cta: { label: "Start Learning", to: "/academy" as const },
+  },
+  {
     headline: "Powering the Bioeconomy in Africa",
     sub: "Source reagents, equip your facility and deploy diagnostics from a team that has been building Africa's lab infrastructure since 2006.",
-    img: "https://img.magnific.com/premium-photo/lush-green-crop-field-with-neatly-planted-rows-clear-blue-sky_1157641-23424.jpg?semt=ais_hybrid&w=740&q=80",
+    img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png",
     alt: "Gloved hand pipetting into a microfuge tube",
     cta: { label: "Shop Now", to: "/shop" as const },
   },
