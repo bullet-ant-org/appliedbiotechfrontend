@@ -556,6 +556,7 @@ function Welcome() {
           </Link>
         </div>
         <div className="reveal">
+          <Link to="https://vm.tiktok.com/ZNRwBrCBY/">
           <div className="relative rounded-3xl overflow-hidden shadow-brand aspect-video bg-foreground group">
             {playing ? (
               <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="Welcome from Prof. Nwadiuto Esiobu" allow="autoplay; encrypted-media" allowFullScreen className="absolute inset-0 w-full h-full" />
@@ -575,6 +576,7 @@ function Welcome() {
               </button>
             )}
           </div>
+            </Link>
         </div>
       </div>
     </section>
