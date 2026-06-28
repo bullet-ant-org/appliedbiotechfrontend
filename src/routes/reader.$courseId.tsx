@@ -139,8 +139,8 @@ function Reader() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="max-w-3xl mx-auto px-4 py-10">
-        <Link to="/academy/dashboard" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1">
+      <div className="max-w-3xl mx-auto px-4 py-10 pt-5">
+        <Link to="/academy" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1">
           <ArrowLeft className="h-4 w-4" /> My Library
         </Link>
         <div className="mt-4 flex items-end justify-between gap-4">
