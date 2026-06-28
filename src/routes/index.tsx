@@ -66,7 +66,7 @@ const HERO_SLIDES = [
     sub: "From groundbreaking research to real-world impact, we develop innovative biotechnology solutions that address Africa's most pressing challenges and shape a healthier, more sustainable future.",
     img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput.jpg",
     alt: "Abstract virus morphology with DNA strands",
-    cta: { label: "Start Learning", to: "/academy" as const },
+    cta: { label: "About Us", to: "/about" as const },
   },
   {
     headline: "Powering the Bioeconomy in Africa",
