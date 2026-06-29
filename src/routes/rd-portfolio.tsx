@@ -18,31 +18,38 @@ const bioMfgProducts = [
   {
     t: "Nuclease-Free Water",
     status: "Available",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693680/ak9vxrfoxwiiiiae9ttn.png",
+
     d: "Produced and supplied to molecular labs across our network. A foundational input for every PCR and sequencing workflow we run.",
   },
   {
     t: "Locally Manufactured Nucleic Acid Purification Kits & Media",
     status: "Available",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693671/b1c4xb3vqznfsra0hdmk.png",
     d: "Built to reduce dependency on imported consumables, without compromising the precision our diagnostics work demands.",
   },
   {
     t: "Bioinoculants & Mycorrhizae",
     status: "In Development",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693672/tvfe3h56btfodeswjdwv.png",
     d: "Our work on biofertilisers and mycorrhizal inoculants is aimed at agriculture, land restoration and bioremediation — helping soil recover and farms produce more, sustainably.",
   },
   {
     t: "Probiotics",
     status: "In Development",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693672/fwc6apyejwxfv0gidbuu.png",
     d: "Research into functional microbial strains for gut and metabolic health, formulated with the same rigor we apply to our diagnostic work.",
   },
   {
     t: "Indigenously Formulated Oral Care Products",
     status: "In Development",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693670/jacfv2kosxuwp7ufaduq.png",
     d: "Exploring locally sourced, microbially-informed formulations for oral health — built from the ground up, not adapted from someone else's supply chain.",
   },
   {
     t: "Nutritional Supplements",
     status: "In Development",
+    image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693671/aezsyo76m80kph9ologx.png",
     d: "Early-stage formulation work grounded in the same molecular science we use across our lab services — supplements designed with evidence, not just trend.",
   },
 ];
@@ -75,7 +82,7 @@ function PortfolioPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {bioMfgProducts.map((p) => (
               <div key={p.t} className="reveal group rounded-2xl border border-border bg-card overflow-hidden hover:border-brand/40 hover:-translate-y-1 hover:shadow-soft transition-all">
-                {/* Image placeholder — intentionally blank for stock photography */}
+              <img src={p.image}/>
                 <div className="aspect-[16/9] bg-gradient-to-br from-secondary to-secondary/50 grid place-items-center">
                   <Beaker className="h-8 w-8 text-muted-foreground/25" />
                 </div>
