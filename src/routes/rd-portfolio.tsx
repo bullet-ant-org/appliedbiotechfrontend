@@ -82,7 +82,7 @@ function PortfolioPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {bioMfgProducts.map((p) => (
               <div key={p.t} className="reveal group rounded-2xl border border-border bg-card overflow-hidden hover:border-brand/40 hover:-translate-y-1 hover:shadow-soft transition-all">
-              <img src={p.image}/>
+              <img key={p.image}/>
                 <div className="aspect-[16/9] bg-gradient-to-br from-secondary to-secondary/50 grid place-items-center">
                   <Beaker className="h-8 w-8 text-muted-foreground/25" />
                 </div>
