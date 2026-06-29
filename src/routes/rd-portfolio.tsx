@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Footer } from "@/components/site/Footer";
 import { useReveal } from "@/hooks/use-reveal";
-import { ArrowRight, FlaskConical, Leaf, Dna, ShieldPlus, Microscope, Beaker } from "lucide-react";
+import { ArrowRight, FlaskConical, Leaf, Dna, ShieldPlus, Microscope } from "lucide-react";
 
 export const Route = createFileRoute("/rd-portfolio")({
   component: PortfolioPage,
@@ -19,7 +19,6 @@ const bioMfgProducts = [
     t: "Nuclease-Free Water",
     status: "Available",
     image: "https://res.cloudinary.com/djzi0scln/image/upload/v1782693680/ak9vxrfoxwiiiiae9ttn.png",
-
     d: "Produced and supplied to molecular labs across our network. A foundational input for every PCR and sequencing workflow we run.",
   },
   {
@@ -79,13 +78,22 @@ function PortfolioPage() {
               These are not catalogue listings — they are active development programs. Two are already in supply; the rest are in the lab now.
             </p>
           </div>
+          
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {bioMfgProducts.map((p) => (
-              <div key={p.t} className="reveal group rounded-2xl border border-border bg-card overflow-hidden hover:border-brand/40 hover:-translate-y-1 hover:shadow-soft transition-all">
-              <img key={p.image}/>
-                <div className="aspect-[16/9] bg-gradient-to-br from-secondary to-secondary/50 grid place-items-center">
-                  <Beaker className="h-8 w-8 text-muted-foreground/25" />
+              <div key={p.t} className="reveal group rounded-2xl border border-border bg-card overflow-hidden hover:border-brand/40 hover:-translate-y-1 hover:shadow-soft transition-all duration-300">
+                
+                {/* Clean Image Container wrapping the product imagery */}
+                <div className="aspect-[16/9] bg-secondary/50 relative overflow-hidden">
+                  <img 
+                    src={p.image} 
+                    alt={p.t}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
                 </div>
+
+                {/* Card details */}
                 <div className="p-5">
                   <span className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${p.status === "Available" ? "bg-emerald-500/10 text-emerald-600" : "bg-amber-500/10 text-amber-600"}`}>
                     {p.status}
@@ -93,9 +101,11 @@ function PortfolioPage() {
                   <h3 className="mt-3 font-display font-bold leading-snug">{p.t}</h3>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
                 </div>
+
               </div>
             ))}
           </div>
+
           <div className="reveal mt-10 text-center rounded-3xl border border-border bg-card p-8 max-w-3xl mx-auto">
             <p className="text-muted-foreground leading-relaxed">
               If you see something that aligns with what you're building, investing in, or want to bring to market together, we would like to talk.
@@ -118,7 +128,9 @@ function PortfolioPage() {
             {projects.map((p, i) => (
               <div key={p.t} className="reveal group rounded-3xl border border-border bg-card p-7 hover:-translate-y-2 hover:shadow-brand hover:border-brand/40 transition-all duration-500" style={{ transitionDelay: `${i * 50}ms` }}>
                 <div className="flex items-center justify-between">
-                  <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground group-hover:scale-110 transition-transform"><p.I className="h-5 w-5" /></div>
+                  <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground group-hover:scale-110 transition-transform">
+                    <p.I className="h-5 w-5" />
+                  </div>
                   <span className="text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand/10 text-brand font-semibold">{p.tag}</span>
                 </div>
                 <h3 className="mt-5 font-display font-bold text-lg leading-tight">{p.t}</h3>
