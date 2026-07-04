@@ -99,23 +99,35 @@ function HeroCarousel() {
 
 function PromoStrip() {
   const items = [
-    { icon: ShieldCheck, title: "Secure Payment", sub: "100% protected" },
-    { icon: RotateCcw, title: "Easy Returns", sub: "14-day window" },
-    { icon: Headphones, title: "24/7 Support", sub: "We're here to help" },
+    { icon: ShieldCheck, title: "Secure Payment", sub: "100% protected", link: null },
+    { icon: RotateCcw, title: "Easy Returns", sub: "14-day window", link: null },
+    { icon: Headphones, title: "24/7 Support", sub: "We're here to help", link: "/contact" },
     { icon: Package, title: "Request a Product", sub: "Can't find it? Ask us", link: "/shop/request" },
   ];
   return (
     <section className="px-4 sm:px-6 lg:px-8 mt-8">
       <div className="mx-auto max-w-7xl grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {items.map((it, i) => (
-          <div key={i} className="reveal flex items-center gap-3 p-4 rounded-2xl bg-card border border-border hover:shadow-soft hover:-translate-y-0.5 transition-all">
-            <div className="h-11 w-11 grid place-items-center rounded-xl bg-brand/10 text-brand shrink-0"><it.icon className="h-5 w-5" /></div>
-            <div className="min-w-0">
-              <div className="font-semibold text-sm text-foreground truncate">{it.title}</div>
-              <div className="text-xs text-muted-foreground truncate">{it.sub}</div>
+        {items.map((it, i) => {
+          const content = (
+            <div className="flex items-center gap-3 p-4 rounded-2xl bg-card border border-border hover:shadow-soft hover:-translate-y-0.5 transition-all">
+              <div className="h-11 w-11 grid place-items-center rounded-xl bg-brand/10 text-brand shrink-0"><it.icon className="h-5 w-5" /></div>
+              <div className="min-w-0">
+                <div className="font-semibold text-sm text-foreground truncate">{it.title}</div>
+                <div className="text-xs text-muted-foreground truncate">{it.sub}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+
+          if (it.link) {
+            return (
+              <Link key={i} to={it.link} className="block">
+                {content}
+              </Link>
+            );
+          }
+
+          return <div key={i}>{content}</div>;
+        })}
       </div>
     </section>
   );
