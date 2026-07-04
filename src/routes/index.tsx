@@ -252,19 +252,19 @@ function PetalNavigator() {
         <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Six ways to take action. Choose what matters to you and step right in.</p>
       </div>
 
-
       {/* Larger screens: circular petal layout */}
-      <div className="relative mx-auto mt-14 h-[420px] sm:h-[420px] w-full max-w-[420px]">
+      <div className="relative mx-auto mt-14 h-[420px] sm:h-[420px] w-full max-w-[300px] sm:max-w-[420px]">
         {petals.map((p, idx) => {
           const angle = (idx / petals.length) * Math.PI * 2 - Math.PI / 2;
-          const radius = 185;
+          const radius = window.innerWidth < 640 ? 130 : 185;
+          const size = window.innerWidth < 640 ? 100 : 144;
           const x = Math.cos(angle) * radius;
           const y = Math.sin(angle) * radius;
           return (
             <motion.div
               key={p.label}
               className="absolute left-1/2 top-1/2"
-              style={{ x: x - 72, y: y - 72 }}
+              style={{ x: x - size/2, y: y - size/2 }}
               initial={{ opacity: 0, scale: 0.4 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -272,12 +272,13 @@ function PetalNavigator() {
             >
               <Link
                 to={p.to}
-                className={`group relative grid h-[144px] w-[144px] place-items-center rounded-full text-white font-semibold shadow-brand transition-transform hover:scale-110 bg-gradient-to-br ${p.bg}`}
+                className={`group relative grid place-items-center rounded-full text-white font-semibold shadow-brand transition-transform hover:scale-110 bg-gradient-to-br ${p.bg}`}
+                style={{ width: size, height: size }}
               >
-                <div className="flex flex-col items-center gap-1.5 px-3 text-center">
-                  <p.I className="h-6 w-6 transition-transform group-hover:scale-110" />
-                  <span className="text-xs font-bold leading-tight">{p.label}</span>
-                  <span className="text-[9px] text-white/70 leading-tight">{p.sub}</span>
+                <div className="flex flex-col items-center gap-1 px-2 text-center">
+                  <p.I className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+                  <span className="text-[10px] sm:text-xs font-bold leading-tight">{p.label}</span>
+                  <span className="text-[7px] sm:text-[9px] text-white/70 leading-tight hidden sm:block">{p.sub}</span>
                 </div>
                 <div className="absolute inset-0 rounded-full ring-2 ring-white/20 group-hover:ring-white/60 transition" />
               </Link>
@@ -292,10 +293,10 @@ function PetalNavigator() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, type: "spring" }}
         >
-          <div className="h-[110px] w-[110px] rounded-full gradient-brand grid place-items-center shadow-brand relative">
+          <div className="h-[80px] w-[80px] sm:h-[110px] sm:w-[110px] rounded-full gradient-brand grid place-items-center shadow-brand relative">
             <div className="absolute inset-0 rounded-full animate-ping bg-brand/30" style={{ animationDuration: "3s" }} />
-            <div className="relative h-[100px] w-[100px] rounded-full bg-card grid place-items-center border border-border">
-              <div className="font-display font-extrabold text-brand text-center leading-tight text-xs">
+            <div className="relative h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-card grid place-items-center border border-border">
+              <div className="font-display font-extrabold text-brand text-center leading-tight text-[8px] sm:text-xs">
                 Engage<br />Us
               </div>
             </div>
@@ -306,7 +307,6 @@ function PetalNavigator() {
     </section>
   );
 }
-
 function FeaturedGoldSection() {
   const { fetchData } = useFetch();
   const [items, setItems] = useState<any[]>([]);
