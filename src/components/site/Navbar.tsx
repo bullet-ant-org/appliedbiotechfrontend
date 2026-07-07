@@ -5,10 +5,7 @@ import logo from "@/assets/logo.png";
 import { useAuth } from "@/lib/auth";
 
 const services: { label: string; slug: string }[] = [
-  { label: "Molecular Lab Services", slug: "molecular-lab" },
-  { label: "Lab Equipments & Reagents", slug: "equipment" },
-  { label: "Training & Applied Biotech Institute", slug: "training" },
-  { label: "Consulting", slug: "consulting" },
+  { label: "Services", slug: "Services" },
 ];
 
 const navLinks = [
@@ -58,9 +55,6 @@ export function Navbar() {
             onMouseEnter={() => setSvcOpen(true)}
             onMouseLeave={() => setSvcOpen(false)}
           >
-            <button className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors flex items-center gap-1">
-              Services <ChevronDown className="h-3.5 w-3.5" />
-            </button>
             <div
               className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 ${
                 svcOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 pointer-events-none"
