@@ -41,10 +41,8 @@ function Index() {
       <Marquee />
       <QuickDoors />
       <PetalNavigator />
-      <FeaturedGoldSection />
       <ConsultSection />
       <Welcome />
-      <DealSection />
       <Pillars />
       <MetricBanner />
       <CTA />
