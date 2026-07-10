@@ -251,15 +251,15 @@ function Overview() {
               <AreaChart data={yearlyClicksMock}>
                 <defs>
                   <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="oklch(0.62 0.2 240)" stopOpacity={0.5} />
-                    <stop offset="100%" stopColor="oklch(0.62 0.2 240)" stopOpacity={0} />
+                    <stop offset="0%" stopColor="oklch(0.62 0.2 152)" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="oklch(0.62 0.2 152)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.929 0.013 255.508)" />
-                <XAxis dataKey="m" stroke="oklch(0.5 0.03 250)" fontSize={12} />
-                <YAxis stroke="oklch(0.5 0.03 250)" fontSize={12} />
-                <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid oklch(0.929 0.013 255.508)" }} />
-                <Area type="monotone" dataKey="v" stroke="oklch(0.42 0.18 255)" strokeWidth={2.5} fill="url(#g1)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.929 0.013 155)" />
+                <XAxis dataKey="m" stroke="oklch(0.5 0.03 154)" fontSize={12} />
+                <YAxis stroke="oklch(0.5 0.03 154)" fontSize={12} />
+                <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid oklch(0.929 0.013 155)" }} />
+                <Area type="monotone" dataKey="v" stroke="oklch(0.42 0.18 155)" strokeWidth={2.5} fill="url(#g1)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>

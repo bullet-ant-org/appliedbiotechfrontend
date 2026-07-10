@@ -7,6 +7,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import {
   ArrowRight, ChevronRight, Sparkles, FlaskConical, ShoppingBag, GraduationCap,
   BrainCircuit, Play, Shield, Cpu, Award, Microscope, CheckCircle2, Calendar,
+  Globe, Users, ClipboardCheck, LineChart,
 } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
 import heroVirus from "@/assets/image-c.jpg";
@@ -42,6 +43,7 @@ function Index() {
       <QuickDoors />
       <PetalNavigator />
       <ConsultSection />
+      <DiasporaBridge />
       <Welcome />
       <Pillars />
       <MetricBanner />
@@ -54,21 +56,21 @@ function Index() {
 const HERO_SLIDES = [
   {
     headline: "Leading the Biotechnology Revolution in Africa",
-    sub: "Step into the lab. Earn your certification, run your research and build your career on a continent ready for its scientific breakthrough.",
+    sub: "Access accredited laboratory training, execute rigorous molecular research and advance a scientific career on a continent positioned for its next major discovery.",
     img: heroVirus,
     alt: "Abstract virus morphology with DNA strands",
     cta: { label: "Start Learning", to: "/academy" as const },
   },
   {
     headline: "Championing Biotechnology solutions in Africa",
-    sub: "From groundbreaking research to real-world impact, we develop innovative biotechnology solutions that address Africa's most pressing challenges and shape a healthier, more sustainable future.",
+    sub: "From applied research to validated field deployment, we develop evidence-based biotechnology solutions that address Africa's most pressing public health and agricultural challenges.",
     img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput.jpg",
     alt: "Abstract virus morphology with DNA strands",
     cta: { label: "About Us", to: "/about" as const },
   },
   {
     headline: "Powering the Bioeconomy in Africa",
-    sub: "Source reagents, equip your facility and deploy diagnostics from a team that has been building Africa's lab infrastructure since 2006.",
+    sub: "Source validated reagents, equip your facility to specification and deploy diagnostic assays through a team that has engineered Africa's laboratory infrastructure since 2006.",
     img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png",
     alt: "Gloved hand pipetting into a microfuge tube",
     cta: { label: "Shop Now", to: "/shop" as const },
@@ -338,10 +340,10 @@ function ConsultSection() {
               <span className="text-accent-cyan">Into Reality</span>
             </h2>
             <p className="mt-5 text-background/80 text-lg leading-relaxed max-w-xl">
-              The next breakthrough in biotechnology won't come from ideas alone. It will come from the organizations that know how to turn innovation into impact.
+              Translational impact in biotechnology is rarely a product of ideas alone; it results from rigorous methodology applied by organizations equipped to convert research into measurable outcomes.
             </p>
             <p className="mt-4 text-background/70 leading-relaxed max-w-xl">
-              Whether you're a researcher seeking commercialization pathways, a startup looking for strategic direction, or an organization exploring biotechnology opportunities, our consulting services help you move faster, make smarter decisions, and unlock greater value from your innovations.
+              Whether you are a researcher pursuing a commercialization pathway, a startup requiring strategic direction, or an institution evaluating a biotechnology opportunity, our consulting practice applies structured, evidence-based methods to accelerate decision-making and de-risk your next step.
             </p>
 
             <div className="mt-8 grid sm:grid-cols-2 gap-3">
@@ -355,7 +357,7 @@ function ConsultSection() {
 
             <div className="mt-10 p-6 rounded-2xl bg-background/[0.07] border border-background/10">
               <p className="text-background/85 text-sm leading-relaxed italic">
-                "As one of Africa's leading biotechnology champions, we are committed to helping innovators, institutions and businesses transform ambitious ideas into measurable results. Your next breakthrough deserves more than potential — it deserves a strategy."
+                "As a leading biotechnology consultancy on the continent, we apply structured methodology and technical rigor to help innovators, institutions and businesses convert research potential into validated, measurable results."
               </p>
             </div>
 
@@ -395,6 +397,58 @@ function ConsultSection() {
   );
 }
 
+
+const DIASPORA_MANDATE = [
+  { icon: ClipboardCheck, t: "Vetting", d: "Rigorous credential and competency screening of Diaspora-based STEMM experts against host-institution requirements." },
+  { icon: Globe, t: "Mapping", d: "Systematic mapping of expertise to institutional need, aligning specialists with the departments and programs where their contribution is most consequential." },
+  { icon: Users, t: "Coordination", d: "End-to-end coordination between returning experts and host institutions across teaching, research and capacity-building engagements." },
+  { icon: LineChart, t: "Monitoring & Evaluation", d: "Structured M&E frameworks that track engagement outcomes and quantify impact against the program's stated objectives." },
+];
+
+function DiasporaBridge() {
+  return (
+    <section id="diaspora-bridge" className="py-24 md:py-32 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-14 items-start">
+          <div className="reveal">
+            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Federal Ministry of Education Initiative</span>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">
+              The <span className="gradient-text">Diaspora Bridge</span> Program
+            </h2>
+            <p className="mt-5 text-muted-foreground leading-relaxed">
+              Applied Biotech was engaged as strategic consultant to the Diaspora Bridge program, an initiative of the Federal Ministry of Education designed to connect Nigerian STEMM experts based abroad with host institutions across the country.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
+            </p>
+            <Link to="/services" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+              Our Role as Strategic Consultant <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {DIASPORA_MANDATE.map((item, idx) => (
+              <motion.div
+                key={item.t}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.06 }}
+                className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+              >
+                <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center">
+                  <item.icon className="h-5 w-5 text-brand-foreground" />
+                </div>
+                <h3 className="mt-4 font-display font-bold">{item.t}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.d}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function Welcome() {
   const [playing, setPlaying] = useState(false);

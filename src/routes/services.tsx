@@ -1,11 +1,88 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { useReveal } from "@/hooks/use-reveal";
 import {
   ArrowRight, FlaskConical, ShoppingBag, GraduationCap, BrainCircuit,
-  ChevronRight, Building2, Users, Beaker, Mail,
+  ChevronRight, ChevronDown, Building2, Users, Beaker, Mail, ListTree, X,
 } from "lucide-react";
+
+const SERVICE_NAV = [
+  { id: "molecular-lab", I: FlaskConical, t: "Molecular Lab Services", subs: [
+    { id: "sample-analysis", t: "Sample Analysis" },
+    { id: "rent-a-lab-card", t: "Rent-A-Lab" },
+    { id: "specialty-testing", t: "Specialty Testing" },
+  ] },
+  { id: "equipment", I: ShoppingBag, t: "Lab Equipment & Reagents", subs: [
+    { id: "instrumentation", t: "Analytical Instrumentation" },
+    { id: "reagents", t: "Molecular Reagents & Bio-Chemicals" },
+    { id: "infrastructure", t: "Deployable Infrastructure" },
+  ] },
+  { id: "training", I: GraduationCap, t: "Training & Institute", subs: [
+    { id: "courses", t: "Modular Hands-On Courses" },
+    { id: "workshops", t: "Hands-On Workshops" },
+    { id: "upskilling", t: "Institutional Upskilling" },
+  ] },
+  { id: "consultancy", I: BrainCircuit, t: "Consultancy", subs: [
+    { id: "lab-design", t: "Lab Equipment & Design" },
+    { id: "strategic-consultancy", t: "Strategic Consultancy" },
+  ] },
+];
+
+function ServicesSidebarNav() {
+  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  const jump = (id: string) => {
+    setOpen(false);
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  return (
+    <div className="fixed left-4 top-20 lg:top-24 z-30">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-4 py-2.5 text-sm font-semibold shadow-soft hover:border-brand/40 transition-colors"
+      >
+        {open ? <X className="h-4 w-4" /> : <ListTree className="h-4 w-4" />}
+        Services
+      </button>
+
+      {open && (
+        <div className="mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-2xl border border-border bg-card shadow-brand p-2">
+          {SERVICE_NAV.map((cluster) => (
+            <div key={cluster.id} className="border-b border-border last:border-none">
+              <button
+                onClick={() => setExpanded((e) => (e === cluster.id ? null : cluster.id))}
+                className="w-full flex items-center justify-between gap-2 px-3 py-3 text-left text-sm font-semibold hover:bg-accent rounded-lg transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  <cluster.I className="h-4 w-4 text-brand" /> {cluster.t}
+                </span>
+                <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${expanded === cluster.id ? "rotate-180" : ""}`} />
+              </button>
+              {expanded === cluster.id && (
+                <div className="pb-2 pl-4">
+                  <button onClick={() => jump(cluster.id)} className="block w-full text-left px-3 py-1.5 text-xs text-muted-foreground hover:text-brand transition-colors">
+                    → Section overview
+                  </button>
+                  {cluster.subs.map((s) => (
+                    <button key={s.id} onClick={() => jump(s.id)} className="block w-full text-left px-3 py-1.5 text-xs text-muted-foreground hover:text-brand transition-colors">
+                      → {s.t}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/services")({
   component: ServicesPage,
@@ -29,6 +106,7 @@ function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <ServicesSidebarNav />
 
       {/* Hero */}
       <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-secondary/60 via-background to-background relative overflow-hidden">
@@ -72,7 +150,7 @@ function ServicesPage() {
         {/* Two distinct, equally prominent feature sections */}
         <div className="reveal grid lg:grid-cols-2 gap-6 mb-12">
           {/* Sample Analysis — big distinct card */}
-          <div className="rounded-3xl border-2 border-brand/30 bg-gradient-to-br from-brand/5 via-card to-card p-8 lg:p-10 hover:border-brand/50 hover:shadow-brand transition-all">
+          <div id="sample-analysis" className="scroll-mt-36 rounded-3xl border-2 border-brand/30 bg-gradient-to-br from-brand/5 via-card to-card p-8 lg:p-10 hover:border-brand/50 hover:shadow-brand transition-all">
             <div className="h-14 w-14 grid place-items-center rounded-2xl gradient-brand text-brand-foreground"><FlaskConical className="h-7 w-7" /></div>
             <h3 className="mt-6 font-display text-2xl md:text-3xl font-bold">Sample Analysis</h3>
             <p className="mt-3 text-muted-foreground leading-relaxed">
@@ -89,7 +167,7 @@ function ServicesPage() {
           </div>
 
           {/* Rent-A-Lab — big distinct card */}
-          <div className="rounded-3xl border-2 border-border bg-secondary/40 p-8 lg:p-10 hover:border-brand/40 hover:shadow-soft transition-all">
+          <div id="rent-a-lab-card" className="scroll-mt-36 rounded-3xl border-2 border-border bg-secondary/40 p-8 lg:p-10 hover:border-brand/40 hover:shadow-soft transition-all">
             <div className="h-14 w-14 grid place-items-center rounded-2xl bg-foreground text-background"><Beaker className="h-7 w-7" /></div>
             <h3 className="mt-6 font-display text-2xl md:text-3xl font-bold">Rent-A-Lab</h3>
             <p className="mt-3 text-muted-foreground leading-relaxed">
@@ -107,7 +185,7 @@ function ServicesPage() {
         </div>
 
         {/* Remaining specialty services in a smaller supporting grid */}
-        <div className="reveal">
+        <div id="specialty-testing" className="reveal scroll-mt-36">
           <h4 className="font-display font-bold text-lg mb-5">Additional specialty testing</h4>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -157,7 +235,7 @@ function ServicesPage() {
               ],
             },
           ].map((col) => (
-            <div key={col.roman} className="rounded-2xl border border-background/15 bg-background/[0.04] p-7 hover:bg-background/[0.07] transition-colors">
+            <div key={col.roman} id={col.roman === "I" ? "instrumentation" : col.roman === "II" ? "reagents" : "infrastructure"} className="scroll-mt-36 rounded-2xl border border-background/15 bg-background/[0.04] p-7 hover:bg-background/[0.07] transition-colors">
               <div className="flex items-baseline gap-3">
                 <span className="font-display font-extrabold text-2xl text-accent-cyan">{col.roman}</span>
                 <h4 className="font-display font-bold uppercase text-sm tracking-wider">{col.t}</h4>
@@ -183,9 +261,9 @@ function ServicesPage() {
       {/* CLUSTER 3 — Training & Institute */}
       <Cluster id="training" title="Training & Institute" intro="Three pathways: short modular courses, immersive multi-day workshops, and institutional workforce upskilling.">
         <div className="reveal grid lg:grid-cols-3 gap-5">
-          <ServiceBlock I={GraduationCap} title="Modular Hands-On Courses" body="Intensive, career-focused masterclasses covering foundational DNA extractions and gel visualization to primer design and downstream data interpretation." cta="Get a Course" to="/academy" />
-          <ServiceBlock I={Users} title="Hands-On Workshops" body="Immersive multi-day cohorts covering real-time PCR diagnostics, microbial metagenomics and bioinformatics. The register button routes to a secure application portal that handles payment, pre-readings and waitlist locking." cta="Register Now" to="/academy" badge="Currently Enrolling" />
-          <ServiceBlock I={Building2} title="Institutional Workforce Upskilling" body="We partner with research institutes, multi-national organizations and ministries to onboard cohorts, upskilling legacy staff, embedding long-term institutional competency." cta="Upskill Your Team" to="/contact" />
+          <ServiceBlock id="courses" I={GraduationCap} title="Modular Hands-On Courses" body="Intensive, career-focused masterclasses covering foundational DNA extractions and gel visualization to primer design and downstream data interpretation." cta="Get a Course" to="/academy" />
+          <ServiceBlock id="workshops" I={Users} title="Hands-On Workshops" body="Immersive multi-day cohorts covering real-time PCR diagnostics, microbial metagenomics and bioinformatics. The register button routes to a secure application portal that handles payment, pre-readings and waitlist locking." cta="Register Now" to="/academy" badge="Currently Enrolling" />
+          <ServiceBlock id="upskilling" I={Building2} title="Institutional Workforce Upskilling" body="We partner with research institutes, multi-national organizations and ministries to onboard cohorts, upskilling legacy staff, embedding long-term institutional competency." cta="Upskill Your Team" to="/contact" />
         </div>
       </Cluster>
 
@@ -227,8 +305,8 @@ function ServicesPage() {
         </div>
 
         <div className="reveal grid lg:grid-cols-2 gap-5">
-          <ServiceBlock I={Beaker} title="Lab Equipment & Design" body="Comprehensive space-planning, air-handling zoning for pre and post-PCR containment, baseline instrumentation profiling and regulatory readiness audits for international accreditation." cta="Build Your Lab" to="/contact" sub="Request a technical design consultation and layout blueprint." />
-          <ServiceBlock I={Mail} title="Strategic Consultancy & Implementation" body="High-level project advisory for global development grants, public sector bio-economy strategies and multi-institutional project management. Backed by a 20-year track record." cta="Initiate Strategic Brief" href="mailto:president@appliedbiotech.ng" sub="Reaches Prof. Esiobu's office directly." />
+          <ServiceBlock id="lab-design" I={Beaker} title="Lab Equipment & Design" body="Comprehensive space-planning, air-handling zoning for pre and post-PCR containment, baseline instrumentation profiling and regulatory readiness audits for international accreditation." cta="Build Your Lab" to="/contact" sub="Request a technical design consultation and layout blueprint." />
+          <ServiceBlock id="strategic-consultancy" I={Mail} title="Strategic Consultancy & Implementation" body="High-level project advisory for global development grants, public sector bio-economy strategies and multi-institutional project management. Backed by a 20-year track record." cta="Initiate Strategic Brief" href="mailto:president@appliedbiotech.ng" sub="Reaches Prof. Esiobu's office directly." />
         </div>
       </Cluster>
 
@@ -251,10 +329,10 @@ function Cluster({ id, title, intro, children, dark }: { id: string; title: stri
   );
 }
 
-function ServiceBlock({ I, title, body, cta, to, href, sub, badge }: { I: React.ElementType; title: string; body: string; cta: string; to?: string; href?: string; sub?: string; badge?: string }) {
+function ServiceBlock({ I, title, body, cta, to, href, sub, badge, id }: { I: React.ElementType; title: string; body: string; cta: string; to?: string; href?: string; sub?: string; badge?: string; id?: string }) {
   const btnClass = "mt-6 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-5 py-3 text-sm font-semibold shadow-brand hover:scale-[1.03] transition-transform";
   return (
-    <div className="group rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:-translate-y-1 hover:shadow-brand transition-all">
+    <div id={id} className="group rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:-translate-y-1 hover:shadow-brand transition-all scroll-mt-36">
       <div className="flex items-center justify-between">
         <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground group-hover:scale-110 transition-transform"><I className="h-5 w-5" /></div>
         {badge && <span className="text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-600 font-semibold">{badge}</span>}

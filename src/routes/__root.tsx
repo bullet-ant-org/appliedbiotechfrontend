@@ -6,6 +6,7 @@ import { ShopProvider } from "@/lib/shop";
 import { SiteContentProvider } from "@/lib/site-content";
 import { AcademyProvider } from "@/lib/academy";
 import { Toaster } from "@/components/ui/sonner";
+import { FloatingActions } from "@/components/site/FloatingActions";
 
 function NotFoundComponent() {
   return (
@@ -87,6 +88,7 @@ function RootComponent() {
         <AcademyProvider>
           <ShopProvider>
             <Outlet />
+            <FloatingActions />
             <Toaster richColors position="top-right" />
           </ShopProvider>
         </AcademyProvider>
