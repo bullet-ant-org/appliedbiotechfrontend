@@ -40,12 +40,13 @@ function Index() {
       <Navbar />
       <Hero />
       <Marquee />
+      <MetricBanner />
+      <Pillars />
+      <ConsultSection />
       <QuickDoors />
       <PetalNavigator />
-      <ConsultSection />
       <DiasporaBridge />
       <Welcome />
-      <Pillars />
       <CTA />
       <Footer />
     </div>
@@ -233,12 +234,12 @@ function QuickDoors() {
 
 function PetalNavigator() {
   const petals = [
-    { label: "Shop With Us", sub: "Lab supplies & reagents", to: "/shop" as const, color: "#2563eb", bg: "from-blue-600 to-blue-800", I: ShoppingBag },
-    { label: "Rent a Lab", sub: "World-class facilities", to: "/rent-a-lab" as const, color: "#16a34a", bg: "from-green-600 to-green-800", I: FlaskConical },
-    { label: "Consult Us", sub: "Strategic biotech guidance", to: "/#consult" as const, color: "#dc2626", bg: "from-red-600 to-red-800", I: BrainCircuit },
-    { label: "Acquire a Skill", sub: "Certified training", to: "/academy" as const, color: "#7c3aed", bg: "from-violet-600 to-violet-800", I: GraduationCap },
-    { label: "Apply for a Job", sub: "Join our team", to: "/careers" as const, color: "#b45309", bg: "from-yellow-600 to-amber-700", I: Award },
-    { label: "Gallery", sub: "Labs we've built", to: "/gallery" as const, color: "#0891b2", bg: "from-cyan-600 to-cyan-800", I: Microscope },
+    { label: "Shop With Us", sub: "Lab supplies & reagents", to: "/shop" as const, bg: "from-emerald-600 to-emerald-800", I: ShoppingBag },
+    { label: "Rent a Lab", sub: "World-class facilities", to: "/rent-a-lab" as const, bg: "from-green-600 to-green-800", I: FlaskConical },
+    { label: "Consult Us", sub: "Strategic biotech guidance", to: "/#consult" as const, bg: "from-teal-600 to-teal-800", I: BrainCircuit },
+    { label: "Acquire a Skill", sub: "Certified training", to: "/academy" as const, bg: "from-lime-600 to-lime-800", I: GraduationCap },
+    { label: "Apply for a Job", sub: "Join our team", to: "/careers" as const, bg: "from-green-700 to-emerald-900", I: Award },
+    { label: "Gallery", sub: "Labs we've built", to: "/gallery" as const, bg: "from-emerald-500 to-teal-700", I: Microscope },
   ];
 
   return (
