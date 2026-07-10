@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import useFetch from "@/hooks/useFetch";
 import { ProductCard } from "@/components/shop/ProductCard";
 
-export const Route = createFileRoute("/collections/$id")({
+export const Route = createFileRoute("/collections_/$id")({
   component: CollectionDetailPage,
   head: ({ params }) => ({
     meta: [{ title: `Collection · Applied Biotech Shop` }],

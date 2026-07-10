@@ -56,7 +56,7 @@ import { Route as EditorDealRouteImport } from './routes/editor.deal'
 import { Route as EditorContactRouteImport } from './routes/editor.contact'
 import { Route as EditorCollectionsRouteImport } from './routes/editor.collections'
 import { Route as EditorAcademyRouteImport } from './routes/editor.academy'
-import { Route as CollectionsIdRouteImport } from './routes/collections.$id'
+import { Route as CollectionsIdRouteImport } from './routes/collections_.$id'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminShopRouteImport } from './routes/admin.shop'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -317,9 +317,9 @@ const EditorAcademyRoute = EditorAcademyRouteImport.update({
   getParentRoute: () => EditorRoute,
 } as any)
 const CollectionsIdRoute = CollectionsIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => CollectionsRoute,
+  id: '/collections_/$id',
+  path: '/collections/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
@@ -443,7 +443,7 @@ export interface FileRoutesByFullPath {
   '/academy': typeof AcademyRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
   '/careers': typeof CareersRoute
-  '/collections': typeof CollectionsRouteWithChildren
+  '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
   '/editor': typeof EditorRouteWithChildren
@@ -515,7 +515,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/academy': typeof AcademyRouteWithChildren
   '/careers': typeof CareersRoute
-  '/collections': typeof CollectionsRouteWithChildren
+  '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
   '/forgot-password': typeof ForgotPasswordRoute
@@ -587,7 +587,7 @@ export interface FileRoutesById {
   '/academy': typeof AcademyRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
   '/careers': typeof CareersRoute
-  '/collections': typeof CollectionsRouteWithChildren
+  '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
   '/editor': typeof EditorRouteWithChildren
@@ -619,7 +619,7 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/shop': typeof AdminShopRoute
   '/admin/users': typeof AdminUsersRoute
-  '/collections/$id': typeof CollectionsIdRoute
+  '/collections_/$id': typeof CollectionsIdRoute
   '/editor/academy': typeof EditorAcademyRouteWithChildren
   '/editor/collections': typeof EditorCollectionsRoute
   '/editor/contact': typeof EditorContactRoute
@@ -837,7 +837,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/shop'
     | '/admin/users'
-    | '/collections/$id'
+    | '/collections_/$id'
     | '/editor/academy'
     | '/editor/collections'
     | '/editor/contact'
@@ -879,7 +879,7 @@ export interface RootRouteChildren {
   AcademyRoute: typeof AcademyRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
   CareersRoute: typeof CareersRoute
-  CollectionsRoute: typeof CollectionsRouteWithChildren
+  CollectionsRoute: typeof CollectionsRoute
   ContactRoute: typeof ContactRoute
   Covid19Route: typeof Covid19Route
   EditorRoute: typeof EditorRouteWithChildren
@@ -894,6 +894,7 @@ export interface RootRouteChildren {
   ShopRoute: typeof ShopRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VerifyRoute: typeof VerifyRoute
+  CollectionsIdRoute: typeof CollectionsIdRoute
   ReaderCourseIdRoute: typeof ReaderCourseIdRoute
 }
 
@@ -1228,12 +1229,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditorAcademyRouteImport
       parentRoute: typeof EditorRoute
     }
-    '/collections/$id': {
-      id: '/collections/$id'
-      path: '/$id'
+    '/collections_/$id': {
+      id: '/collections_/$id'
+      path: '/collections/$id'
       fullPath: '/collections/$id'
       preLoaderRoute: typeof CollectionsIdRouteImport
-      parentRoute: typeof CollectionsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/admin/users': {
       id: '/admin/users'
@@ -1466,18 +1467,6 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
-interface CollectionsRouteChildren {
-  CollectionsIdRoute: typeof CollectionsIdRoute
-}
-
-const CollectionsRouteChildren: CollectionsRouteChildren = {
-  CollectionsIdRoute: CollectionsIdRoute,
-}
-
-const CollectionsRouteWithChildren = CollectionsRoute._addFileChildren(
-  CollectionsRouteChildren,
-)
-
 interface EditorAcademyRouteChildren {
   EditorAcademyIdRoute: typeof EditorAcademyIdRoute
 }
@@ -1587,7 +1576,7 @@ const rootRouteChildren: RootRouteChildren = {
   AcademyRoute: AcademyRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
   CareersRoute: CareersRoute,
-  CollectionsRoute: CollectionsRouteWithChildren,
+  CollectionsRoute: CollectionsRoute,
   ContactRoute: ContactRoute,
   Covid19Route: Covid19Route,
   EditorRoute: EditorRouteWithChildren,
@@ -1602,6 +1591,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShopRoute: ShopRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VerifyRoute: VerifyRoute,
+  CollectionsIdRoute: CollectionsIdRoute,
   ReaderCourseIdRoute: ReaderCourseIdRoute,
 }
 export const routeTree = rootRouteImport

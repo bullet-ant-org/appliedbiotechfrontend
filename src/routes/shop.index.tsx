@@ -210,6 +210,25 @@ function DealBanner({ deal }: { deal: any }) {
   );
 }
 
+function RequestProductCTA() {
+  return (
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl rounded-3xl gradient-brand text-brand-foreground p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-6 shadow-brand">
+        <div className="flex items-center gap-4 text-center md:text-left">
+          <div className="hidden sm:grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-foreground/15"><Package className="h-6 w-6" /></div>
+          <div>
+            <h3 className="font-display text-2xl font-bold">Can't find the product you're looking for?</h3>
+            <p className="mt-1 text-brand-foreground/85 text-sm md:text-base">Tell us what you need and our team will source it for your lab.</p>
+          </div>
+        </div>
+        <Link to="/shop/request" className="shrink-0 inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-6 py-3 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
+          Request a Product <ChevronRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 function Newsletter() {
   return (
     <section className="px-4 sm:px-6 lg:px-8 mt-14 mb-14">
@@ -313,6 +332,7 @@ function ShopHome() {
           <DealBanner deal={deal} />
           <ProductSection eyebrow="Best Sellers" title="Best Selling Products" items={bestSellers} sectionKey="best-sellers" />
           <ProductSection eyebrow="New Arrivals" title="Latest Products" items={newArrivals} sectionKey="new-arrivals" />
+          <RequestProductCTA />
           <Newsletter />
         </>
       )}
