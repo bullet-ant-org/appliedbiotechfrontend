@@ -66,11 +66,11 @@ function Hero() {
           <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-ring" />
           Advancing Biotechnology Research & Solutions
         </span>
-        <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
-          Welcome to <span className="gradient-text">Applied Biotech</span>
+        <h1 className="mt-6 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
+          Welcome to <span className="gradient-text">Applied Biotech International Nigeria LTD</span>
         </h1>
         <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          Applied Biotech is a leading provider of accredited molecular laboratory services, technical training and strategic biotechnology consultancy — equipping African institutions with validated infrastructure and evidence-based scientific capability.
+          Applied Biotech International Nigeria Limited is a leading provider of accredited molecular laboratory services, technical training and strategic biotechnology consultancy equipping African institutions with validated infrastructure and evidence-based scientific capability.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link to="/services" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
