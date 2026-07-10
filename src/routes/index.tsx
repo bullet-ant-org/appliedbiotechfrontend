@@ -46,7 +46,6 @@ function Index() {
       <DiasporaBridge />
       <Welcome />
       <Pillars />
-      <MetricBanner />
       <CTA />
       <Footer />
     </div>
