@@ -40,7 +40,7 @@ function Index() {
       <Navbar />
       <Hero />
       <Marquee />
-      <MetricBanner />
+      
       <Pillars />
       <ConsultSection />
       <QuickDoors />
