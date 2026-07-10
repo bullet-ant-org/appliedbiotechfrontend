@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { useReveal } from "@/hooks/use-reveal";
@@ -53,105 +53,40 @@ function Index() {
   );
 }
 
-const HERO_SLIDES = [
-  {
-    headline: "Leading the Biotechnology Revolution in Africa",
-    sub: "Access accredited laboratory training, execute rigorous molecular research and advance a scientific career on a continent positioned for its next major discovery.",
-    img: heroVirus,
-    alt: "Abstract virus morphology with DNA strands",
-    cta: { label: "Start Learning", to: "/academy" as const },
-  },
-  {
-    headline: "Championing Biotechnology solutions in Africa",
-    sub: "From applied research to validated field deployment, we develop evidence-based biotechnology solutions that address Africa's most pressing public health and agricultural challenges.",
-    img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput.jpg",
-    alt: "Abstract virus morphology with DNA strands",
-    cta: { label: "About Us", to: "/about" as const },
-  },
-  {
-    headline: "Powering the Bioeconomy in Africa",
-    sub: "Source validated reagents, equip your facility to specification and deploy diagnostic assays through a team that has engineered Africa's laboratory infrastructure since 2006.",
-    img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png",
-    alt: "Gloved hand pipetting into a microfuge tube",
-    cta: { label: "Shop Now", to: "/shop" as const },
-  },
-];
 
 function Hero() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % HERO_SLIDES.length), 5500);
-    return () => clearInterval(t);
-  }, []);
-  const slide = HERO_SLIDES[i];
   return (
-    <section className="relative pt-28 lg:pt-36 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative pt-28 lg:pt-36 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-background" />
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full gradient-brand opacity-[0.12] blur-3xl animate-float-slow" />
-        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-accent-cyan opacity-[0.10] blur-3xl animate-float-slow" style={{ animationDelay: "2s" }} />
       </div>
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.05fr_1fr] gap-14 items-center">
-        <div>
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold uppercase tracking-[0.2em]">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-ring" />
-            Be a part of the breakthrough
-          </span>
-          <div className="relative min-h-[280px] md:min-h-[340px] mt-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.7, ease: [0.22, 0.9, 0.3, 1] }}
-              >
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground leading-[1.02]">
-                  {slide.headline.split(" ").slice(0, -3).join(" ")}{" "}
-                  <span className="gradient-text">{slide.headline.split(" ").slice(-3).join(" ")}</span>
-                </h1>
-                <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">{slide.sub}</p>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to={slide.cta.to} className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-                    {slide.cta.label} <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-card border border-border text-foreground px-6 py-3.5 font-semibold hover:bg-accent transition-colors">
-                    Partner With Us
-                  </Link>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          <div className="mt-8 flex items-center gap-2">
-            {HERO_SLIDES.map((_, idx) => (
-              <button key={idx} onClick={() => setI(idx)} aria-label={`Slide ${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all ${idx === i ? "w-10 bg-brand" : "w-4 bg-border hover:bg-muted-foreground"}`} />
-            ))}
-          </div>
+      <div className="mx-auto max-w-4xl text-center">
+        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold uppercase tracking-[0.2em]">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-ring" />
+          Advancing Biotechnology Research & Solutions
+        </span>
+        <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
+          Welcome to <span className="gradient-text">Applied Biotech</span>
+        </h1>
+        <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          Applied Biotech is a leading provider of accredited molecular laboratory services, technical training and strategic biotechnology consultancy — equipping African institutions with validated infrastructure and evidence-based scientific capability.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link to="/services" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+            Our Services <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-card border border-border text-foreground px-6 py-3.5 font-semibold hover:bg-accent transition-colors">
+            Learn More <ChevronRight className="h-4 w-4" />
+          </Link>
         </div>
-        <div className="relative order-first lg:order-none">
-          <div className="relative rounded-[2rem] overflow-hidden shadow-brand aspect-square bg-[#0a1838]">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={slide.img}
-                src={slide.img}
-                alt={slide.alt}
-                width={1024}
-                height={1024}
-                initial={{ opacity: 0, scale: 1.12 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 1.1, ease: [0.22, 0.9, 0.3, 1] }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#0a1838]/40 via-transparent to-transparent" />
-            
-          </div>
-          <div className="hidden lg:block absolute -bottom-6 -left-6 rounded-2xl bg-card border border-border shadow-soft p-4 animate-float-slow">
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
-            <div className="font-display text-2xl font-bold text-brand">1000+</div>
-          </div>
+      </div>
+      <div className="mx-auto max-w-6xl mt-14 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/8]">
+        <img src={heroVirus} alt="Applied Biotech laboratory research" width={1600} height={800} className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#06122c]/70 via-transparent to-transparent" />
+        <div className="hidden md:block absolute bottom-6 left-6 rounded-2xl bg-card/95 backdrop-blur border border-border shadow-soft p-4">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
+          <div className="font-display text-2xl font-bold text-brand">1000+</div>
         </div>
       </div>
     </section>
@@ -174,59 +109,42 @@ function Marquee() {
   );
 }
 
+const EXPLORE_CARDS = [
+  { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/services" as const, img: heroVirus },
+  { I: GraduationCap, t: "Academy & Training", d: "Certified hands-on cohorts in PCR, sequencing and bioinformatics, delivered by practicing molecular scientists.", cta: "Explore Academy", to: "/academy" as const, img: biotechGrid },
+  { I: ShoppingBag, t: "Reagents & Instrumentation", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/shop" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
+];
+
 function QuickDoors() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl grid gap-6 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-700 text-white p-8 md:p-10 shadow-brand"
-        >
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-white/10 blur-3xl group-hover:bg-white/20 transition" />
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <GraduationCap className="h-3.5 w-3.5" /> Academy
-          </span>
-          <h3 className="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight">Level Up Your Science</h3>
-          <p className="mt-3 text-white/85 max-w-md">Hands-on cohorts in molecular diagnostics, PCR, sequencing and bioinformatics. Learn at your pace, book the practical, earn your certification.</p>
-          <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            {["Self-paced reading", "1:1 coaching", "Practical labs", "Certificates"].map((t) => (
-              <span key={t} className="px-2.5 py-1 rounded-full bg-white/15">{t}</span>
-            ))}
-          </div>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/academy" className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-emerald-700 font-bold text-sm shadow-soft hover:scale-[1.03] transition-transform">
-              Explore courses <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link to="/academy/dashboard" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors">
-              My dashboard
-            </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-          className="group relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-8 md:p-10 shadow-brand"
-        >
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-white/10 blur-3xl group-hover:bg-white/20 transition" />
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <ShoppingBag className="h-3.5 w-3.5" /> Shop
-          </span>
-          <h3 className="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight">Stock your bench in days.</h3>
-          <p className="mt-3 text-white/85 max-w-md">Tier-1 reagents, calibrated instruments, sovereign consumables backed by local warranty and live technical support. Order today, ship tomorrow.</p>
-          <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            {["PCR & RT-qPCR", "Cell culture", "NGS consumables", "Lab plasticware"].map((t) => (
-              <span key={t} className="px-2.5 py-1 rounded-full bg-white/15">{t}</span>
-            ))}
-          </div>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/shop" className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-white text-blue-700 font-bold text-sm shadow-soft hover:scale-[1.03] transition-transform">
-              Shop now <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link to="/shop/deals" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-white/30 text-white font-semibold text-sm hover:bg-white/10 transition-colors">
-              See deals
-            </Link>
-          </div>
-        </motion.div>
+      <div className="mx-auto max-w-7xl">
+        <div className="reveal text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What We Offer</span>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Dedicated pathways into <span className="gradient-text">our work.</span></h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {EXPLORE_CARDS.map((c, idx) => (
+            <motion.div
+              key={c.t}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="group relative rounded-3xl overflow-hidden shadow-soft aspect-[4/5]"
+            >
+              <img src={c.img} alt={c.t} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06122c] via-[#06122c]/60 to-transparent" />
+              <div className="absolute inset-0 p-7 flex flex-col justify-end text-background">
+                <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center mb-4">
+                  <c.I className="h-5 w-5 text-brand-foreground" />
+                </div>
+                <h3 className="font-display text-xl font-bold">{c.t}</h3>
+                <p className="mt-2 text-sm text-background/80 leading-relaxed">{c.d}</p>
+                <Link to={c.to} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-glow hover:gap-2.5 transition-all">
+                  {c.cta} <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
