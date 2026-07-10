@@ -99,8 +99,11 @@ function WhoWeAre() {
     <section className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl text-center reveal">
         <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Who We Are</span>
-        <p className="mt-4 text-lg md:text-xl text-foreground leading-relaxed">
-          Applied Biotech International Nigeria Limited has over 20 years of experience delivering molecular laboratory research, lab design and rental, equipment and reagent supply, and structured biotechnology training. We support scientists, hospitals, institutions and organizations across Nigeria and Africa with validated infrastructure and technical expertise, advancing science and healthcare on the continent.
+        <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+          Founded in 2006 by Prof. Nwadiuto Esiobu, Applied Biotech International Nigeria Limited (ABINL) is a premier biotechnology enterprise and a cornerstone of advanced scientific research in Africa. Headquartered in Abuja, ABINL was established to bridge the gap between theoretical academic knowledge and practical, cutting-edge laboratory execution.
+        </p>
+        <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+          We serve as a trusted hub for educational institutions, government agencies and independent researchers, providing the elite scientific expertise and modern tools needed to solve real-world challenges. By focusing on capacity building, we are committed to elevating Africa's scientific standing on the global stage and unlocking sustainable development through biotech innovation.
         </p>
       </div>
     </section>
