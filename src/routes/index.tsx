@@ -40,7 +40,7 @@ function Index() {
       <Navbar />
       <Hero />
       <Marquee />
-      
+      <WhoWeAre />
       <Pillars />
       <ConsultSection />
       <QuickDoors />
@@ -48,6 +48,7 @@ function Index() {
       <DiasporaBridge />
       <Welcome />
       <CTA />
+      <FAQ />
       <Footer />
     </div>
   );
@@ -70,7 +71,7 @@ function Hero() {
           Welcome to <span className="gradient-text">Applied Biotech International Nigeria LTD</span>
         </h1>
         <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          Applied Biotech International Nigeria Limited is a leading provider of accredited molecular laboratory services, technical training and strategic biotechnology consultancy equipping African institutions with validated infrastructure and evidence-based scientific capability.
+          We provide molecular laboratory services, lab design and equipment, reagents, and biotechnology training across Nigeria and Africa.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link to="/services" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
@@ -87,6 +88,52 @@ function Hero() {
         <div className="hidden md:block absolute bottom-6 left-6 rounded-2xl bg-card/95 backdrop-blur border border-border shadow-soft p-4">
           <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
           <div className="font-display text-2xl font-bold text-brand">1000+</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhoWeAre() {
+  return (
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl text-center reveal">
+        <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Who We Are</span>
+        <p className="mt-4 text-lg md:text-xl text-foreground leading-relaxed">
+          Applied Biotech International Nigeria Limited has over 20 years of experience delivering molecular laboratory research, lab design and rental, equipment and reagent supply, and structured biotechnology training. We support scientists, hospitals, institutions and organizations across Nigeria and Africa with validated infrastructure and technical expertise, advancing science and healthcare on the continent.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+const FAQS = [
+  { q: "What laboratory services does Applied Biotech provide?", a: "We offer molecular sample analysis, rent-a-lab access, specialty diagnostic testing, lab design and equipping, and supply of validated reagents and instrumentation." },
+  { q: "Can institutions rent laboratory space or equipment?", a: "Yes. Our rent-a-lab service gives researchers and institutions access to fully equipped molecular facilities without the overhead of building one." },
+  { q: "Do you offer training for scientists and technicians?", a: "Yes. Our Academy runs certified hands-on courses and workshops covering PCR, sequencing, diagnostics and bioinformatics, plus institutional upskilling programs." },
+  { q: "Who can access Applied Biotech's services?", a: "Scientists, hospitals, research institutions, universities, government agencies and private organizations across Nigeria and Africa." },
+  { q: "How do I request a consultation or quote?", a: "Reach out through our Contact page or the Consult Us link, and our team will respond with a scoped proposal." },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl">
+        <div className="text-center mb-10 reveal">
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">FAQs</span>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Common Questions</h2>
+        </div>
+        <div className="space-y-3">
+          {FAQS.map((f, idx) => (
+            <div key={f.q} className="rounded-2xl border border-border bg-card overflow-hidden">
+              <button onClick={() => setOpen(open === idx ? null : idx)} className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left font-semibold">
+                {f.q}
+                <ChevronRight className={`h-4 w-4 shrink-0 transition-transform ${open === idx ? "rotate-90 text-brand" : "text-muted-foreground"}`} />
+              </button>
+              {open === idx && <p className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">{f.a}</p>}
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -226,12 +226,12 @@ function ServicesPage() {
           ].map((col) => (
             <div key={col.roman} id={col.roman === "I" ? "instrumentation" : col.roman === "II" ? "reagents" : "infrastructure"} className="scroll-mt-36 rounded-2xl border border-background/15 bg-background/[0.04] p-7 hover:bg-background/[0.07] transition-colors">
               <div className="flex items-baseline gap-3">
-                <span className="font-display font-extrabold text-2xl text-accent-cyan">{col.roman}</span>
+                <span className="font-display font-extrabold text-2xl text-brand-glow">{col.roman}</span>
                 <h4 className="font-display font-bold uppercase text-sm tracking-wider">{col.t}</h4>
               </div>
               <ul className="mt-5 space-y-2.5 text-sm text-background/75">
                 {col.items.map((it) => (
-                  <li key={it} className="flex gap-2"><span className="text-accent-cyan mt-1.5">›</span><span>{it}</span></li>
+                  <li key={it} className="flex gap-2"><span className="text-brand-glow mt-1.5">›</span><span>{it}</span></li>
                 ))}
               </ul>
             </div>
@@ -260,7 +260,7 @@ function ServicesPage() {
       <Cluster id="consultancy" title="Consultancy" intro="Your idea is only as powerful as the strategy behind it. We close the gap between vision and result.">
 
         {/* Persuasion block */}
-        <div className="reveal mb-10 grid lg:grid-cols-2 gap-8 rounded-3xl bg-gradient-to-br from-brand/5 via-background to-accent-cyan/5 border border-border p-8 lg:p-10">
+        <div className="reveal mb-10 grid lg:grid-cols-2 gap-8 rounded-3xl bg-gradient-to-br from-brand/5 via-background to-brand-glow/5 border border-border p-8 lg:p-10">
           <div>
             <h3 className="font-display text-2xl md:text-3xl font-bold leading-tight">
               The organizations that win in biotech are the ones that plan better.
@@ -306,7 +306,7 @@ function ServicesPage() {
 
 function Cluster({ id, title, intro, children, dark }: { id: string; title: string; intro: string; children: React.ReactNode; dark?: boolean }) {
   return (
-    <section id={id} className={`py-20 md:py-28 px-4 sm:px-6 lg:px-8 scroll-mt-36 ${dark ? "bg-[#06122c] text-background" : ""}`}>
+    <section id={id} className={`py-20 md:py-28 px-4 sm:px-6 lg:px-8 scroll-mt-36 ${dark ? "bg-[#062011] text-background" : ""}`}>
       <div className="mx-auto max-w-7xl">
         <div className="reveal max-w-3xl">
           <h2 className="font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">{title}</h2>

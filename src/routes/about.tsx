@@ -136,10 +136,9 @@ function AboutPage() {
       </section>
 
       {/* Vision / Mission */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#06122c] text-background">
-        <div className="absolute inset-0 opacity-30">
-          <img src={biotechGrid} alt="" loading="lazy" className="w-full h-full object-cover" />
-        </div>
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#062011] text-background">
+        <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand/20 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
         <div className="relative mx-auto max-w-6xl grid md:grid-cols-2 gap-6">
           {[
             {
@@ -200,7 +199,7 @@ function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-16 reveal rounded-3xl bg-gradient-to-br from-brand/10 via-transparent to-accent-cyan/10 border border-border p-8 md:p-12 text-center">
+          <div className="mt-16 reveal rounded-3xl bg-gradient-to-br from-brand/10 via-transparent to-brand-glow/10 border border-border p-8 md:p-12 text-center">
             <FlaskConical className="h-10 w-10 text-brand mx-auto mb-4" />
             <h3 className="font-display text-2xl md:text-3xl font-bold">Ready to build your lab?</h3>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
