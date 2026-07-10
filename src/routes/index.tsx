@@ -83,7 +83,6 @@ function Hero() {
       </div>
       <div className="mx-auto max-w-6xl mt-14 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/8]">
         <img src={heroVirus} alt="Applied Biotech laboratory research" width={1600} height={800} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand/25 mix-blend-color" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#062011]/70 via-transparent to-transparent" />
         <div className="hidden md:block absolute bottom-6 left-6 rounded-2xl bg-card/95 backdrop-blur border border-border shadow-soft p-4">
           <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
@@ -132,7 +131,6 @@ function QuickDoors() {
               className="group relative rounded-3xl overflow-hidden shadow-soft aspect-[4/5]"
             >
               <img src={c.img} alt={c.t} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-brand/30 mix-blend-color" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#062011] via-[#062011]/60 to-transparent" />
               <div className="absolute inset-0 p-7 flex flex-col justify-end text-background">
                 <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center mb-4">
