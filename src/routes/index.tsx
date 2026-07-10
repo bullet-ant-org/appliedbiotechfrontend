@@ -146,9 +146,7 @@ function Hero() {
               />
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#0a1838]/40 via-transparent to-transparent" />
-            <div className="absolute top-5 left-5 rounded-full bg-background/85 backdrop-blur-xl border border-border px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] font-semibold text-foreground flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan animate-pulse" /> Live R&D
-            </div>
+            
           </div>
           <div className="hidden lg:block absolute -bottom-6 -left-6 rounded-2xl bg-card border border-border shadow-soft p-4 animate-float-slow">
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
@@ -188,7 +186,7 @@ function QuickDoors() {
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-[10px] uppercase tracking-[0.2em] font-bold">
             <GraduationCap className="h-3.5 w-3.5" /> Academy
           </span>
-          <h3 className="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight">Train with working scientists.</h3>
+          <h3 className="mt-4 font-display text-3xl md:text-4xl font-extrabold leading-tight">Level Up Your Science</h3>
           <p className="mt-3 text-white/85 max-w-md">Hands-on cohorts in molecular diagnostics, PCR, sequencing and bioinformatics. Learn at your pace, book the practical, earn your certification.</p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
             {["Self-paced reading", "1:1 coaching", "Practical labs", "Certificates"].map((t) => (
