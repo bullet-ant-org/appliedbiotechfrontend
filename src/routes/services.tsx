@@ -133,17 +133,6 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Sticky cluster nav — lets users jump between sections without scrolling back up */}
-      <div className="sticky top-16 lg:top-20 z-30 bg-background/90 backdrop-blur-xl border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-12 flex items-center gap-1 overflow-x-auto scrollbar-none">
-          {clusters.map((c) => (
-            <a key={c.id} href={`#${c.id}`} className="shrink-0 inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full text-foreground/70 hover:text-foreground hover:bg-accent transition-colors">
-              <c.I className="h-3.5 w-3.5" /> {c.t}
-            </a>
-          ))}
-        </div>
-      </div>
-
       {/* CLUSTER 1 — Molecular Lab Services */}
       <Cluster id="molecular-lab" title="Molecular Lab Services" intro="Outsource your most sensitive workflows to our state-of-the-art facility. Automated extraction frameworks, strict contamination barriers, certified controls.">
 

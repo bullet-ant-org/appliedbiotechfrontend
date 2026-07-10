@@ -83,7 +83,8 @@ function Hero() {
       </div>
       <div className="mx-auto max-w-6xl mt-14 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/8]">
         <img src={heroVirus} alt="Applied Biotech laboratory research" width={1600} height={800} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#06122c]/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-brand/25 mix-blend-color" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#062011]/70 via-transparent to-transparent" />
         <div className="hidden md:block absolute bottom-6 left-6 rounded-2xl bg-card/95 backdrop-blur border border-border shadow-soft p-4">
           <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
           <div className="font-display text-2xl font-bold text-brand">1000+</div>
@@ -131,7 +132,8 @@ function QuickDoors() {
               className="group relative rounded-3xl overflow-hidden shadow-soft aspect-[4/5]"
             >
               <img src={c.img} alt={c.t} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#06122c] via-[#06122c]/60 to-transparent" />
+              <div className="absolute inset-0 bg-brand/30 mix-blend-color" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#062011] via-[#062011]/60 to-transparent" />
               <div className="absolute inset-0 p-7 flex flex-col justify-end text-background">
                 <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center mb-4">
                   <c.I className="h-5 w-5 text-brand-foreground" />
@@ -152,12 +154,12 @@ function QuickDoors() {
 
 function PetalNavigator() {
   const petals = [
-    { label: "Shop With Us", sub: "Lab supplies & reagents", to: "/shop" as const, bg: "from-emerald-600 to-emerald-800", I: ShoppingBag },
-    { label: "Rent a Lab", sub: "World-class facilities", to: "/rent-a-lab" as const, bg: "from-green-600 to-green-800", I: FlaskConical },
-    { label: "Consult Us", sub: "Strategic biotech guidance", to: "/#consult" as const, bg: "from-teal-600 to-teal-800", I: BrainCircuit },
-    { label: "Acquire a Skill", sub: "Certified training", to: "/academy" as const, bg: "from-lime-600 to-lime-800", I: GraduationCap },
-    { label: "Apply for a Job", sub: "Join our team", to: "/careers" as const, bg: "from-green-700 to-emerald-900", I: Award },
-    { label: "Gallery", sub: "Labs we've built", to: "/gallery" as const, bg: "from-emerald-500 to-teal-700", I: Microscope },
+    { label: "Sample Analysis", sub: "Accredited testing", to: "/services" as const, hash: "sample-analysis", bg: "from-emerald-600 to-emerald-800", I: ClipboardCheck },
+    { label: "Rent a Lab", sub: "World-class facilities", to: "/services" as const, hash: "rent-a-lab-card", bg: "from-green-600 to-green-800", I: FlaskConical },
+    { label: "Build Your Lab", sub: "Design & equipment", to: "/services" as const, hash: "lab-design", bg: "from-teal-600 to-teal-800", I: ShoppingBag },
+    { label: "Acquire a Skill", sub: "Certified training", to: "/services" as const, hash: "courses", bg: "from-lime-600 to-lime-800", I: GraduationCap },
+    { label: "Consult Us", sub: "Strategic guidance", to: "/services" as const, hash: "strategic-consultancy", bg: "from-green-700 to-emerald-900", I: BrainCircuit },
+    { label: "Reagents", sub: "Instrumentation supply", to: "/services" as const, hash: "reagents", bg: "from-emerald-500 to-teal-700", I: Microscope },
   ];
 
   return (
@@ -188,6 +190,7 @@ function PetalNavigator() {
             >
               <Link
                 to={p.to}
+                hash={p.hash}
                 className={`group relative grid place-items-center rounded-full text-white font-semibold shadow-brand transition-transform hover:scale-110 bg-gradient-to-br ${p.bg}`}
                 style={{ width: size, height: size }}
               >
@@ -242,18 +245,16 @@ function ConsultSection() {
   ];
 
   return (
-    <section id="consult" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#06122c] text-background">
-      <div className="absolute inset-0 opacity-25">
-        <img src={biotechGrid} alt="" loading="lazy" className="w-full h-full object-cover" />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#06122c]/60 via-[#06122c]/80 to-[#06122c]" />
+    <section id="consult" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#062011] text-background">
+      <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand/20 blur-3xl" />
+      <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
       <div className="relative mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 items-center">
           <div>
-            <span className="text-xs uppercase tracking-[0.25em] text-accent-cyan font-semibold">Consulting Services</span>
+            <span className="text-xs uppercase tracking-[0.25em] text-brand-glow font-semibold">Consulting Services</span>
             <h2 className="mt-4 font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">
               Turn Your Biotechnology Vision<br />
-              <span className="text-accent-cyan">Into Reality</span>
+              <span className="text-brand-glow">Into Reality</span>
             </h2>
             <p className="mt-5 text-background/80 text-lg leading-relaxed max-w-xl">
               Translational impact in biotechnology is rarely a product of ideas alone; it results from rigorous methodology applied by organizations equipped to convert research into measurable outcomes.
@@ -265,7 +266,7 @@ function ConsultSection() {
             <div className="mt-8 grid sm:grid-cols-2 gap-3">
               {checks.map((c) => (
                 <div key={c} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-accent-cyan shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-4 w-4 text-brand-glow shrink-0 mt-0.5" />
                   <span className="text-sm text-background/85">{c}</span>
                 </div>
               ))}
@@ -298,7 +299,7 @@ function ConsultSection() {
                 className="rounded-2xl border border-background/10 bg-background/[0.06] backdrop-blur-sm p-5 hover:bg-background/[0.1] transition-colors"
               >
                 <div className="flex items-start gap-4">
-                  <span className="text-accent-cyan font-display font-bold text-lg shrink-0">{String(idx + 1).padStart(2, "0")}</span>
+                  <span className="text-brand-glow font-display font-bold text-lg shrink-0">{String(idx + 1).padStart(2, "0")}</span>
                   <div>
                     <h3 className="font-display font-bold text-background">{item.t}</h3>
                     <p className="mt-1.5 text-sm text-background/65 leading-relaxed">{item.d}</p>
