@@ -12,19 +12,22 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RentALabRouteImport } from './routes/rent-a-lab'
 import { Route as RdPortfolioRouteImport } from './routes/rd-portfolio'
 import { Route as NewsRouteImport } from './routes/news'
+import { Route as MolecularLabServicesRouteImport } from './routes/molecular-lab-services'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IpPublicationsRouteImport } from './routes/ip-publications'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as EquipmentReagentsRouteImport } from './routes/equipment-reagents'
 import { Route as EditorRouteImport } from './routes/editor'
 import { Route as Covid19RouteImport } from './routes/covid-19'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConsultancyRouteImport } from './routes/consultancy'
 import { Route as CollectionsRouteImport } from './routes/collections'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as CapacityBuildingRouteImport } from './routes/capacity-building'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AcademyRouteImport } from './routes/academy'
 import { Route as AboutRouteImport } from './routes/about'
@@ -41,7 +44,6 @@ import { Route as ShopCheckoutRouteImport } from './routes/shop.checkout'
 import { Route as ShopCategoriesRouteImport } from './routes/shop.categories'
 import { Route as ShopCartRouteImport } from './routes/shop.cart'
 import { Route as ShopAccountRouteImport } from './routes/shop.account'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ReaderCourseIdRouteImport } from './routes/reader.$courseId'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 import { Route as EditorShopRouteImport } from './routes/editor.shop'
@@ -96,11 +98,6 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RentALabRoute = RentALabRouteImport.update({
   id: '/rent-a-lab',
   path: '/rent-a-lab',
@@ -114,6 +111,11 @@ const RdPortfolioRoute = RdPortfolioRouteImport.update({
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MolecularLabServicesRoute = MolecularLabServicesRouteImport.update({
+  id: '/molecular-lab-services',
+  path: '/molecular-lab-services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -136,6 +138,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipmentReagentsRoute = EquipmentReagentsRouteImport.update({
+  id: '/equipment-reagents',
+  path: '/equipment-reagents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditorRoute = EditorRouteImport.update({
   id: '/editor',
   path: '/editor',
@@ -151,6 +158,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConsultancyRoute = ConsultancyRouteImport.update({
+  id: '/consultancy',
+  path: '/consultancy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionsRoute = CollectionsRouteImport.update({
   id: '/collections',
   path: '/collections',
@@ -159,6 +171,11 @@ const CollectionsRoute = CollectionsRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapacityBuildingRoute = CapacityBuildingRouteImport.update({
+  id: '/capacity-building',
+  path: '/capacity-building',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -240,11 +257,6 @@ const ShopAccountRoute = ShopAccountRouteImport.update({
   id: '/account',
   path: '/account',
   getParentRoute: () => ShopRoute,
-} as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ServicesRoute,
 } as any)
 const ReaderCourseIdRoute = ReaderCourseIdRouteImport.update({
   id: '/reader/$courseId',
@@ -442,19 +454,22 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/academy': typeof AcademyRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
+  '/capacity-building': typeof CapacityBuildingRoute
   '/careers': typeof CareersRoute
   '/collections': typeof CollectionsRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
   '/editor': typeof EditorRouteWithChildren
+  '/equipment-reagents': typeof EquipmentReagentsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/ip-publications': typeof IpPublicationsRoute
   '/login': typeof LoginRoute
+  '/molecular-lab-services': typeof MolecularLabServicesRoute
   '/news': typeof NewsRouteWithChildren
   '/rd-portfolio': typeof RdPortfolioRoute
   '/rent-a-lab': typeof RentALabRoute
-  '/services': typeof ServicesRouteWithChildren
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/verify': typeof VerifyRoute
@@ -490,7 +505,6 @@ export interface FileRoutesByFullPath {
   '/editor/shop': typeof EditorShopRoute
   '/news/$slug': typeof NewsSlugRoute
   '/reader/$courseId': typeof ReaderCourseIdRoute
-  '/services/$slug': typeof ServicesSlugRoute
   '/shop/account': typeof ShopAccountRoute
   '/shop/cart': typeof ShopCartRoute
   '/shop/categories': typeof ShopCategoriesRoute
@@ -514,18 +528,21 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/academy': typeof AcademyRouteWithChildren
+  '/capacity-building': typeof CapacityBuildingRoute
   '/careers': typeof CareersRoute
   '/collections': typeof CollectionsRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
+  '/equipment-reagents': typeof EquipmentReagentsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/ip-publications': typeof IpPublicationsRoute
   '/login': typeof LoginRoute
+  '/molecular-lab-services': typeof MolecularLabServicesRoute
   '/news': typeof NewsRouteWithChildren
   '/rd-portfolio': typeof RdPortfolioRoute
   '/rent-a-lab': typeof RentALabRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/verify': typeof VerifyRoute
   '/academy/dashboard': typeof AcademyDashboardRoute
@@ -560,7 +577,6 @@ export interface FileRoutesByTo {
   '/editor/shop': typeof EditorShopRoute
   '/news/$slug': typeof NewsSlugRoute
   '/reader/$courseId': typeof ReaderCourseIdRoute
-  '/services/$slug': typeof ServicesSlugRoute
   '/shop/account': typeof ShopAccountRoute
   '/shop/cart': typeof ShopCartRoute
   '/shop/categories': typeof ShopCategoriesRoute
@@ -586,19 +602,22 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/academy': typeof AcademyRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
+  '/capacity-building': typeof CapacityBuildingRoute
   '/careers': typeof CareersRoute
   '/collections': typeof CollectionsRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/covid-19': typeof Covid19Route
   '/editor': typeof EditorRouteWithChildren
+  '/equipment-reagents': typeof EquipmentReagentsRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/ip-publications': typeof IpPublicationsRoute
   '/login': typeof LoginRoute
+  '/molecular-lab-services': typeof MolecularLabServicesRoute
   '/news': typeof NewsRouteWithChildren
   '/rd-portfolio': typeof RdPortfolioRoute
   '/rent-a-lab': typeof RentALabRoute
-  '/services': typeof ServicesRouteWithChildren
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/verify': typeof VerifyRoute
@@ -634,7 +653,6 @@ export interface FileRoutesById {
   '/editor/shop': typeof EditorShopRoute
   '/news/$slug': typeof NewsSlugRoute
   '/reader/$courseId': typeof ReaderCourseIdRoute
-  '/services/$slug': typeof ServicesSlugRoute
   '/shop/account': typeof ShopAccountRoute
   '/shop/cart': typeof ShopCartRoute
   '/shop/categories': typeof ShopCategoriesRoute
@@ -661,19 +679,22 @@ export interface FileRouteTypes {
     | '/about'
     | '/academy'
     | '/admin'
+    | '/capacity-building'
     | '/careers'
     | '/collections'
+    | '/consultancy'
     | '/contact'
     | '/covid-19'
     | '/editor'
+    | '/equipment-reagents'
     | '/forgot-password'
     | '/gallery'
     | '/ip-publications'
     | '/login'
+    | '/molecular-lab-services'
     | '/news'
     | '/rd-portfolio'
     | '/rent-a-lab'
-    | '/services'
     | '/shop'
     | '/sitemap.xml'
     | '/verify'
@@ -709,7 +730,6 @@ export interface FileRouteTypes {
     | '/editor/shop'
     | '/news/$slug'
     | '/reader/$courseId'
-    | '/services/$slug'
     | '/shop/account'
     | '/shop/cart'
     | '/shop/categories'
@@ -733,18 +753,21 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/academy'
+    | '/capacity-building'
     | '/careers'
     | '/collections'
+    | '/consultancy'
     | '/contact'
     | '/covid-19'
+    | '/equipment-reagents'
     | '/forgot-password'
     | '/gallery'
     | '/ip-publications'
     | '/login'
+    | '/molecular-lab-services'
     | '/news'
     | '/rd-portfolio'
     | '/rent-a-lab'
-    | '/services'
     | '/sitemap.xml'
     | '/verify'
     | '/academy/dashboard'
@@ -779,7 +802,6 @@ export interface FileRouteTypes {
     | '/editor/shop'
     | '/news/$slug'
     | '/reader/$courseId'
-    | '/services/$slug'
     | '/shop/account'
     | '/shop/cart'
     | '/shop/categories'
@@ -804,19 +826,22 @@ export interface FileRouteTypes {
     | '/about'
     | '/academy'
     | '/admin'
+    | '/capacity-building'
     | '/careers'
     | '/collections'
+    | '/consultancy'
     | '/contact'
     | '/covid-19'
     | '/editor'
+    | '/equipment-reagents'
     | '/forgot-password'
     | '/gallery'
     | '/ip-publications'
     | '/login'
+    | '/molecular-lab-services'
     | '/news'
     | '/rd-portfolio'
     | '/rent-a-lab'
-    | '/services'
     | '/shop'
     | '/sitemap.xml'
     | '/verify'
@@ -852,7 +877,6 @@ export interface FileRouteTypes {
     | '/editor/shop'
     | '/news/$slug'
     | '/reader/$courseId'
-    | '/services/$slug'
     | '/shop/account'
     | '/shop/cart'
     | '/shop/categories'
@@ -878,19 +902,22 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AcademyRoute: typeof AcademyRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
+  CapacityBuildingRoute: typeof CapacityBuildingRoute
   CareersRoute: typeof CareersRoute
   CollectionsRoute: typeof CollectionsRoute
+  ConsultancyRoute: typeof ConsultancyRoute
   ContactRoute: typeof ContactRoute
   Covid19Route: typeof Covid19Route
   EditorRoute: typeof EditorRouteWithChildren
+  EquipmentReagentsRoute: typeof EquipmentReagentsRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   GalleryRoute: typeof GalleryRoute
   IpPublicationsRoute: typeof IpPublicationsRoute
   LoginRoute: typeof LoginRoute
+  MolecularLabServicesRoute: typeof MolecularLabServicesRoute
   NewsRoute: typeof NewsRouteWithChildren
   RdPortfolioRoute: typeof RdPortfolioRoute
   RentALabRoute: typeof RentALabRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
   ShopRoute: typeof ShopRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VerifyRoute: typeof VerifyRoute
@@ -921,13 +948,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/rent-a-lab': {
       id: '/rent-a-lab'
       path: '/rent-a-lab'
@@ -947,6 +967,13 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news'
       preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecular-lab-services': {
+      id: '/molecular-lab-services'
+      path: '/molecular-lab-services'
+      fullPath: '/molecular-lab-services'
+      preLoaderRoute: typeof MolecularLabServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -977,6 +1004,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/equipment-reagents': {
+      id: '/equipment-reagents'
+      path: '/equipment-reagents'
+      fullPath: '/equipment-reagents'
+      preLoaderRoute: typeof EquipmentReagentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editor': {
       id: '/editor'
       path: '/editor'
@@ -998,6 +1032,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/consultancy': {
+      id: '/consultancy'
+      path: '/consultancy'
+      fullPath: '/consultancy'
+      preLoaderRoute: typeof ConsultancyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collections': {
       id: '/collections'
       path: '/collections'
@@ -1010,6 +1051,13 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capacity-building': {
+      id: '/capacity-building'
+      path: '/capacity-building'
+      fullPath: '/capacity-building'
+      preLoaderRoute: typeof CapacityBuildingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -1123,13 +1171,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/shop/account'
       preLoaderRoute: typeof ShopAccountRouteImport
       parentRoute: typeof ShopRoute
-    }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
-      parentRoute: typeof ServicesRoute
     }
     '/reader/$courseId': {
       id: '/reader/$courseId'
@@ -1524,18 +1565,6 @@ const NewsRouteChildren: NewsRouteChildren = {
 
 const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
 
-interface ServicesRouteChildren {
-  ServicesSlugRoute: typeof ServicesSlugRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesSlugRoute: ServicesSlugRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
 interface ShopRouteChildren {
   ShopAccountRoute: typeof ShopAccountRoute
   ShopCartRoute: typeof ShopCartRoute
@@ -1575,19 +1604,22 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AcademyRoute: AcademyRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
+  CapacityBuildingRoute: CapacityBuildingRoute,
   CareersRoute: CareersRoute,
   CollectionsRoute: CollectionsRoute,
+  ConsultancyRoute: ConsultancyRoute,
   ContactRoute: ContactRoute,
   Covid19Route: Covid19Route,
   EditorRoute: EditorRouteWithChildren,
+  EquipmentReagentsRoute: EquipmentReagentsRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   GalleryRoute: GalleryRoute,
   IpPublicationsRoute: IpPublicationsRoute,
   LoginRoute: LoginRoute,
+  MolecularLabServicesRoute: MolecularLabServicesRoute,
   NewsRoute: NewsRouteWithChildren,
   RdPortfolioRoute: RdPortfolioRoute,
   RentALabRoute: RentALabRoute,
-  ServicesRoute: ServicesRouteWithChildren,
   ShopRoute: ShopRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VerifyRoute: VerifyRoute,

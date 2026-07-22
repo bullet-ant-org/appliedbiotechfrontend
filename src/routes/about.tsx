@@ -57,64 +57,23 @@ const labProjects = [
 
 function AboutPage() {
   useReveal();
-  const [activeUnit, setActiveUnit] = useState(units[0].id);
-  const current = units.find((u) => u.id === activeUnit)!;
+  const [activeUnit, setActiveUnit] = useState("");
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* CEO Hero */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Page intro */}
+      <section className="relative pt-32 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 via-background to-background" />
-        <div className="mx-auto max-w-6xl grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
-          <div className="reveal order-2 lg:order-1">
-            <span className="inline-block px-3 py-1 text-xs uppercase tracking-[0.25em] rounded-full bg-brand/10 text-brand font-semibold">Founded 2006</span>
-            <h1 className="mt-5 font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">
-              Meet <span className="gradient-text">Prof. Nwadiuto Esiobu</span>
-            </h1>
-            <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed">
-              Founder and CEO of Applied Biotech International. For nearly two decades, Prof. Esiobu has worked to dismantle the structural barriers limiting life science research in developing economies by integrating high-caliber technical services, elite capacity building and reliable procurement to empower African scientists.
-            </p>
-            <blockquote className="mt-6 border-l-4 border-brand pl-5 text-foreground italic leading-relaxed">
-              "We empower African scientists to drive global biological innovations right from home soil."
-            </blockquote>
-            <div className="mt-3 text-sm font-semibold text-brand">Prof. Nwadiuto Esiobu, Founder & CEO</div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 font-semibold hover:scale-[1.03] transition-transform">
-                Work with us <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/rd-portfolio" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold hover:bg-accent transition-colors">
-                See our research
-              </Link>
-            </div>
-          </div>
-          <div className="reveal order-1 lg:order-2 relative">
-            <div className="relative rounded-[2rem] overflow-hidden shadow-brand aspect-[4/5]">
-              <img src={profPortrait} alt="Prof. Nwadiuto Esiobu" width={1024} height={1280} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
-            </div>
-            <div className="hidden lg:block absolute -bottom-6 -left-6 rounded-2xl bg-card border border-border shadow-soft p-4 animate-float-slow">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Est.</div>
-              <div className="font-display text-2xl font-bold text-brand">2006</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CEO Welcome */}
-      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-        <div className="mx-auto max-w-4xl">
-          <div className="reveal rounded-3xl border border-border bg-card p-8 md:p-12 flex flex-col md:flex-row gap-8 items-start">
-            <div className="h-16 w-16 rounded-2xl gradient-brand grid place-items-center text-brand-foreground shrink-0 text-2xl font-bold font-display">PE</div>
-            <div>
-              <p className="text-lg leading-relaxed text-muted-foreground italic">
-                "Welcome to Applied Biotech International. Since our establishment in 2006, our mission has been to dismantle the structural and infrastructural barriers limiting life science research in developing economies. By integrating high-caliber technical services, elite capacity building, and reliable procurement, we empower African scientists to drive global biological innovations right from home soil."
-              </p>
-              <div className="mt-5 font-semibold text-foreground">Prof. Nwadiuto Esiobu</div>
-              <div className="text-sm text-muted-foreground">Founder & Chief Executive Officer, Applied Biotech International</div>
-            </div>
-          </div>
+        <div className="mx-auto max-w-3xl text-center reveal">
+          <span className="inline-block px-3 py-1 text-xs uppercase tracking-[0.25em] rounded-full bg-brand/10 text-brand font-semibold">Founded 2006</span>
+          <h1 className="mt-5 font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">
+            About <span className="gradient-text">Applied Biotech</span>
+          </h1>
+          <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+            Two decades of laboratory science, capacity building and infrastructure across Africa.
+          </p>
         </div>
       </section>
 
@@ -136,18 +95,18 @@ function AboutPage() {
       </section>
 
       {/* Vision / Mission */}
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#062011] text-background">
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#052C54] text-background">
         <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand/20 blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="relative mx-auto max-w-6xl grid md:grid-cols-2 gap-6">
           {[
             {
-              I: Lightbulb, t: "Our Vision",
-              d: "To serve as Africa's premier gateway for advanced biotechnology application, transforming regional scientific capacity through global partnerships, structural precision and accessible innovation."
+              I: Lightbulb, t: "Our Vision Statement",
+              d: "To become the foremost African hub for scientific discovery and biotech innovation, translating research excellence into sustainable solutions that transform lives across the globe."
             },
             {
-              I: Target, t: "Our Mission",
-              d: "To advance the life sciences by equipping research institutions with state-of-the-art laboratory assets, delivering uncompromised analytical testing services, and building an elite technical workforce capable of solving critical food security, healthcare, and environmental challenges across the continent."
+              I: Target, t: "Our Mission Statement",
+              d: "To operate a world-class science and technology innovation, research, and commercialization ecosystem at the nexus of science and society, create skilled workforce, foster entrepreneurship, and translate indigenous scientific excellence into globally impactful solutions through think tank consultancy, research, transformational training, and strategic partnerships."
             },
           ].map((b, i) => (
             <div key={b.t} className="reveal rounded-3xl border border-background/10 bg-background/[0.04] backdrop-blur-sm p-8 lg:p-10 hover:bg-background/[0.08] transition-colors" style={{ transitionDelay: `${i * 80}ms` }}>
@@ -159,65 +118,12 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Lab Design Portfolio */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="reveal max-w-3xl mx-auto text-center mb-14">
-            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Lab Design Portfolio</span>
-            <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">
-              Labs we have <span className="gradient-text">designed and built</span>
-            </h2>
-            <p className="mt-4 text-muted-foreground text-lg">
-              From mobile diagnostic units to full research facilities, we have delivered end-to-end laboratory infrastructure across West Africa. Here are some of our proudest builds.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {labProjects.map((project, idx) => (
-              <div
-                key={project.title}
-                className={`reveal grid lg:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? "lg:grid-flow-dense" : ""}`}
-              >
-                <div className={`relative rounded-3xl overflow-hidden shadow-brand aspect-[4/3] ${idx % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                  <img src={project.img} alt={project.title} loading="lazy" className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white/90 text-xs font-semibold">
-                    <Beaker className="h-3.5 w-3.5" /> {project.location} · {project.year}
-                  </div>
-                </div>
-                <div className={idx % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}>
-                  <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Project {String(idx + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-3 font-display text-2xl md:text-3xl font-bold leading-tight">{project.title}</h3>
-                  <p className="mt-4 text-muted-foreground leading-relaxed">{project.desc}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="px-3 py-1 rounded-full bg-brand/10 text-brand text-xs font-semibold">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-16 reveal rounded-3xl bg-gradient-to-br from-brand/10 via-transparent to-brand-glow/10 border border-border p-8 md:p-12 text-center">
-            <FlaskConical className="h-10 w-10 text-brand mx-auto mb-4" />
-            <h3 className="font-display text-2xl md:text-3xl font-bold">Ready to build your lab?</h3>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Whether you need a training facility, a diagnostic hub or a full research center, we handle everything from design to accreditation.
-            </p>
-            <Link to="/contact" className="mt-6 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-              Brief our lab designers <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Our Values */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
         <div className="mx-auto max-w-6xl">
           <div className="reveal text-center mb-12">
             <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What We Stand For</span>
-            <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our core commitments</h2>
+            <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our Core Values</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
@@ -250,36 +156,33 @@ function AboutPage() {
             </h2>
             <p className="mt-4 text-muted-foreground">Each unit is led by a specialist. Select one to see its mandate and contact.</p>
           </div>
-          <div className="reveal mt-10 grid md:grid-cols-[1fr_1.3fr] gap-6">
-            <div className="flex flex-col gap-2">
-              {units.map((u, i) => (
+          <div className="reveal mt-10 flex flex-col gap-3 max-w-3xl">
+            {units.map((u, i) => (
+              <div key={u.id} className={`rounded-2xl border transition-all overflow-hidden ${activeUnit === u.id ? "border-brand shadow-soft" : "border-border"}`}>
                 <button
-                  key={u.id}
-                  onClick={() => setActiveUnit(u.id)}
-                  className={`text-left rounded-2xl border p-4 transition-all ${activeUnit === u.id ? "border-brand bg-brand/5 shadow-soft" : "border-border bg-card hover:border-brand/40"}`}
+                  onClick={() => setActiveUnit(activeUnit === u.id ? "" : u.id)}
+                  className={`w-full text-left p-4 flex items-center justify-between transition-colors ${activeUnit === u.id ? "bg-brand/5" : "bg-card hover:border-brand/40"}`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Unit 0{i + 1}</div>
-                      <div className="font-display font-bold mt-1">{u.t}</div>
-                    </div>
-                    <ChevronRight className={`h-4 w-4 transition-transform ${activeUnit === u.id ? "text-brand translate-x-1" : "text-muted-foreground"}`} />
+                  <div>
+                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Unit 0{i + 1}</div>
+                    <div className="font-display font-bold mt-1">{u.t}</div>
                   </div>
+                  <ChevronRight className={`h-4 w-4 transition-transform ${activeUnit === u.id ? "text-brand rotate-90" : "text-muted-foreground"}`} />
                 </button>
-              ))}
-            </div>
-            <div className="rounded-3xl border border-border bg-card p-8 lg:p-10 shadow-soft min-h-[280px]">
-              <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Core Mandate</span>
-              <h3 className="mt-3 font-display text-2xl md:text-3xl font-bold">{current.t}</h3>
-              <p className="mt-4 text-muted-foreground leading-relaxed">{current.mandate}</p>
-              <div className="mt-7 flex items-center gap-3 rounded-2xl bg-secondary/60 p-4">
-                <div className="h-10 w-10 grid place-items-center rounded-xl gradient-brand text-brand-foreground"><Mail className="h-5 w-5" /></div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Contact this unit</div>
-                  <a href={`mailto:${current.email}`} className="font-semibold text-foreground hover:text-brand transition-colors">{current.email}</a>
-                </div>
+                {activeUnit === u.id && (
+                  <div className="p-6 bg-card border-t border-border">
+                    <p className="text-muted-foreground leading-relaxed">{u.mandate}</p>
+                    <div className="mt-6 flex items-center gap-3 rounded-2xl bg-secondary/60 p-4">
+                      <div className="h-10 w-10 grid place-items-center rounded-xl gradient-brand text-brand-foreground"><Mail className="h-5 w-5" /></div>
+                      <div>
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Contact this unit</div>
+                        <a href={`mailto:${u.email}`} className="font-semibold text-foreground hover:text-brand transition-colors">{u.email}</a>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -330,58 +233,6 @@ function AboutPage() {
         </div>
       </section>
 
-
-      {/* ABSDIP */}
-      <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="reveal grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">ABSDIP</span>
-              <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
-                Africa's Biotechnology & Science Discovery Investment Portal
-              </h2>
-              <p className="mt-5 text-muted-foreground leading-relaxed">
-                ABSDIP is a world-class ecosystem where breakthrough discoveries in science, public discourse and transformative scientific innovation converge — shaping the future of science across the African continent.
-              </p>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
-                From Science Discovery Dome events and Research & Residencies, to Innovation & Venture initiatives and a State-of-the-Art Science Ecosystem — ABSDIP is the infrastructure for the next generation of African scientists, researchers and innovators. By year 5, ABSDIP is projected to generate ₦13.9B in annual revenue from growth and investments in research and innovation.
-              </p>
-              <div className="mt-6 grid sm:grid-cols-2 gap-4">
-                {[
-                  { n: "₦11.2B", label: "Projected global revenue streams" },
-                  { n: "10–15%", label: "Projected annual growth" },
-                  { n: "₦560M", label: "Projected domestic revenue annually" },
-                  { n: "₦13.9B", label: "Projected annual revenue by year 5" },
-                ].map((s) => (
-                  <div key={s.n} className="rounded-2xl border border-border bg-card p-5 text-center hover:border-brand/30 transition-colors">
-                    <div className="font-display text-2xl font-extrabold text-brand">{s.n}</div>
-                    <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="https://absdip.com/" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-                  Explore ABSDIP <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-            <div className="reveal space-y-4">
-              {[
-                { t: "Science Discovery Dome", d: "A globally connected hub for science knowledge sharing, public discourse and frontier research communication." },
-                { t: "Research & Residencies", d: "Structured residency programs embedding scientists in world-class facilities to accelerate breakthrough discoveries." },
-                { t: "Innovation & Venture", d: "Supporting biotech startups, spinouts and investment-ready science ventures from incubation to commercialisation." },
-                { t: "Campus-Smart Herb-Guest Lodge", d: "A de-risked investment model combining hospitality infrastructure with scientific community co-location." },
-              ].map((p) => (
-                <div key={p.t} className="rounded-2xl border border-border bg-card p-5 hover:border-brand/40 hover:shadow-soft transition-all">
-                  <div className="font-display font-bold">{p.t}</div>
-                  <div className="mt-1 text-sm text-muted-foreground">{p.d}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* COVID-19 Response */}
       <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-secondary/30">
@@ -437,6 +288,60 @@ function AboutPage() {
                   ABI partnered with Bluestone USA to offer this FDA-authorised system to Nigerian institutions. For further information contact: <a href="mailto:abi_nigeria2016@comcast.net" className="text-brand font-semibold hover:underline">abi_nigeria2016@comcast.net</a>
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CEO Hero */}
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 via-background to-background" />
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+          <div className="reveal order-2 lg:order-1">
+            <span className="inline-block px-3 py-1 text-xs uppercase tracking-[0.25em] rounded-full bg-brand/10 text-brand font-semibold">Founded 2006</span>
+            <h1 className="mt-5 font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">
+              Meet <span className="gradient-text">Prof. Nwadiuto Esiobu</span>
+            </h1>
+            <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              Founder and CEO of Applied Biotech International. For nearly two decades, Prof. Esiobu has worked to dismantle the structural barriers limiting life science research in developing economies by integrating high-caliber technical services, elite capacity building and reliable procurement to empower African scientists.
+            </p>
+            <blockquote className="mt-6 border-l-4 border-brand pl-5 text-foreground italic leading-relaxed">
+              "We empower African scientists to drive global biological innovations right from home soil."
+            </blockquote>
+            <div className="mt-3 text-sm font-semibold text-brand">Prof. Nwadiuto Esiobu, Founder & CEO</div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 font-semibold hover:scale-[1.03] transition-transform">
+                Work with us <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/rd-portfolio" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold hover:bg-accent transition-colors">
+                See our research
+              </Link>
+            </div>
+          </div>
+          <div className="reveal order-1 lg:order-2 relative">
+            <div className="relative rounded-[2rem] overflow-hidden shadow-brand aspect-[4/5]">
+              <img src={profPortrait} alt="Prof. Nwadiuto Esiobu" width={1024} height={1280} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+            </div>
+            <div className="hidden lg:block absolute -bottom-6 -left-6 rounded-2xl bg-card border border-border shadow-soft p-4 animate-float-slow">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Est.</div>
+              <div className="font-display text-2xl font-bold text-brand">2006</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CEO Welcome */}
+      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+        <div className="mx-auto max-w-4xl">
+          <div className="reveal rounded-3xl border border-border bg-card p-8 md:p-12 flex flex-col md:flex-row gap-8 items-start">
+            <div className="h-16 w-16 rounded-2xl gradient-brand grid place-items-center text-brand-foreground shrink-0 text-2xl font-bold font-display">PE</div>
+            <div>
+              <p className="text-lg leading-relaxed text-muted-foreground italic">
+                "Welcome to Applied Biotech International. Since our establishment in 2006, our mission has been to dismantle the structural and infrastructural barriers limiting life science research in developing economies. By integrating high-caliber technical services, elite capacity building, and reliable procurement, we empower African scientists to drive global biological innovations right from home soil."
+              </p>
+              <div className="mt-5 font-semibold text-foreground">Prof. Nwadiuto Esiobu</div>
+              <div className="text-sm text-muted-foreground">Founder & Chief Executive Officer, Applied Biotech International</div>
             </div>
           </div>
         </div>

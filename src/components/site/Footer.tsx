@@ -52,9 +52,8 @@ export function Footer() {
           <div className="flex items-center gap-2.5">
             <img src={logo} alt="" className="h-9 p-1" />
           </div>
-          <p className="mt-4 text-sm text-background/70 leading-relaxed">
-            Pioneering innovative biotechnology pathways to provide healthier and well-being.
-          </p>
+          {/* TODO: final footer tagline to be supplied by client */}
+          <p className="mt-4 text-sm text-background/70 leading-relaxed"></p>
           <div className="flex gap-3 mt-5">
             {socials.map((s, i) => (
               <a key={i} href={s.href || "#"} target={s.href ? "_blank" : undefined} rel="noreferrer" className="h-9 w-9 grid place-items-center rounded-full bg-background/10 hover:bg-background/20 transition-colors">
@@ -64,12 +63,12 @@ export function Footer() {
           </div>
         </div>
         <div>
-          <h4 className="font-display font-semibold mb-4">Solutions</h4>
+          <h4 className="font-display font-semibold mb-4">Services</h4>
           <ul className="space-y-2.5 text-sm text-background/70">
-            <li><Link to="/services/$slug" params={{ slug: "molecular-lab" }} className="hover:text-background transition-colors">Molecular Lab</Link></li>
-            <li><Link to="/services/$slug" params={{ slug: "equipment" }} className="hover:text-background transition-colors">Equipment & Reagents</Link></li>
-            <li><Link to="/services/$slug" params={{ slug: "training" }} className="hover:text-background transition-colors">Training</Link></li>
-            <li><Link to="/services/$slug" params={{ slug: "consulting" }} className="hover:text-background transition-colors">Consulting</Link></li>
+            <li><Link to="/molecular-lab-services" className="hover:text-background transition-colors">Molecular Lab</Link></li>
+            <li><Link to="/equipment-reagents" className="hover:text-background transition-colors">Equipment & Reagents</Link></li>
+            <li><Link to="/capacity-building" className="hover:text-background transition-colors">Capacity Building</Link></li>
+            <li><Link to="/consultancy" className="hover:text-background transition-colors">Consultancy</Link></li>
           </ul>
         </div>
         <div>

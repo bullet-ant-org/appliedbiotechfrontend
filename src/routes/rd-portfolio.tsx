@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Footer } from "@/components/site/Footer";
 import { useReveal } from "@/hooks/use-reveal";
-import { ArrowRight, FlaskConical, Leaf, Dna, ShieldPlus, Microscope } from "lucide-react";
+import { ArrowRight, FlaskConical, Leaf, Dna, ShieldPlus, Microscope, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/rd-portfolio")({
   component: PortfolioPage,
@@ -124,19 +124,10 @@ function PortfolioPage() {
             <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Research Programs</span>
             <h2 className="mt-3 font-display text-2xl md:text-3xl font-extrabold">Active & recent programs</h2>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p, i) => (
-              <div key={p.t} className="reveal group rounded-3xl border border-border bg-card p-7 hover:-translate-y-2 hover:shadow-brand hover:border-brand/40 transition-all duration-500" style={{ transitionDelay: `${i * 50}ms` }}>
-                <div className="flex items-center justify-between">
-                  <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground group-hover:scale-110 transition-transform">
-                    <p.I className="h-5 w-5" />
-                  </div>
-                  <span className="text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand/10 text-brand font-semibold">{p.tag}</span>
-                </div>
-                <h3 className="mt-5 font-display font-bold text-lg leading-tight">{p.t}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
-              </div>
-            ))}
+          <div className="reveal mx-auto max-w-xl text-center rounded-3xl border border-border bg-card p-12 shadow-soft">
+            <div className="mx-auto h-14 w-14 grid place-items-center rounded-2xl gradient-brand text-brand-foreground"><Sparkles className="h-6 w-6" /></div>
+            <h3 className="mt-6 font-display text-xl font-bold">Coming Soon</h3>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">Our active and recent research programs are being compiled and will be published here shortly.</p>
           </div>
           <div className="reveal mt-14 mx-auto max-w-3xl text-center rounded-3xl gradient-brand text-brand-foreground p-10 shadow-brand">
             <h2 className="font-display text-2xl md:text-3xl font-bold">Want to collaborate?</h2>

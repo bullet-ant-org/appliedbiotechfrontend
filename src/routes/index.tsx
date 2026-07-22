@@ -7,12 +7,14 @@ import { useReveal } from "@/hooks/use-reveal";
 import {
   ArrowRight, ChevronRight, Sparkles, FlaskConical, ShoppingBag, GraduationCap,
   BrainCircuit, Play, Shield, Cpu, Award, Microscope, CheckCircle2, Calendar,
-  Globe, Users, ClipboardCheck, LineChart,
+  Globe, Users, ClipboardCheck, LineChart, Briefcase, Building2, Rocket,
 } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
 import heroVirus from "@/assets/image-c.jpg";
 import profPortrait from "@/assets/prof-portrait.jpg";
 import biotechGrid from "@/assets/biotech-grid.jpg";
+import covenantLetter from "@/assets/testimonials/covenant-university-letter.jpg";
+import ebsuLetter from "@/assets/testimonials/ebsu-letter.jpg";
 
 export const Route = createFileRoute("/")(  {
   component: Index,
@@ -39,23 +41,38 @@ function Index() {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       <Hero />
-      <Marquee />
       <WhoWeAre />
-      <Pillars />
-      <ConsultSection />
-      <QuickDoors />
       <PetalNavigator />
+      <QuickDoors />
+      <ConsultSection />
+      <Pillars />
+      <AbsdipTeaser />
+      <CTA />
+      <Testimonials />
+      <FAQ />
       <DiasporaBridge />
       <Welcome />
-      <CTA />
-      <FAQ />
       <Footer />
     </div>
   );
 }
 
 
+const HERO_CARDS = [
+  { t: "Leading Cutting Edge Scientific Research.", hint: "Close-up of someone in the lab holding a test tube" },
+  { t: "Empowering the Next Generation of Scientists.", hint: "Hall demonstrating to trainees (faces blurred)" },
+  { t: "Powering the Bioeconomy in Africa.", hint: "Lab / bioeconomy imagery" },
+  { t: "Championing Indigenous Leadership and Innovation.", hint: "Leadership / innovation imagery" },
+];
+
 function Hero() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((p) => (p + 1) % HERO_CARDS.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+  const card = HERO_CARDS[i];
+
   return (
     <section className="relative pt-28 lg:pt-36 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -65,30 +82,33 @@ function Hero() {
       <div className="mx-auto max-w-4xl text-center">
         <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/10 text-brand text-xs font-semibold uppercase tracking-[0.2em]">
           <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse-ring" />
-          Advancing Biotechnology Research & Solutions
+          Powering the Next Frontiers of Life Science Solutions to Real Life Challenges
         </span>
         <h1 className="mt-6 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05]">
           Welcome to <span className="gradient-text">Applied Biotech International Nigeria LTD</span>
         </h1>
-        <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-          We provide molecular laboratory services, lab design and equipment, reagents, and biotechnology training across Nigeria and Africa.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/services" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-            Our Services <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-card border border-border text-foreground px-6 py-3.5 font-semibold hover:bg-accent transition-colors">
-            Learn More <ChevronRight className="h-4 w-4" />
-          </Link>
-        </div>
       </div>
-      <div className="mx-auto max-w-6xl mt-14 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/8]">
-        <img src={heroVirus} alt="Applied Biotech laboratory research" width={1600} height={800} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#062011]/70 via-transparent to-transparent" />
-        <div className="hidden md:block absolute bottom-6 left-6 rounded-2xl bg-card/95 backdrop-blur border border-border shadow-soft p-4">
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Scientists Trained</div>
-          <div className="font-display text-2xl font-bold text-brand">1000+</div>
-        </div>
+
+      {/* Rotating feature cards — crossfade + slow zoom, one card visible at a time */}
+      <div className="mx-auto max-w-3xl mt-10 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/9] bg-secondary">
+        {HERO_CARDS.map((c, idx) => (
+          <div key={c.t} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0"}`}>
+            {/* TODO: replace placeholder image — {c.hint}, no full faces per client request */}
+            <div className={`absolute inset-0 bg-secondary flex items-center justify-center text-xs text-muted-foreground text-center px-6 transition-transform duration-[6000ms] ease-linear ${idx === i ? "scale-110" : "scale-100"}`}>
+              [Image placeholder: {c.hint}]
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#052C54]/85 via-[#052C54]/20 to-transparent" />
+            <div className="absolute inset-0 flex items-end justify-center p-8">
+              <p className="text-background font-display font-bold text-xl md:text-2xl text-center max-w-lg">{c.t}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 flex items-center justify-center gap-2">
+        {HERO_CARDS.map((_, idx) => (
+          <button key={idx} onClick={() => setI(idx)} aria-label={`Slide ${idx + 1}`}
+            className={`h-1.5 rounded-full transition-all ${idx === i ? "w-8 bg-brand" : "w-3 bg-border hover:bg-muted-foreground"}`} />
+        ))}
       </div>
     </section>
   );
@@ -105,6 +125,14 @@ function WhoWeAre() {
         <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
           We serve as a trusted hub for educational institutions, government agencies and independent researchers, providing the elite scientific expertise and modern tools needed to solve real-world challenges. By focusing on capacity building, we are committed to elevating Africa's scientific standing on the global stage and unlocking sustainable development through biotech innovation.
         </p>
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <a href="#what-we-offer" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+            Our Services <ArrowRight className="h-4 w-4" />
+          </a>
+          <Link to="/about" className="inline-flex items-center gap-2 rounded-full bg-card border border-border text-foreground px-6 py-3.5 font-semibold hover:bg-accent transition-colors">
+            Learn More <ChevronRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -143,37 +171,19 @@ function FAQ() {
   );
 }
 
-function Marquee() {
-  const items = ["Shop Lab Supplies", "Rent a Lab", "Consult Our Experts", "Acquire a Skill", "Apply for a Job", "View Our Gallery", "Enroll in Academy", "Build Your Career"];
-  return (
-    <div className="border-y border-border bg-card/50 overflow-hidden">
-      <div className="flex gap-12 py-5 animate-[marquee_14s_linear_infinite] whitespace-nowrap">
-        {[...items, ...items, ...items].map((it, i) => (
-          <span key={i} className="text-sm uppercase tracking-[0.25em] text-muted-foreground font-medium flex items-center gap-12">
-            {it} <span className="text-brand">◆</span>
-          </span>
-        ))}
-      </div>
-      <style>{`@keyframes marquee {0%{transform:translateX(0)}100%{transform:translateX(-33.333%)}}`}</style>
-    </div>
-  );
-}
 
 const EXPLORE_CARDS = [
-  { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/services" as const, img: heroVirus },
-  { I: GraduationCap, t: "Academy & Training", d: "Certified hands-on cohorts in PCR, sequencing and bioinformatics, delivered by practicing molecular scientists.", cta: "Explore Academy", to: "/academy" as const, img: biotechGrid },
-  { I: ShoppingBag, t: "Reagents & Instrumentation", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/shop" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
+  { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/molecular-lab-services" as const, img: heroVirus },
+  { I: ShoppingBag, t: "Lab Equipment & Reagents", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/equipment-reagents" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
+  { I: GraduationCap, t: "Capacity Building", d: "Hands-on workshops, certified cohorts and institutional upskilling delivered by practicing molecular scientists.", cta: "Explore Programs", to: "/capacity-building" as const, img: biotechGrid },
+  { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput" },
 ];
 
 function QuickDoors() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="what-we-offer" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="reveal text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What We Offer</span>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Dedicated pathways into <span className="gradient-text">our work.</span></h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {EXPLORE_CARDS.map((c, idx) => (
             <motion.div
               key={c.t}
@@ -181,7 +191,7 @@ function QuickDoors() {
               className="group relative rounded-3xl overflow-hidden shadow-soft aspect-[4/5]"
             >
               <img src={c.img} alt={c.t} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#062011] via-[#062011]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#052C54] via-[#052C54]/60 to-transparent" />
               <div className="absolute inset-0 p-7 flex flex-col justify-end text-background">
                 <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center mb-4">
                   <c.I className="h-5 w-5 text-brand-foreground" />
@@ -202,12 +212,12 @@ function QuickDoors() {
 
 function PetalNavigator() {
   const petals = [
-    { label: "Sample Analysis", sub: "Accredited testing", to: "/services" as const, hash: "sample-analysis", bg: "from-emerald-600 to-emerald-800", I: ClipboardCheck },
-    { label: "Rent a Lab", sub: "World-class facilities", to: "/services" as const, hash: "rent-a-lab-card", bg: "from-green-600 to-green-800", I: FlaskConical },
-    { label: "Build Your Lab", sub: "Design & equipment", to: "/services" as const, hash: "lab-design", bg: "from-teal-600 to-teal-800", I: ShoppingBag },
-    { label: "Acquire a Skill", sub: "Certified training", to: "/services" as const, hash: "courses", bg: "from-lime-600 to-lime-800", I: GraduationCap },
-    { label: "Consult Us", sub: "Strategic guidance", to: "/services" as const, hash: "strategic-consultancy", bg: "from-green-700 to-emerald-900", I: BrainCircuit },
-    { label: "Reagents", sub: "Instrumentation supply", to: "/services" as const, hash: "reagents", bg: "from-emerald-500 to-teal-700", I: Microscope },
+    { label: "Sample Analysis", sub: "Accredited testing", to: "/molecular-lab-services" as const, hash: "sample-analysis", bg: "from-blue-600 to-blue-800", I: ClipboardCheck },
+    { label: "Equipment & Reagents", sub: "Shop the essentials", to: "/equipment-reagents" as const, bg: "from-sky-600 to-sky-800", I: ShoppingBag },
+    { label: "Rent-a-Lab", sub: "World-class facilities", to: "/molecular-lab-services" as const, hash: "rent-a-lab", bg: "from-blue-700 to-indigo-900", I: FlaskConical },
+    { label: "Strategic Consultancy", sub: "Institutional guidance", to: "/consultancy" as const, hash: "strategic-consultancy", bg: "from-sky-500 to-blue-700", I: BrainCircuit },
+    { label: "Research Consultation", sub: "Scientific guidance", to: "/consultancy" as const, hash: "research-consultancy", bg: "from-blue-800 to-[#052C54]", I: Microscope },
+    { label: "Acquire a Skill", sub: "Certified training", to: "/capacity-building" as const, bg: "from-blue-600 to-sky-800", I: GraduationCap },
   ];
 
   return (
@@ -215,7 +225,6 @@ function PetalNavigator() {
       <div className="mx-auto max-w-6xl text-center">
         <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What Can You Do Here?</span>
         <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Pick your path into <span className="gradient-text">Applied Biotech</span></h2>
-        <p className="mt-4 text-muted-foreground max-w-xl mx-auto">Six ways to take action. Choose what matters to you and step right in.</p>
       </div>
 
       {/* Larger screens: circular petal layout */}
@@ -260,14 +269,14 @@ function PetalNavigator() {
           viewport={{ once: true }}
           transition={{ delay: 0.3, type: "spring" }}
         >
-          <div className="h-[80px] w-[80px] sm:h-[110px] sm:w-[110px] rounded-full gradient-brand grid place-items-center shadow-brand relative">
+          <Link to="/contact" className="block h-[80px] w-[80px] sm:h-[110px] sm:w-[110px] rounded-full gradient-brand grid place-items-center shadow-brand relative">
             <div className="absolute inset-0 rounded-full animate-ping bg-brand/30" style={{ animationDuration: "3s" }} />
             <div className="relative h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-card grid place-items-center border border-border">
               <div className="font-display font-extrabold text-brand text-center leading-tight text-[8px] sm:text-xs">
-                Engage<br />Us
+                Contact<br />Us
               </div>
             </div>
-          </div>
+          </Link>
         </motion.div>
       </div>
       
@@ -275,11 +284,9 @@ function PetalNavigator() {
   );
 }
 const CONSULT_PILLARS = [
-  { t: "Lab Design & Setup", d: "We design and build fully equipped, accredited molecular facilities tailored to your institution's needs and budget." },
-  { t: "Grant Writing & Policy", d: "Our team has secured millions in research grants. We put that expertise to work for your next application." },
-  { t: "Research Commercialization", d: "We map your research to market opportunities, identify the right partnerships and build the commercialization pathway your science deserves." },
-  { t: "Strategic Direction", d: "From funding strategy to organizational positioning, we give you the roadmap to grow with clarity and confidence." },
-  
+  { t: "Project Management", d: "End-to-end oversight of biotechnology projects, from scoping and funding to delivery and evaluation." },
+  { t: "Lab Design", d: "We design and build fully equipped, accredited molecular facilities tailored to your institution's needs and budget." },
+  { t: "Bio Enterprise Incubation", d: "Structured support for biotech ventures moving from concept to a viable, investable enterprise." },
 ];
 
 function ConsultSection() {
@@ -293,9 +300,9 @@ function ConsultSection() {
   ];
 
   return (
-    <section id="consult" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#062011] text-background">
+    <section id="consult" className="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#052C54] text-background">
       <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-brand/20 blur-3xl" />
-      <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
       <div className="relative mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 items-center">
           <div>
@@ -330,8 +337,8 @@ function ConsultSection() {
               <Link to="/contact" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
                 Book a Consultation <Calendar className="h-4 w-4" />
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-2 rounded-full border border-background/20 text-background px-7 py-4 font-semibold hover:bg-background/10 transition-colors">
-                View All Services <ArrowRight className="h-4 w-4" />
+              <Link to="/consultancy" className="inline-flex items-center gap-2 rounded-full border border-background/20 text-background px-7 py-4 font-semibold hover:bg-background/10 transition-colors">
+                View Consultancy <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -386,7 +393,7 @@ function DiasporaBridge() {
             <p className="mt-4 text-muted-foreground leading-relaxed">
               The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
             </p>
-            <Link to="/services" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+            <Link to="/consultancy" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
               Our Role as Strategic Consultant <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -463,17 +470,17 @@ function Welcome() {
 
 function Pillars() {
   const pillars = [
-    { I: Sparkles, t: "Bench You Can Trust", d: "Calibrated assays, validated SOPs and zero contamination tolerance on every run." },
-    { I: Cpu, t: "Labs That Show Up", d: "Designed, built and maintained end-to-end. No abandoned facilities, no broken kit." },
-    { I: Award, t: "Certifications That Travel", d: "Train here, work anywhere. CMD-recognised curriculum trusted across the continent." },
-    { I: Shield, t: "20 Years of Proven Results", d: "A scientific track record backed by two decades of peer-reviewed, field-proven research." },
+    { I: Shield, t: "20 Years of Impact", d: "Two decades of scientific leadership, capacity building and powering the bioeconomy across Africa." },
+    { I: Award, t: "Trusted Faculty", d: "Qualified and experienced researchers bringing deep scientific expertise to every engagement." },
+    { I: Sparkles, t: "Quality Laboratories", d: "Verified, up-to-date reagents and equipment, backed by rigorous quality assurance on every bench." },
+    { I: CheckCircle2, t: "Verifiable Partnership", d: "Our partnerships with organizations across Africa are verifiable, credible and built on a trustworthy track record." },
   ];
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="reveal text-center max-w-2xl mx-auto">
           <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Why Applied Biotech</span>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Four reasons to <span className="gradient-text">build with us.</span></h2>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Four Reasons to <span className="gradient-text">Partner With Us.</span></h2>
         </div>
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => (
@@ -515,18 +522,77 @@ function MetricBanner() {
   );
 }
 
+function AbsdipTeaser() {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="reveal mx-auto max-w-6xl rounded-[2rem] gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden text-center">
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-background/10 blur-3xl" />
+        <span className="text-xs uppercase tracking-[0.25em] text-brand-foreground/70 font-semibold">ABSDIP</span>
+        <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
+          Africa's Biotechnology & Science Discovery Innovation Park
+        </h2>
+        <p className="mt-5 max-w-2xl mx-auto text-brand-foreground/85 leading-relaxed">
+          ABSDIP is Applied Biotech's Innovation Park — a world-class ecosystem where breakthrough discoveries in science, applied research and transformative innovation converge, shaping the future of science across the African continent.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// Testimonials — sourced from client screenshots; two are scanned letters (kept as images), three are transcribed text
+const TESTIMONIALS_TEXT = [
+  {
+    quote: "I am writing to testify about the capabilities of Applied Biotechnology Limited (ABL). I have known ABL since 2005 when I assumed office as the DG/CEO of the National Biotechnology Development Agency (NABDA) in Abuja and I worked intimately with the company until 2013 when I completed my tenure.",
+    name: "Prof. Solomon Bamidele",
+    role: "Former DG, NABDA",
+  },
+  {
+    quote: "This is to certify that the Molecular Biology and Tissue Culture laboratory located at the South-East Zonal Biotechnology Centre, University of Nigeria, Nsukka, a centre under NABDA, was satisfactorily designed by Applied Biotech Nigeria Limited. We are highly impressed with the design layout and space management.",
+    name: "Dr. Christie Oby Onyia",
+    role: "For: Director General, NABDA",
+  },
+  {
+    quote: "I first met Prof Diuto Esiobu (CEO, Applied Biotech International Nigeria Limited) in 2009 during a biotech training at the SE Zonal Biotech Centre, UNN. Since then she has been a regular resource person at EBSU's Biotech R&D Centre. Throughout these periods, we have used consumables from ABINL and it has always been perfect for our programs.",
+    name: "Happiness Ogba Oselebe",
+    role: "Ebonyi State University",
+  },
+];
+
+function Testimonials() {
+  return (
+    <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center mb-10 reveal">
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Testimonials</span>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our Commitment to Excellence, Past Works & Testimonials</h2>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {TESTIMONIALS_TEXT.map((t) => (
+            <div key={t.name} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <p className="text-sm text-muted-foreground italic leading-relaxed line-clamp-6">"{t.quote}"</p>
+              <p className="mt-4 text-sm font-semibold text-foreground">{t.name}</p>
+              <p className="text-xs text-muted-foreground">{t.role}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid gap-5 md:grid-cols-2 mt-5">
+          <img src={covenantLetter} alt="Testimonial letter from Covenant University" className="w-full rounded-2xl border border-border shadow-soft" />
+          <img src={ebsuLetter} alt="Testimonial letter from Ebonyi State University Faculty of Sciences" className="w-full rounded-2xl border border-border shadow-soft" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CTA() {
   return (
     <section className="pb-24 pt-4 px-4 sm:px-6 lg:px-8">
       <div className="reveal mx-auto max-w-6xl rounded-3xl gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-background/10 blur-3xl" />
         <div className="relative grid md:grid-cols-[1fr_auto] gap-8 items-center">
-          <div>
-            <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight">Your next breakthrough starts with a conversation.</h2>
-            <p className="mt-3 text-brand-foreground/85 max-w-xl">Book a discovery call and tell us about the project, the cohort or the lab you're trying to build. We'll meet you where you are.</p>
-          </div>
+          <h2 className="font-display text-3xl md:text-5xl font-bold leading-tight">Let's Meet You Where You Are. Interested in Anything?</h2>
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-background text-foreground px-7 py-4 font-semibold hover:scale-105 transition-transform shadow-soft self-start md:self-center">
-            Book your call <ArrowRight className="h-4 w-4" />
+            Book a Call <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

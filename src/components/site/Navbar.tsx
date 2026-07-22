@@ -4,8 +4,11 @@ import { Menu, X, ChevronDown, ShoppingBag, GraduationCap, LogIn, LayoutDashboar
 import logo from "@/assets/logo.png";
 import { useAuth } from "@/lib/auth";
 
-const services: { label: string; slug: string }[] = [
-  { label: "Services", slug: "Services" },
+const services = [
+  { label: "Molecular Lab Services", to: "/molecular-lab-services" as const },
+  { label: "Lab Equipment & Reagents", to: "/equipment-reagents" as const },
+  { label: "Capacity Building", to: "/capacity-building" as const },
+  { label: "Consultancy", to: "/consultancy" as const },
 ];
 
 const navLinks = [
@@ -42,9 +45,12 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
         <Link to="/" className="flex items-center gap-2.5 group">
           <div className="relative">
-            <img src={logo} alt="Applied Biotech logo" className="h-9" />
+            <img src={logo} alt="Applied Biotech logo" className="h-7 lg:h-8" />
             <div className="absolute inset-0 rounded-lg gradient-brand opacity-0 group-hover:opacity-30 blur-md transition-opacity" />
           </div>
+          <span className="hidden md:block italic text-[10px] leading-tight text-muted-foreground">
+            Consultants · STEM Educators<br />Research Scientists · Bio-Manufacturers
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -55,6 +61,9 @@ export function Navbar() {
             onMouseEnter={() => setSvcOpen(true)}
             onMouseLeave={() => setSvcOpen(false)}
           >
+            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              Services <ChevronDown className="h-3.5 w-3.5" />
+            </button>
             <div
               className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 ${
                 svcOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1 pointer-events-none"
@@ -63,9 +72,8 @@ export function Navbar() {
               <div className="w-72 rounded-2xl bg-popover border border-border shadow-brand p-2">
                 {services.map((s) => (
                   <Link
-                    key={s.slug}
-                    to="/services/$slug"
-                    params={{ slug: s.slug }}
+                    key={s.to}
+                    to={s.to}
                     className="block px-3 py-2.5 rounded-lg text-sm text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-colors"
                   >
                     {s.label}
@@ -80,21 +88,6 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
-
-          <Link
-            to="/shop"
-            className="ml-3 inline-flex items-center gap-2 rounded-full border border-border bg-card text-foreground px-4 py-2.5 text-sm font-semibold hover:bg-accent transition-colors"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            Shop
-          </Link>
-          <Link
-            to="/academy"
-            className="ml-2 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-5 py-2.5 text-sm font-semibold shadow-brand hover:scale-105 transition-transform"
-          >
-            <GraduationCap className="h-4 w-4" />
-            Academy
-          </Link>
 
           {user ? (
             <div className="relative ml-2" onMouseEnter={() => setUserOpen(true)} onMouseLeave={() => setUserOpen(false)}>
@@ -144,7 +137,7 @@ export function Navbar() {
             <Link to="/about" onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-lg text-foreground/80 hover:bg-accent">About Us</Link>
             <div className="px-3 pt-2 pb-1 text-xs uppercase tracking-wider text-muted-foreground">Services</div>
             {services.map((s) => (
-              <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-lg text-foreground/80 hover:bg-accent text-sm">
+              <Link key={s.to} to={s.to} onClick={() => setOpen(false)} className="block px-3 py-2.5 rounded-lg text-foreground/80 hover:bg-accent text-sm">
                 {s.label}
               </Link>
             ))}
