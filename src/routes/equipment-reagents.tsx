@@ -15,9 +15,9 @@ export const Route = createFileRoute("/equipment-reagents")({
 });
 
 const OFFERINGS = [
-  { id: "instrumentation", I: Cpu, t: "Analytical Instrumentation", d: "Real-time PCR platforms, microcentrifuges, gel-doc imaging stations, biosafety cabinets and more." },
-  { id: "reagents", I: FlaskConical, t: "Molecular Reagents & Bio-Chemicals", d: "Validated, cold-chain-managed reagents and bio-chemicals sourced from trusted global manufacturers." },
-  { id: "infrastructure", I: Building2, t: "Deployable Infrastructure", d: "Turnkey lab infrastructure — modular builds, containment systems and utility integration." },
+  { id: "instrumentation", I: Cpu, t: "Analytical Instrumentation", d: "Real-time PCR platforms, microcentrifuges, gel-doc imaging stations, biosafety cabinets and more.", items: ["Real-time QuantStudio platforms, gradient PCR & digital block cyclers", "Microcentrifuges, refrigerated arrays, electrophoresis tanks & transilluminators", "Nano-spectrophotometers, gel-doc imaging stations, analytical balances", "Class II Type A2 Biosafety Cabinets & laminar flow hoods"] },
+  { id: "reagents", I: FlaskConical, t: "Molecular Reagents & Bio-Chemicals", d: "Validated, cold-chain-managed reagents and bio-chemicals sourced from trusted global manufacturers.", items: ["High-fidelity DNA polymerases, master mixes, reverse transcriptases", "Magnetic-bead and silica-membrane DNA/RNA extraction kits", "qPCR master mixes, restriction enzymes, DNA ladders", "AquaPure™ Nuclease-Free Molecular Grade Water"] },
+  { id: "infrastructure", I: Building2, t: "Deployable Infrastructure", d: "Turnkey lab infrastructure — modular builds, containment systems and utility integration.", items: ["Pre-engineered Mobile Molecular Laboratories", "Solar-powered laboratory container modules", "Pre-sterilized serological pipettes & filter tips", "Optical 96-well PCR plates, culture plates, cryo-vials"] },
 ];
 
 function EquipmentPage() {
@@ -50,6 +50,11 @@ function EquipmentPage() {
               <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground"><o.I className="h-5 w-5" /></div>
               <h3 className="mt-5 font-display font-bold text-xl">{o.t}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{o.d}</p>
+              <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
+                {o.items.map((it) => (
+                  <li key={it} className="flex gap-2"><span className="text-brand mt-0.5">›</span>{it}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

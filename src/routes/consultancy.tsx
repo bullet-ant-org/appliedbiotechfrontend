@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Footer } from "@/components/site/Footer";
 import { useReveal } from "@/hooks/use-reveal";
-import { Briefcase, FlaskConical, ArrowRight, Mail, Beaker } from "lucide-react";
+import { Briefcase, FlaskConical, ArrowRight, Mail, Beaker, ClipboardCheck, Globe, Users, LineChart } from "lucide-react";
 import heroLab from "@/assets/image-6.jpg";
 import heroPipette from "@/assets/image-7.jpg";
 import mobileLab from "@/assets/image-2.jpg";
@@ -30,6 +30,13 @@ const CATEGORIES = [
     items: ["Project management", "Leadership and management training", "Innovation and bio enterprise incubation", "Lab design and outfitting", "Global policy advisory"],
     I: Briefcase,
   },
+];
+
+const DIASPORA_MANDATE = [
+  { icon: ClipboardCheck, t: "Vetting", d: "Rigorous credential and competency screening of Diaspora-based STEMM experts against host-institution requirements." },
+  { icon: Globe, t: "Mapping", d: "Systematic mapping of expertise to institutional need, aligning specialists with the departments and programs where their contribution is most consequential." },
+  { icon: Users, t: "Coordination", d: "End-to-end coordination between returning experts and host institutions across teaching, research and capacity-building engagements." },
+  { icon: LineChart, t: "Monitoring & Evaluation", d: "Structured M&E frameworks that track engagement outcomes and quantify impact against the program's stated objectives." },
 ];
 
 const labProjects = [
@@ -77,6 +84,31 @@ function ConsultancyPage() {
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Diaspora Bridge — relocated from homepage, strategic consultancy engagement */}
+        <div className="mx-auto max-w-6xl mt-10 rounded-3xl border border-border bg-card p-8 md:p-12">
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Federal Ministry of Education Initiative</span>
+          <h2 className="mt-3 font-display text-2xl md:text-3xl font-extrabold leading-tight">
+            The <span className="gradient-text">Diaspora Bridge</span> Program
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Applied Biotech was engaged as strategic consultant to the Diaspora Bridge program, an initiative of the Federal Ministry of Education designed to connect Nigerian STEMM experts based abroad with host institutions across the country.
+          </p>
+          <p className="mt-3 text-muted-foreground leading-relaxed">
+            The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
+          </p>
+          <div className="mt-6 grid sm:grid-cols-2 gap-4">
+            {DIASPORA_MANDATE.map((item) => (
+              <div key={item.t} className="rounded-2xl border border-border bg-background/60 p-5">
+                <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center">
+                  <item.icon className="h-5 w-5 text-brand-foreground" />
+                </div>
+                <h3 className="mt-4 font-display font-bold">{item.t}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.d}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ABSDIP — relocated from About Us */}

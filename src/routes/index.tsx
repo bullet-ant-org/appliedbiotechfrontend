@@ -7,7 +7,7 @@ import { useReveal } from "@/hooks/use-reveal";
 import {
   ArrowRight, ChevronRight, Sparkles, FlaskConical, ShoppingBag, GraduationCap,
   BrainCircuit, Play, Shield, Cpu, Award, Microscope, CheckCircle2, Calendar,
-  Globe, Users, ClipboardCheck, LineChart, Briefcase, Building2, Rocket,
+  ClipboardCheck, Briefcase, Building2, Rocket,
 } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
 import heroVirus from "@/assets/image-c.jpg";
@@ -50,7 +50,6 @@ function Index() {
       <CTA />
       <Testimonials />
       <FAQ />
-      <DiasporaBridge />
       <Footer />
     </div>
   );
@@ -373,57 +372,6 @@ function ConsultSection() {
 }
 
 
-const DIASPORA_MANDATE = [
-  { icon: ClipboardCheck, t: "Vetting", d: "Rigorous credential and competency screening of Diaspora-based STEMM experts against host-institution requirements." },
-  { icon: Globe, t: "Mapping", d: "Systematic mapping of expertise to institutional need, aligning specialists with the departments and programs where their contribution is most consequential." },
-  { icon: Users, t: "Coordination", d: "End-to-end coordination between returning experts and host institutions across teaching, research and capacity-building engagements." },
-  { icon: LineChart, t: "Monitoring & Evaluation", d: "Structured M&E frameworks that track engagement outcomes and quantify impact against the program's stated objectives." },
-];
-
-function DiasporaBridge() {
-  return (
-    <section id="diaspora-bridge" className="py-24 md:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-14 items-start">
-          <div className="reveal">
-            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Federal Ministry of Education Initiative</span>
-            <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">
-              The <span className="gradient-text">Diaspora Bridge</span> Program
-            </h2>
-            <p className="mt-5 text-muted-foreground leading-relaxed">
-              Applied Biotech was engaged as strategic consultant to the Diaspora Bridge program, an initiative of the Federal Ministry of Education designed to connect Nigerian STEMM experts based abroad with host institutions across the country.
-            </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
-            </p>
-            <Link to="/consultancy" className="mt-8 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-4 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-              Our Role as Strategic Consultant <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            {DIASPORA_MANDATE.map((item, idx) => (
-              <motion.div
-                key={item.t}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.06 }}
-                className="rounded-2xl border border-border bg-card p-6 shadow-soft"
-              >
-                <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center">
-                  <item.icon className="h-5 w-5 text-brand-foreground" />
-                </div>
-                <h3 className="mt-4 font-display font-bold">{item.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.d}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function Pillars() {
   const pillars = [

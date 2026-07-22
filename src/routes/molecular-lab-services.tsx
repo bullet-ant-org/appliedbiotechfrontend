@@ -15,9 +15,9 @@ export const Route = createFileRoute("/molecular-lab-services")({
 });
 
 const OFFERINGS = [
-  { id: "sample-analysis", I: ClipboardCheck, t: "Sample Analysis", d: "Accredited molecular testing performed under validated protocols, including RT-PCR/qPCR diagnostics and pathogen identification." },
-  { id: "rent-a-lab", I: FlaskConical, t: "Rent-a-Lab", d: "Access fully equipped, validated molecular facilities without the overhead of building your own." },
-  { id: "specialty-testing", I: Microscope, t: "Specialty Testing", d: "Genomics prep, forensic and genetic fidelity testing, and eco-microbiome/metagenomics services." },
+  { id: "sample-analysis", I: ClipboardCheck, t: "Sample Analysis", d: "Accredited molecular testing performed under validated protocols, including RT-PCR/qPCR diagnostics and pathogen identification.", items: ["Accreditation-ready written reports", "Research, clinical and commercial pipelines", "Fast, trackable turnaround times"] },
+  { id: "rent-a-lab", I: FlaskConical, t: "Rent-a-Lab", d: "Access fully equipped, validated molecular facilities without the overhead of building your own — calibrated thermocyclers, biosafety cabinets and gel-doc systems by the hour or day.", items: ["Calibrated thermocyclers and biosafety cabinets", "Perfect for thesis work and corporate validations", "Premium Abuja hub, hourly or daily slots"] },
+  { id: "specialty-testing", I: Microscope, t: "Specialty Testing", d: "Genomics prep, forensic and genetic fidelity testing, and eco-microbiome/metagenomics services.", items: ["Molecular pathogen ID & typing, AMR strain tracking", "Genomics & sequencing prep, NGS library preparation", "Forensic STR profiling & livestock breeding fidelity", "Eco-microbiome, soil biodiversity & water quality assays"] },
   { id: "eia", I: Leaf, t: "Environmental Impact Assessment", d: "Structured environmental and biodiversity impact assessments supporting regulatory compliance and sustainable development planning." },
 ];
 
@@ -51,6 +51,13 @@ function MolecularLabPage() {
               <div className="h-12 w-12 grid place-items-center rounded-xl gradient-brand text-brand-foreground"><o.I className="h-5 w-5" /></div>
               <h3 className="mt-5 font-display font-bold text-xl">{o.t}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{o.d}</p>
+              {o.items && (
+                <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
+                  {o.items.map((it) => (
+                    <li key={it} className="flex gap-2"><span className="text-brand mt-0.5">›</span>{it}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
