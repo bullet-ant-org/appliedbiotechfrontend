@@ -51,7 +51,6 @@ function Index() {
       <Testimonials />
       <FAQ />
       <DiasporaBridge />
-      <Welcome />
       <Footer />
     </div>
   );
@@ -183,6 +182,10 @@ function QuickDoors() {
   return (
     <section id="what-we-offer" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+        <div className="reveal text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What We Offer</span>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Everything you need, <span className="gradient-text">under one roof.</span></h2>
+        </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {EXPLORE_CARDS.map((c, idx) => (
             <motion.div
@@ -416,52 +419,6 @@ function DiasporaBridge() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Welcome() {
-  const [playing, setPlaying] = useState(false);
-  const videoId = "dQw4w9WgXcQ";
-  return (
-    <section className="py-24 md:py-28 px-4 sm:px-6 lg:px-8 bg-secondary/30">
-      <div className="mx-auto max-w-6xl grid lg:grid-cols-[1fr_1.1fr] gap-10 items-center">
-        <div className="reveal">
-          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Founder · CEO</span>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold leading-[1.05]">
-            A message from <span className="gradient-text">Prof. Nwadiuto Esiobu</span>
-          </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            Hear directly from our founder and CEO about why Applied Biotech exists, who we're building for and how you can be part of this movement.
-          </p>
-          <Link to="/about" className="mt-7 inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold hover:bg-accent transition-colors">
-            Our full story <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="reveal">
-          <Link to="https://vm.tiktok.com/ZNRwBrCBY/">
-          <div className="relative rounded-3xl overflow-hidden shadow-brand aspect-video bg-foreground group">
-            {playing ? (
-              <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="Welcome from Prof. Nwadiuto Esiobu" allow="autoplay; encrypted-media" allowFullScreen className="absolute inset-0 w-full h-full" />
-            ) : (
-              <button onClick={() => setPlaying(true)} className="absolute inset-0 w-full h-full">
-                <img src={profPortrait} alt="Prof. Nwadiuto Esiobu, Founder and CEO of Applied Biotech" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="h-20 w-20 rounded-full bg-background/95 grid place-items-center shadow-brand group-hover:scale-110 transition-transform">
-                    <Play className="h-7 w-7 text-brand ml-1" fill="currentColor" />
-                  </div>
-                </div>
-                <div className="absolute bottom-5 left-5 right-5 text-left">
-                  <div className="text-xs uppercase tracking-[0.2em] text-background/75 font-semibold">Watch</div>
-                  <div className="font-display font-bold text-background text-xl">Prof. Nwadiuto Esiobu · Founder & CEO</div>
-                </div>
-              </button>
-            )}
-          </div>
-            </Link>
         </div>
       </div>
     </section>

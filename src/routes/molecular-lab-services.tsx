@@ -28,6 +28,23 @@ function MolecularLabPage() {
       <PageHero eyebrow="Molecular Lab Services" title={<>Diagnostics-grade <span className="gradient-text">molecular laboratory</span> operations.</>} subtitle="Accurate, validated results for human, plant and animal samples." />
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center mb-14 reveal">
+          <p className="text-muted-foreground leading-relaxed text-lg">
+            Our molecular laboratory has supported hospitals, universities, government agencies and agribusinesses across Nigeria since 2006. Every service runs on validated protocols, calibrated instrumentation and a team of practicing molecular scientists — so the results you get back are ones you can build a diagnosis, a publication or a regulatory filing on.
+          </p>
+        </div>
+        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
+          {[
+            { n: "99%", label: "Client-reported analytical success rate" },
+            { n: "20+", label: "Years running validated molecular protocols" },
+            { n: "1000+", label: "Samples processed for institutions and researchers" },
+          ].map((s) => (
+            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
+              <div className="font-display text-3xl font-extrabold text-brand">{s.n}</div>
+              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
+            </div>
+          ))}
+        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-2">
           {OFFERINGS.map((o) => (
             <div key={o.id} id={o.id} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:shadow-brand transition-all">

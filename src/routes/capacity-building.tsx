@@ -27,6 +27,23 @@ function CapacityBuildingPage() {
       <PageHero eyebrow="Capacity Building" title={<>Building Africa's next generation of <span className="gradient-text">molecular scientists.</span></>} subtitle="Hands-on workshops and certificate programs in molecular biology, lab safety and bioinformatics." />
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center mb-14 reveal">
+          <p className="text-muted-foreground leading-relaxed text-lg">
+            Africa's scientific future depends on the scientists we train today. Our capacity-building programs move beyond theory into the lab bench itself, giving researchers, technicians and institutions real, hands-on competency in the techniques that drive modern biotechnology — from PCR diagnostics to full institutional upskilling.
+          </p>
+        </div>
+        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
+          {[
+            { n: "1000+", label: "Scientists and technicians trained" },
+            { n: "20+", label: "Years running certified training programs" },
+            { n: "5+", label: "Institutions upskilled end-to-end" },
+          ].map((s) => (
+            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
+              <div className="font-display text-3xl font-extrabold text-brand">{s.n}</div>
+              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
+            </div>
+          ))}
+        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
           {OFFERINGS.map((o) => (
             <div key={o.id} id={o.id} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:shadow-brand transition-all">

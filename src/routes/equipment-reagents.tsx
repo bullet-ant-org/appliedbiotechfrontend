@@ -27,6 +27,23 @@ function EquipmentPage() {
       <PageHero eyebrow="Lab Equipment & Reagents" title={<>Trusted suppliers of <span className="gradient-text">calibrated lab essentials.</span></>} subtitle="Laboratory equipment and reagents from leading global brands, with installation, training and after-sales support." />
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center mb-14 reveal">
+          <p className="text-muted-foreground leading-relaxed text-lg">
+            Sourcing the wrong reagent or instrument can set a project back weeks. We work directly with trusted global manufacturers to bring calibrated, cold-chain-managed equipment and reagents to African labs — with installation, staff training and after-sales support included, not bolted on as an afterthought.
+          </p>
+        </div>
+        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
+          {[
+            { n: "20+", label: "Years distributing lab equipment across Nigeria" },
+            { n: "Cold-chain", label: "Managed logistics for temperature-sensitive reagents" },
+            { n: "Local", label: "Installation, training and after-sales support" },
+          ].map((s) => (
+            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
+              <div className="font-display text-2xl font-extrabold text-brand">{s.n}</div>
+              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
+            </div>
+          ))}
+        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
           {OFFERINGS.map((o) => (
             <div key={o.id} id={o.id} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:shadow-brand transition-all">

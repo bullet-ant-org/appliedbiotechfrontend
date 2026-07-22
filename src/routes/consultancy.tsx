@@ -19,17 +19,16 @@ export const Route = createFileRoute("/consultancy")({
 
 const CATEGORIES = [
   {
-    t: "Strategic Consultancy",
-    d: "High-level advisory for institutions, ventures and government programs navigating biotechnology strategy, policy and growth — including lab design and the ABSDIP Innovation Park initiative.",
-    items: ["Project Management", "Laboratory Design", "Bio Enterprise Incubation"],
-    I: Briefcase,
+    t: "Research Consultancy",
+    d: "Consult us to help you standardize your research projects. We can help you with:",
+    items: ["Developing your research proposal", "Research workflow and structure", "Grant writing", "Manuscript optimization for publication"],
+    I: FlaskConical,
   },
   {
-    t: "Research Consultancy",
-    d: "Technical and scientific guidance for research design, execution and translation into real-world application.",
-    // TODO: confirm final list of research consultancy offerings
-    items: ["Research Design & Methodology", "Grant & Proposal Support", "Research Commercialization"],
-    I: FlaskConical,
+    t: "Strategic Consultancy",
+    d: "Leverage our expertise across the full lifecycle of your institution or venture:",
+    items: ["Project management", "Leadership and management training", "Innovation and bio enterprise incubation", "Lab design and outfitting", "Global policy advisory"],
+    I: Briefcase,
   },
 ];
 
@@ -46,6 +45,23 @@ function ConsultancyPage() {
       <PageHero eyebrow="Consultancy" title={<>Turn your biotechnology vision <span className="gradient-text">into reality.</span></>} subtitle="Structured, evidence-based consultancy for institutions, ventures and government programs across Africa." />
 
       <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center mb-14 reveal">
+          <p className="text-muted-foreground leading-relaxed text-lg">
+            Biotechnology breakthroughs rarely happen by accident. Behind every successful lab, research grant or bio-enterprise is a structured, evidence-based process. Applied Biotech's consultancy practice brings two decades of institutional and scientific experience to bear on your specific challenge — whether that's getting a manuscript published, standing up a new laboratory, or positioning your organization for the next stage of growth.
+          </p>
+        </div>
+        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
+          {[
+            { n: "20+", label: "Years of institutional consulting experience" },
+            { n: "10+", label: "Labs designed, built and commissioned" },
+            { n: "5+", label: "Zonal and university biotech centres advised" },
+          ].map((s) => (
+            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
+              <div className="font-display text-3xl font-extrabold text-brand">{s.n}</div>
+              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
+            </div>
+          ))}
+        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-2">
           {CATEGORIES.map((c) => (
             <div key={c.t} id={c.t === "Strategic Consultancy" ? "strategic-consultancy" : "research-consultancy"} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-8 hover:border-brand/40 hover:shadow-brand transition-all">

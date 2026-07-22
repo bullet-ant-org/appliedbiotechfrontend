@@ -29,8 +29,8 @@ function IpPublicationsPage() {
             <h2 className="mt-6 font-display text-2xl font-bold">Publications</h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">Peer-reviewed work by Prof. Nwadiuto Esiobu.</p>
             <div className="mt-6 flex flex-col gap-3">
-              {/* TODO: replace with final Google Scholar profile URL */}
-              <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-semibold hover:bg-accent transition-colors">
+              {/* Prof. Nwadiuto Esiobu's Google Scholar profile */}
+              <a href="https://scholar.google.com/citations?hl=en&user=EzNrvT8AAAAJ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-semibold hover:bg-accent transition-colors">
                 <GraduationCap className="h-4 w-4" /> View on Google Scholar
               </a>
               {/* TODO: replace with final publication link */}
