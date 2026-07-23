@@ -471,42 +471,47 @@ const TESTIMONIALS_TEXT = [
   },
 ];
 
+const TESTIMONIAL_SLIDES = [
+  ...TESTIMONIALS_TEXT.map((t) => ({ type: "text" as const, ...t })),
+  { type: "image" as const, src: covenantLetter, alt: "Testimonial letter from Covenant University" },
+  { type: "image" as const, src: ebsuLetter, alt: "Testimonial letter from Ebonyi State University Faculty of Sciences" },
+];
+
 function Testimonials() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((p) => (p + 1) % TESTIMONIAL_SLIDES.length), 6000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-3xl">
         <div className="text-center mb-10 reveal">
           <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Testimonials</span>
           <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our Commitment to Excellence, Past Works & Testimonials</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {TESTIMONIALS_TEXT.map((t, idx) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
-            >
-              <p className="text-sm text-muted-foreground italic leading-relaxed">"{t.quote}"</p>
-              <p className="mt-4 text-sm font-semibold text-foreground">{t.name}</p>
-              <p className="text-xs text-muted-foreground">{t.role}</p>
-            </motion.div>
+
+        <div className="relative min-h-[320px] md:min-h-[280px]">
+          {TESTIMONIAL_SLIDES.map((s, idx) => (
+            <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+              {s.type === "text" ? (
+                <div className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-soft h-full">
+                  <p className="text-sm md:text-base text-muted-foreground italic leading-relaxed">"{s.quote}"</p>
+                  <p className="mt-4 text-sm font-semibold text-foreground">{s.name}</p>
+                  <p className="text-xs text-muted-foreground">{s.role}</p>
+                </div>
+              ) : (
+                <img src={s.src} alt={s.alt} className="w-full max-h-[420px] object-contain rounded-2xl border border-border shadow-soft" />
+              )}
+            </div>
           ))}
         </div>
-        <div className="grid gap-5 md:grid-cols-2 mt-5">
-          {[covenantLetter, ebsuLetter].map((src, idx) => (
-            <motion.img
-              key={src}
-              src={src}
-              alt={idx === 0 ? "Testimonial letter from Covenant University" : "Testimonial letter from Ebonyi State University Faculty of Sciences"}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: (TESTIMONIALS_TEXT.length + idx) * 0.15 }}
-              className="w-full rounded-2xl border border-border shadow-soft"
-            />
+
+        <div className="mt-5 flex items-center justify-center gap-2">
+          {TESTIMONIAL_SLIDES.map((_, idx) => (
+            <button key={idx} onClick={() => setI(idx)} aria-label={`Testimonial ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all ${idx === i ? "w-8 bg-brand" : "w-3 bg-border hover:bg-muted-foreground"}`} />
           ))}
         </div>
       </div>
