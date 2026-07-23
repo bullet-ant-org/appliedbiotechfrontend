@@ -460,7 +460,7 @@ const TESTIMONIALS_TEXT = [
     role: "Former DG, NABDA",
   },
   {
-    quote: "This is to certify that the Molecular Biology and Tissue Culture laboratory located at the South-East Zonal Biotechnology Centre, University of Nigeria, Nsukka, a centre under NABDA, was satisfactorily designed by Applied Biotech Nigeria Limited. We are highly impressed with the design layout and space management.",
+    quote: "This is to certify that the Molecular Biology and Tissue Culture laboratory located at the South-East Zonal Biotechnology Centre, University of Nigeria, Nsukka, a centre under the National Biotechnology Development Agency (NABDA), Abuja was satisfactorily designed by the Applied Biotech Nigeria Limited. We are highly impressed with the design layout and space management. Please, accept the assurances of my highest esteem.",
     name: "Dr. Christie Oby Onyia",
     role: "For: Director General, NABDA",
   },
@@ -480,17 +480,34 @@ function Testimonials() {
           <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our Commitment to Excellence, Past Works & Testimonials</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
-          {TESTIMONIALS_TEXT.map((t) => (
-            <div key={t.name} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-              <p className="text-sm text-muted-foreground italic leading-relaxed line-clamp-6">"{t.quote}"</p>
+          {TESTIMONIALS_TEXT.map((t, idx) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+            >
+              <p className="text-sm text-muted-foreground italic leading-relaxed">"{t.quote}"</p>
               <p className="mt-4 text-sm font-semibold text-foreground">{t.name}</p>
               <p className="text-xs text-muted-foreground">{t.role}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="grid gap-5 md:grid-cols-2 mt-5">
-          <img src={covenantLetter} alt="Testimonial letter from Covenant University" className="w-full rounded-2xl border border-border shadow-soft" />
-          <img src={ebsuLetter} alt="Testimonial letter from Ebonyi State University Faculty of Sciences" className="w-full rounded-2xl border border-border shadow-soft" />
+          {[covenantLetter, ebsuLetter].map((src, idx) => (
+            <motion.img
+              key={src}
+              src={src}
+              alt={idx === 0 ? "Testimonial letter from Covenant University" : "Testimonial letter from Ebonyi State University Faculty of Sciences"}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: (TESTIMONIALS_TEXT.length + idx) * 0.15 }}
+              className="w-full rounded-2xl border border-border shadow-soft"
+            />
+          ))}
         </div>
       </div>
     </section>
