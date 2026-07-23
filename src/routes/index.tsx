@@ -465,7 +465,7 @@ const TESTIMONIALS_TEXT = [
     role: "For: Director General, NABDA",
   },
   {
-    quote: "I first met Prof Diuto Esiobu (CEO, Applied Biotech International Nigeria Limited) in 2009 during a biotech training at the SE Zonal Biotech Centre, UNN. Since then she has been a regular resource person at EBSU's Biotech R&D Centre. Throughout these periods, we have used consumables from ABINL and it has always been perfect for our programs.",
+    quote: "I first met Prof Diuto Esiobu (CEO, Applied Biotech International Nigeria Limited) in 2009 during the biotech training organized at the SE Zonal Biotech Centre, University of Nigeria, Nsukka. A second training followed in quick succession at Biotechnology Centre, University of Agriculture, Abeokuta Nigeria, 5th–11th July, 2009, supported by Step-B. It was during a training organized at NACGRAB, Ibadan, Oyo State, that I had a third contact with her. I was overwhelmed and there and then decided that if ever I get funding to equip the Biotechnology R&D Centre at Ebonyi State University (EBSU), I would go for ABINL to equip the laboratory — to ensure qualitative and durable equipment vis a vis service delivery. Fortunately, in 2010, I got a special TETFund grant of N50m to upgrade the Biotechnology R&D Centre of the University. I ensured (although not easy at the time) that ABINL supplied the equipment and helped us redesign the laboratory. In 2013, there was a grand opening/commissioning of the lab. Incidentally, Prof Diuto Esiobu and Prof Richard Litz of University of Florida were the two international resource persons for the training. Since then, Diuto has been a regular resource person at EBSU Biotech R&D Centre during her biotech trainings, which became an annual event, sometimes supported by the Carnegie African Diaspora Fellowship Program. She was the 1st Carnegie African Diaspora Fellow to Ebonyi State University. Throughout these periods, we have used consumables from ABINL and it has always been perfect for our programs. Several mentees are on the string of Prof Diuto of ABINL including colleagues, early career academics and undergraduate students. Her impact on all cannot be overemphasized. Collaborative projects have also been forged between her home University, EBSU and ABINL and we hope to take these to higher grounds.",
     name: "Happiness Ogba Oselebe",
     role: "Ebonyi State University",
   },
@@ -492,11 +492,11 @@ function Testimonials() {
           <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold">Our Commitment to Excellence, Past Works & Testimonials</h2>
         </div>
 
-        <div className="relative min-h-[320px] md:min-h-[280px]">
+        <div className="relative min-h-[420px] md:min-h-[380px]">
           {TESTIMONIAL_SLIDES.map((s, idx) => (
             <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
               {s.type === "text" ? (
-                <div className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-soft h-full">
+                <div className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-soft h-full max-h-[420px] md:max-h-[380px] overflow-y-auto">
                   <p className="text-sm md:text-base text-muted-foreground italic leading-relaxed">"{s.quote}"</p>
                   <p className="mt-4 text-sm font-semibold text-foreground">{s.name}</p>
                   <p className="text-xs text-muted-foreground">{s.role}</p>
