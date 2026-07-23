@@ -293,6 +293,60 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* CEO Hero */}
+      <section className="relative pt-20 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 via-background to-background" />
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+          <div className="reveal order-2 lg:order-1">
+            <span className="inline-block px-3 py-1 text-xs uppercase tracking-[0.25em] rounded-full bg-brand/10 text-brand font-semibold">Founded 2006</span>
+            <h1 className="mt-5 font-display text-4xl md:text-6xl font-extrabold leading-[1.05]">
+              Meet <span className="gradient-text">Prof. Nwadiuto Esiobu</span>
+            </h1>
+            <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              Founder and CEO of Applied Biotech International. For nearly two decades, Prof. Esiobu has worked to dismantle the structural barriers limiting life science research in developing economies by integrating high-caliber technical services, elite capacity building and reliable procurement to empower African scientists.
+            </p>
+            <blockquote className="mt-6 border-l-4 border-brand pl-5 text-foreground italic leading-relaxed">
+              "We empower African scientists to drive global biological innovations right from home soil."
+            </blockquote>
+            <div className="mt-3 text-sm font-semibold text-brand">Prof. Nwadiuto Esiobu, Founder & CEO</div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 font-semibold hover:scale-[1.03] transition-transform">
+                Work with us <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/rd-portfolio" className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 font-semibold hover:bg-accent transition-colors">
+                See our research
+              </Link>
+            </div>
+          </div>
+          <div className="reveal order-1 lg:order-2 relative">
+            <div className="relative rounded-[2rem] overflow-hidden shadow-brand aspect-[4/5]">
+              <img src={profPortrait} alt="Prof. Nwadiuto Esiobu" width={1024} height={1280} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
+            </div>
+            <div className="hidden lg:block absolute -bottom-6 -left-6 rounded-2xl bg-card border border-border shadow-soft p-4 animate-float-slow">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Est.</div>
+              <div className="font-display text-2xl font-bold text-brand">2006</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CEO Welcome */}
+      <section className="py-14 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+        <div className="mx-auto max-w-4xl">
+          <div className="reveal rounded-3xl border border-border bg-card p-8 md:p-12 flex flex-col md:flex-row gap-8 items-start">
+            <div className="h-16 w-16 rounded-2xl gradient-brand grid place-items-center text-brand-foreground shrink-0 text-2xl font-bold font-display">PE</div>
+            <div>
+              <p className="text-lg leading-relaxed text-muted-foreground italic">
+                "Welcome to Applied Biotech International. Since our establishment in 2006, our mission has been to dismantle the structural and infrastructural barriers limiting life science research in developing economies. By integrating high-caliber technical services, elite capacity building, and reliable procurement, we empower African scientists to drive global biological innovations right from home soil."
+              </p>
+              <div className="mt-5 font-semibold text-foreground">Prof. Nwadiuto Esiobu</div>
+              <div className="text-sm text-muted-foreground">Founder & Chief Executive Officer, Applied Biotech International</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="pb-24 px-4 sm:px-6 lg:px-8">
         <div className="reveal mx-auto max-w-6xl rounded-3xl gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden">
