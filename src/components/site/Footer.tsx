@@ -43,7 +43,7 @@ export function Footer() {
     { I: Instagram, href: contact.instagram },
   ];
   return (
-    <footer className="relative bg-foreground text-background mt-20 overflow-hidden">
+    <footer className="relative bg-[#052C54] text-background mt-20 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full gradient-brand blur-3xl" />
       </div>

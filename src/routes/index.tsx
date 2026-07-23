@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
 import heroVirus from "@/assets/image-c.jpg";
+import consultingMeeting from "@/assets/consulting-meeting.jpg";
 import profPortrait from "@/assets/prof-portrait.jpg";
 import biotechGrid from "@/assets/biotech-grid.jpg";
 import covenantLetter from "@/assets/testimonials/covenant-university-letter.jpg";
@@ -59,7 +60,7 @@ function Index() {
 const HERO_CARDS = [
   { t: "Leading Cutting Edge Scientific Research.", hint: "Close-up of someone in the lab holding a test tube" },
   { t: "Empowering the Next Generation of Scientists.", hint: "Hall demonstrating to trainees (faces blurred)" },
-  { t: "Powering the Bioeconomy in Africa.", hint: "Lab / bioeconomy imagery" },
+  { t: "Powering the Bioeconomy in Africa.", hint: "Lab / bioeconomy imagery", img: heroVirus },
   { t: "Championing Indigenous Leadership and Innovation.", hint: "Leadership / innovation imagery" },
 ];
 
@@ -91,10 +92,14 @@ function Hero() {
       <div className="mx-auto max-w-3xl mt-10 relative rounded-[2rem] overflow-hidden shadow-brand aspect-[16/9] bg-secondary">
         {HERO_CARDS.map((c, idx) => (
           <div key={c.t} className={`absolute inset-0 transition-opacity duration-1000 ${idx === i ? "opacity-100" : "opacity-0"}`}>
-            {/* TODO: replace placeholder image — {c.hint}, no full faces per client request */}
-            <div className={`absolute inset-0 bg-secondary flex items-center justify-center text-xs text-muted-foreground text-center px-6 transition-transform duration-[6000ms] ease-linear ${idx === i ? "scale-110" : "scale-100"}`}>
-              [Image placeholder: {c.hint}]
-            </div>
+            {c.img ? (
+              <img src={c.img} alt={c.t} className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[6000ms] ease-linear ${idx === i ? "scale-110" : "scale-100"}`} />
+            ) : (
+              /* TODO: replace placeholder image — {c.hint}, no full faces per client request */
+              <div className={`absolute inset-0 bg-secondary flex items-center justify-center text-xs text-muted-foreground text-center px-6 transition-transform duration-[6000ms] ease-linear ${idx === i ? "scale-110" : "scale-100"}`}>
+                [Image placeholder: {c.hint}]
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-[#052C54]/85 via-[#052C54]/20 to-transparent" />
             <div className="absolute inset-0 flex items-end justify-center p-8">
               <p className="text-background font-display font-bold text-xl md:text-2xl text-center max-w-lg">{c.t}</p>
@@ -174,7 +179,7 @@ const EXPLORE_CARDS = [
   { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/molecular-lab-services" as const, img: heroVirus },
   { I: ShoppingBag, t: "Lab Equipment & Reagents", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/equipment-reagents" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
   { I: GraduationCap, t: "Capacity Building", d: "Hands-on workshops, certified cohorts and institutional upskilling delivered by practicing molecular scientists.", cta: "Explore Programs", to: "/capacity-building" as const, img: biotechGrid },
-  { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782584169/vvsqwjklbx91avepfput" },
+  { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: consultingMeeting },
 ];
 
 function QuickDoors() {
