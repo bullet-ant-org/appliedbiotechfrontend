@@ -15,7 +15,7 @@ import heroTestTube from "@/assets/hero-test-tube.jpg";
 import heroPetriGroup from "@/assets/hero-petri-group.jpg";
 import consultingMeeting from "@/assets/consulting-meeting.jpg";
 import profPortrait from "@/assets/prof-portrait.jpg";
-import biotechGrid from "@/assets/biotech-grid.jpg";
+import capacityBuildingLab from "@/assets/capacity-building-lab.jpg";
 import covenantLetter from "@/assets/testimonials/covenant-university-letter.jpg";
 import ebsuLetter from "@/assets/testimonials/ebsu-letter.jpg";
 
@@ -180,7 +180,7 @@ function FAQ() {
 const EXPLORE_CARDS = [
   { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/molecular-lab-services" as const, img: heroVirus },
   { I: ShoppingBag, t: "Lab Equipment & Reagents", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/equipment-reagents" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
-  { I: GraduationCap, t: "Capacity Building", d: "Hands-on workshops, certified cohorts and institutional upskilling delivered by practicing molecular scientists.", cta: "Explore Programs", to: "/capacity-building" as const, img: biotechGrid },
+  { I: GraduationCap, t: "Capacity Building", d: "Hands-on workshops, certified cohorts and institutional upskilling delivered by practicing molecular scientists.", cta: "Explore Programs", to: "/capacity-building" as const, img: capacityBuildingLab },
   { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: consultingMeeting },
 ];
 
