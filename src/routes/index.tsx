@@ -191,7 +191,7 @@ function QuickDoors() {
       <div className="mx-auto max-w-7xl">
         <div className="reveal text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">What We Offer</span>
-          <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold">Everything you need, <span className="gradient-text">under one roof.</span></h2>
+      
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {EXPLORE_CARDS.map((c, idx) => (
