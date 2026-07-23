@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import useFetch from "@/hooks/useFetch";
 import heroVirus from "@/assets/image-c.jpg";
+import heroTestTube from "@/assets/hero-test-tube.jpg";
+import heroPetriGroup from "@/assets/hero-petri-group.jpg";
 import consultingMeeting from "@/assets/consulting-meeting.jpg";
 import profPortrait from "@/assets/prof-portrait.jpg";
 import biotechGrid from "@/assets/biotech-grid.jpg";
@@ -58,10 +60,10 @@ function Index() {
 
 
 const HERO_CARDS = [
-  { t: "Leading Cutting Edge Scientific Research.", hint: "Close-up of someone in the lab holding a test tube" },
-  { t: "Empowering the Next Generation of Scientists.", hint: "Hall demonstrating to trainees (faces blurred)" },
-  { t: "Powering the Bioeconomy in Africa.", hint: "Lab / bioeconomy imagery", img: heroVirus },
-  { t: "Championing Indigenous Leadership and Innovation.", hint: "Leadership / innovation imagery" },
+  { t: "Leading Cutting Edge Scientific Research.", hint: "Close-up of someone in the lab holding a test tube", img: heroVirus },
+  { t: "Empowering the Next Generation of Scientists.", hint: "Hall demonstrating to trainees (faces blurred)", img: heroTestTube },
+  { t: "Powering the Bioeconomy in Africa.", hint: "Lab / bioeconomy imagery" },
+  { t: "Championing Indigenous Leadership and Innovation.", hint: "Leadership / innovation imagery", img: heroPetriGroup },
 ];
 
 function Hero() {
