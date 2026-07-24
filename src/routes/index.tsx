@@ -441,30 +441,84 @@ function MetricBanner() {
   );
 }
 
+const ABSDIP_PILLARS = [
+  { t: "Science Discovery Dome", d: "An immersive public exhibition space bringing cutting-edge science to life for students, families and visitors from across the continent.", I: Sparkles },
+  { t: "Research & Residencies", d: "Purpose-built labs and residency programs for scientists, research fellows and innovators working at the frontier of biotechnology.", I: Microscope },
+  { t: "Advanced Facilities", d: "State-of-the-art laboratories, venture incubation space and campus infrastructure built to global standards.", I: Building2 },
+];
+
+const ABSDIP_WHY = [
+  { t: "Proven Licensing", d: "A licensing model built on validated intellectual property and a track record of institutional delivery." },
+  { t: "About-Ready Assets", d: "Facilities and infrastructure designed for near-term deployment, minimizing time to first revenue." },
+  { t: "Multiple Revenue Streams", d: "Admissions, merchandise, events and rentals diversify income beyond research and licensing." },
+  { t: "Premium Facility", d: "A campus-grade science park positioned to attract global research and investment partners." },
+];
+
+const ABSDIP_STATS = [
+  { n: "₦11.2B", label: "Total Investment Value" },
+  { n: "10–15%", label: "Projected Annual ROI" },
+  { n: "₦560M", label: "Estimated Annual Revenue" },
+  { n: "150+", label: "Partner Institutions" },
+];
+
 function AbsdipTeaser() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="reveal mx-auto max-w-6xl rounded-[2rem] gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-background/10 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-background/10 blur-3xl" />
-        <div className="relative grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
-          <div className="flex justify-center">
-            <div className="h-32 w-32 md:h-40 md:w-40 rounded-3xl bg-background p-4 shadow-brand shrink-0 animate-float-slow">
-              <img src={absdipLogo} alt="ABSDIP logo" className="w-full h-full object-contain" />
-            </div>
+    <section id="absdip" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="reveal flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10 text-center md:text-left">
+          <div className="h-24 w-24 md:h-28 md:w-28 rounded-3xl border border-border bg-card p-3 shadow-soft shrink-0">
+            <img src={absdipLogo} alt="ABSDIP logo" className="w-full h-full object-contain" />
           </div>
-          <div className="text-center md:text-left">
-            <span className="text-xs uppercase tracking-[0.25em] text-brand-foreground/70 font-semibold">ABSDIP · A Standalone Project</span>
+          <div>
+            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">ABSDIP · A Standalone Project</span>
             <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
               Applied Biotech Science, Discovery & Innovation Park
             </h2>
-            <p className="mt-5 max-w-2xl mx-auto md:mx-0 text-brand-foreground/85 leading-relaxed">
-              Africa's Science Discovery and Innovation Park — a world-class ecosystem where breakthrough research, applied science and transformative innovation converge, shaping the future of science across the African continent.
+            <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+              ABSDIP is a world-class innovation ecosystem where breakthrough research, public discovery and transformative scientific innovation converge — Africa's science discovery and innovation park, and a global hub for the future of science.
             </p>
-            <a href="https://absdip.com/" target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-7 py-3.5 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
-              Explore ABSDIP <ArrowRight className="h-4 w-4" />
-            </a>
           </div>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+          {ABSDIP_PILLARS.map((p, idx) => (
+            <motion.div key={p.t} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="rounded-2xl border border-border bg-card p-6">
+              <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center"><p.I className="h-5 w-5 text-brand-foreground" /></div>
+              <h3 className="mt-4 font-display font-bold">{p.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-12 rounded-[2rem] gradient-brand text-brand-foreground p-8 md:p-12 shadow-brand relative overflow-hidden">
+          <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-background/10 blur-3xl" />
+          <div className="relative">
+            <span className="text-xs uppercase tracking-[0.25em] text-brand-foreground/70 font-semibold">A De-Risked Investment</span>
+            <h3 className="mt-2 font-display text-2xl md:text-3xl font-extrabold">Why ABSDIP?</h3>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {ABSDIP_WHY.map((w) => (
+                <div key={w.t} className="rounded-2xl bg-background/10 border border-background/20 p-5">
+                  <h4 className="font-display font-bold">{w.t}</h4>
+                  <p className="mt-2 text-sm text-brand-foreground/85 leading-relaxed">{w.d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-background/20 pt-6">
+              {ABSDIP_STATS.map((s) => (
+                <div key={s.label} className="text-center md:text-left">
+                  <div className="font-display text-2xl md:text-3xl font-extrabold">{s.n}</div>
+                  <div className="mt-1 text-xs text-brand-foreground/75 leading-snug">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <a href="https://absdip.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-7 py-3.5 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+            Explore ABSDIP <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>
