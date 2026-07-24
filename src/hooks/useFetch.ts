@@ -18,7 +18,7 @@ function useFetch<T = any>(): UseFetchResult<T> {
 
   const BASE_URL = useMemo(() => {
     const envUrl = import.meta.env.VITE_BACKEND_URL;
-    const productionUrl = 'https://appliedbiotechbackend.onrender.com';
+    const productionUrl = 'https://mediumslateblue-ram-342044.hostingersite.com';
     
     // If we are running on a deployed site (Vercel), prioritize production URL 
     // even if the environment variable was accidentally set to localhost during build.
