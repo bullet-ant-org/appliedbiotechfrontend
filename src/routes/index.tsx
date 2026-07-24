@@ -470,7 +470,7 @@ function AbsdipTeaser() {
             <img src={absdipLogo} alt="ABSDIP logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">ABSDIP · A Standalone Project</span>
+            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">ABSDIP</span>
             <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
               Applied Biotech Science, Discovery & Innovation Park
             </h2>
