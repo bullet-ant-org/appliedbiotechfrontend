@@ -57,18 +57,6 @@ function ConsultancyPage() {
             Biotechnology breakthroughs rarely happen by accident. Behind every successful lab, research grant or bio-enterprise is a structured, evidence-based process. Applied Biotech's consultancy practice brings two decades of institutional and scientific experience to bear on your specific challenge — whether that's getting a manuscript published, standing up a new laboratory, or positioning your organization for the next stage of growth.
           </p>
         </div>
-        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
-          {[
-            { n: "20+", label: "Years of institutional consulting experience" },
-            { n: "10+", label: "Labs designed, built and commissioned" },
-            { n: "5+", label: "Zonal and university biotech centres advised" },
-          ].map((s) => (
-            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
-              <div className="font-display text-3xl font-extrabold text-brand">{s.n}</div>
-              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
-            </div>
-          ))}
-        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-2">
           {CATEGORIES.map((c) => (
             <div key={c.t} id={c.t === "Strategic Consultancy" ? "strategic-consultancy" : "research-consultancy"} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-8 hover:border-brand/40 hover:shadow-brand transition-all">
@@ -87,18 +75,30 @@ function ConsultancyPage() {
         </div>
 
         {/* Diaspora Bridge — relocated from homepage, strategic consultancy engagement */}
-        <div className="mx-auto max-w-6xl mt-10 rounded-3xl border border-border bg-card p-8 md:p-12">
-          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Federal Ministry of Education Initiative</span>
-          <h2 className="mt-3 font-display text-2xl md:text-3xl font-extrabold leading-tight">
-            The <span className="gradient-text">Diaspora Bridge</span> Program
-          </h2>
-          <p className="mt-4 text-muted-foreground leading-relaxed">
-            Applied Biotech was engaged as strategic consultant to the Diaspora Bridge program, an initiative of the Federal Ministry of Education designed to connect Nigerian STEMM experts based abroad with host institutions across the country.
-          </p>
-          <p className="mt-3 text-muted-foreground leading-relaxed">
-            The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
-          </p>
-          <div className="mt-6 grid sm:grid-cols-2 gap-4">
+        <div className="mx-auto max-w-6xl mt-10 rounded-3xl border border-border bg-card overflow-hidden">
+          <div className="grid lg:grid-cols-2">
+            <div className="relative min-h-[260px] lg:min-h-full">
+              <img src="https://diaspora-bridge.ng/attachment/83dc0cd1-90d7-4f0e-9824-0373329b72f6" alt="Diaspora Bridge program launch" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent lg:bg-gradient-to-r" />
+              <img src="https://diaspora-bridge.ng/attachment/e5357a3b-24f5-4475-ad66-0d33445596e8" alt="Diaspora Bridge logo" className="absolute top-5 left-5 h-12 rounded-lg bg-background/90 p-1.5 shadow-soft" />
+            </div>
+            <div className="p-8 md:p-12">
+              <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">Federal Ministry of Education Initiative</span>
+              <h2 className="mt-3 font-display text-2xl md:text-3xl font-extrabold leading-tight">
+                The <span className="gradient-text">Diaspora Bridge</span> Program
+              </h2>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                Applied Biotech was engaged as strategic consultant to the Diaspora Bridge program, an initiative of the Federal Ministry of Education designed to connect Nigerian STEMM experts based abroad with host institutions across the country.
+              </p>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                The program facilitates structured collaboration between Diaspora-based specialists and Nigerian institutions through teaching appointments, joint research and capacity-building engagements, reinforcing the nation's scientific and technical base with globally distributed expertise.
+              </p>
+              <a href="https://diaspora-bridge.ng" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+                Visit Diaspora Bridge <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 p-8 md:p-12 pt-0">
             {DIASPORA_MANDATE.map((item) => (
               <div key={item.t} className="rounded-2xl border border-border bg-background/60 p-5">
                 <div className="h-11 w-11 rounded-xl gradient-brand grid place-items-center">
@@ -111,24 +111,12 @@ function ConsultancyPage() {
           </div>
         </div>
 
-        {/* ABSDIP — relocated from About Us */}
-        <div className="mx-auto max-w-6xl mt-10 rounded-3xl border border-border bg-card p-8 md:p-12">
-          <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold">ABSDIP</span>
-          <h2 className="mt-3 font-display text-2xl md:text-3xl font-extrabold leading-tight">
-            Africa's Biotechnology & Science Discovery Innovation Park
-          </h2>
-          <p className="mt-4 text-muted-foreground leading-relaxed">
-            ABSDIP is Applied Biotech's Innovation Park — a world-class ecosystem where breakthrough discoveries in science, applied research and transformative innovation converge, shaping the future of science across the African continent.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="https://absdip.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-              Explore ABSDIP <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
         {/* Lab Design Portfolio — relocated from About Us, under Strategic Consultancy */}
-        <div className="mx-auto max-w-6xl mt-10">
+        <div id="our-projects" className="mx-auto max-w-6xl mt-16 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-8">
+            <span className="text-xs uppercase tracking-[0.25em] text-brand font-semibold whitespace-nowrap">Our Projects</span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
           <h3 className="font-display text-xl font-bold mb-6">Labs We Have Designed & Built</h3>
           <div className="space-y-10">
             {labProjects.map((project, idx) => (
@@ -156,8 +144,6 @@ function ConsultancyPage() {
         <div className="mx-auto max-w-6xl mt-10 rounded-3xl gradient-brand text-brand-foreground p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-brand">
           <div className="text-center md:text-left">
             <h3 className="font-display text-xl font-bold flex items-center gap-2 justify-center md:justify-start"><Mail className="h-5 w-5" /> Service Contact</h3>
-            {/* TODO: confirm consultancy inquiry email */}
-            <p className="mt-1 text-sm text-brand-foreground/85">TODO: consultancy@appliedbiotech.ng</p>
           </div>
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-6 py-3 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
             Book a Consultation <ArrowRight className="h-4 w-4" />

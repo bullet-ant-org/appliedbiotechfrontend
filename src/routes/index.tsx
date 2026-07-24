@@ -14,6 +14,7 @@ import heroVirus from "@/assets/image-c.jpg";
 import heroTestTube from "@/assets/hero-test-tube.jpg";
 import heroPetriGroup from "@/assets/hero-petri-group.jpg";
 import heroFarmland from "@/assets/hero-farmland.jpg";
+import absdipLogo from "@/assets/absdip-logo.png";
 import consultingMeeting from "@/assets/consulting-meeting.jpg";
 import profPortrait from "@/assets/prof-portrait.jpg";
 import capacityBuildingLab from "@/assets/capacity-building-lab.jpg";
@@ -182,7 +183,7 @@ const EXPLORE_CARDS = [
   { I: FlaskConical, t: "Molecular Lab Services", d: "Accredited sample analysis, rent-a-lab access and specialty diagnostic testing performed under validated protocols.", cta: "View Services", to: "/molecular-lab-services" as const, img: heroVirus },
   { I: ShoppingBag, t: "Lab Equipment & Reagents", d: "Calibrated instruments and validated consumables for the modern African molecular laboratory, shipped with technical support.", cta: "Visit Shop", to: "/equipment-reagents" as const, img: "https://res.cloudinary.com/djzi0scln/image/upload/v1782488582/dvep9dxrin7np6a8b4u6.png" },
   { I: GraduationCap, t: "Capacity Building", d: "Hands-on workshops, certified cohorts and institutional upskilling delivered by practicing molecular scientists.", cta: "Explore Programs", to: "/capacity-building" as const, img: capacityBuildingLab },
-  { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: consultingMeeting },
+  { I: BrainCircuit, t: "Consultancy", d: "Strategic and research consultancy for institutions, ventures and government biotechnology programs.", cta: "View Consultancy", to: "/consultancy" as const, img: consultingMeeting, cta2: "Our Projects", to2: "/consultancy" as const, hash2: "our-projects" },
 ];
 
 function QuickDoors() {
@@ -211,6 +212,11 @@ function QuickDoors() {
                 <Link to={c.to} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-glow hover:gap-2.5 transition-all">
                   {c.cta} <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
+                {"cta2" in c && (
+                  <Link to={c.to2} hash={c.hash2} className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-background/70 hover:text-background hover:gap-2.5 transition-all">
+                    {c.cta2} <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                )}
               </div>
             </motion.div>
           ))}
@@ -438,15 +444,28 @@ function MetricBanner() {
 function AbsdipTeaser() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="reveal mx-auto max-w-6xl rounded-[2rem] gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden text-center">
+      <div className="reveal mx-auto max-w-6xl rounded-[2rem] gradient-brand text-brand-foreground p-10 md:p-16 shadow-brand relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-background/10 blur-3xl" />
-        <span className="text-xs uppercase tracking-[0.25em] text-brand-foreground/70 font-semibold">ABSDIP</span>
-        <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
-          Africa's Biotechnology & Science Discovery Innovation Park
-        </h2>
-        <p className="mt-5 max-w-2xl mx-auto text-brand-foreground/85 leading-relaxed">
-          ABSDIP is Applied Biotech's Innovation Park — a world-class ecosystem where breakthrough discoveries in science, applied research and transformative innovation converge, shaping the future of science across the African continent.
-        </p>
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-background/10 blur-3xl" />
+        <div className="relative grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+          <div className="flex justify-center">
+            <div className="h-32 w-32 md:h-40 md:w-40 rounded-3xl bg-background p-4 shadow-brand shrink-0 animate-float-slow">
+              <img src={absdipLogo} alt="ABSDIP logo" className="w-full h-full object-contain" />
+            </div>
+          </div>
+          <div className="text-center md:text-left">
+            <span className="text-xs uppercase tracking-[0.25em] text-brand-foreground/70 font-semibold">ABSDIP · A Standalone Project</span>
+            <h2 className="mt-3 font-display text-3xl md:text-4xl font-extrabold leading-tight">
+              Applied Biotech Science, Discovery & Innovation Park
+            </h2>
+            <p className="mt-5 max-w-2xl mx-auto md:mx-0 text-brand-foreground/85 leading-relaxed">
+              Africa's Science Discovery and Innovation Park — a world-class ecosystem where breakthrough research, applied science and transformative innovation converge, shaping the future of science across the African continent.
+            </p>
+            <a href="https://absdip.com/" target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-7 py-3.5 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
+              Explore ABSDIP <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

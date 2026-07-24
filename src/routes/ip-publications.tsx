@@ -33,10 +33,6 @@ function IpPublicationsPage() {
               <a href="https://scholar.google.com/citations?hl=en&user=EzNrvT8AAAAJ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-semibold hover:bg-accent transition-colors">
                 <GraduationCap className="h-4 w-4" /> View on Google Scholar
               </a>
-              {/* TODO: replace with final publication link */}
-              <a href="#" className="inline-flex items-center justify-center gap-2 rounded-full gradient-brand text-brand-foreground px-5 py-2.5 text-sm font-semibold shadow-brand hover:scale-[1.03] transition-transform">
-                <FileText className="h-4 w-4" /> Read Publication
-              </a>
             </div>
           </div>
         </div>

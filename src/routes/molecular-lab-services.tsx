@@ -33,18 +33,6 @@ function MolecularLabPage() {
             Our molecular laboratory has supported hospitals, universities, government agencies and agribusinesses across Nigeria since 2006. Every service runs on validated protocols, calibrated instrumentation and a team of practicing molecular scientists — so the results you get back are ones you can build a diagnosis, a publication or a regulatory filing on.
           </p>
         </div>
-        <div className="mx-auto max-w-6xl grid gap-6 sm:grid-cols-3 mb-14">
-          {[
-            { n: "99%", label: "Client-reported analytical success rate" },
-            { n: "20+", label: "Years running validated molecular protocols" },
-            { n: "1000+", label: "Samples processed for institutions and researchers" },
-          ].map((s) => (
-            <div key={s.label} className="reveal rounded-2xl border border-border bg-card p-6 text-center hover:border-brand/40 hover:shadow-soft transition-all">
-              <div className="font-display text-3xl font-extrabold text-brand">{s.n}</div>
-              <div className="mt-2 text-sm text-muted-foreground leading-snug">{s.label}</div>
-            </div>
-          ))}
-        </div>
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-2">
           {OFFERINGS.map((o) => (
             <div key={o.id} id={o.id} className="reveal scroll-mt-24 rounded-3xl border border-border bg-card p-7 hover:border-brand/40 hover:shadow-brand transition-all">
@@ -71,8 +59,6 @@ function MolecularLabPage() {
         <div className="mx-auto max-w-6xl mt-10 rounded-3xl gradient-brand text-brand-foreground p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-brand">
           <div className="text-center md:text-left">
             <h3 className="font-display text-xl font-bold flex items-center gap-2 justify-center md:justify-start"><Mail className="h-5 w-5" /> Service Contact</h3>
-            {/* TODO: confirm molecular lab services inquiry email */}
-            <p className="mt-1 text-sm text-brand-foreground/85">TODO: lab-services@appliedbiotech.ng</p>
           </div>
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-6 py-3 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
             Request a Service <ArrowRight className="h-4 w-4" />

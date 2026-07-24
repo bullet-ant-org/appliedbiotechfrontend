@@ -62,8 +62,6 @@ function EquipmentPage() {
         <div className="mx-auto max-w-6xl mt-10 rounded-3xl gradient-brand text-brand-foreground p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-brand">
           <div className="text-center md:text-left">
             <h3 className="font-display text-xl font-bold flex items-center gap-2 justify-center md:justify-start"><Mail className="h-5 w-5" /> Service Contact</h3>
-            {/* TODO: confirm equipment & reagents inquiry email */}
-            <p className="mt-1 text-sm text-brand-foreground/85">TODO: equipment@appliedbiotech.ng</p>
           </div>
           <Link to="/shop" className="inline-flex items-center gap-2 rounded-full bg-brand-foreground text-brand px-6 py-3 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
             Visit Shop <ArrowRight className="h-4 w-4" />
