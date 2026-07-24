@@ -254,46 +254,50 @@ function ShopHome() {
 
   useEffect(() => {
     const load = async () => {
-      const [prodRes, collRes, dealRes] = await Promise.all([
-        fetchData("/api/v1/shop/products"),
-        fetchData("/api/v1/collections"),
-        fetchData("/api/v1/shop/deal-of-the-week")
-      ]);
-
-      if (prodRes) {
-        const normalized = prodRes.map((p: any) => ({
-          id: p._id,
-          name: p.productName,
-          price: p.price,
-          stock: p.stock,
-          status: p.status,
-          img: p.productImage,
-          category: p.category,
-          description: p.description,
-          rating: 5
-        }));
-        setProducts(normalized);
-      }
-      if (collRes) setCollections(collRes);
-      if (dealRes) setDeal(dealRes);
-
-      // Rank products by how often they've actually been ordered (admin/editor-style aggregation)
       try {
-        const ordersRes = await fetchData("/api/v1/payments/orders-ledger");
-        if (Array.isArray(ordersRes)) {
-          const countMap: Record<string, number> = {};
-          ordersRes.forEach((o: any) => {
-            (o.items || []).forEach((it: any) => {
-              const pid = it.product?._id || it.product;
-              if (!pid) return;
-              countMap[pid] = (countMap[pid] || 0) + (it.quantity || 1);
+        const [prodRes, collRes, dealRes] = await Promise.all([
+          fetchData("/api/v1/shop/products").catch(() => null),
+          fetchData("/api/v1/collections").catch(() => null),
+          fetchData("/api/v1/shop/deal-of-the-week").catch(() => null),
+        ]);
+
+        if (prodRes) {
+          const normalized = prodRes.map((p: any) => ({
+            id: p._id,
+            name: p.productName,
+            price: p.price,
+            stock: p.stock,
+            status: p.status,
+            img: p.productImage,
+            category: p.category,
+            description: p.description,
+            rating: 5
+          }));
+          setProducts(normalized);
+        }
+        if (collRes) setCollections(collRes);
+        if (dealRes) setDeal(dealRes);
+
+        // Rank products by how often they've actually been ordered (admin/editor-style aggregation)
+        try {
+          const ordersRes = await fetchData("/api/v1/payments/orders-ledger");
+          if (Array.isArray(ordersRes)) {
+            const countMap: Record<string, number> = {};
+            ordersRes.forEach((o: any) => {
+              (o.items || []).forEach((it: any) => {
+                const pid = it.product?._id || it.product;
+                if (!pid) return;
+                countMap[pid] = (countMap[pid] || 0) + (it.quantity || 1);
+              });
             });
-          });
-          const sorted = Object.entries(countMap).sort((a, b) => b[1] - a[1]).map(([id]) => id);
-          setTopOrderedIds(sorted);
+            const sorted = Object.entries(countMap).sort((a, b) => b[1] - a[1]).map(([id]) => id);
+            setTopOrderedIds(sorted);
+          }
+        } catch (err) {
+          // Guests don't have access to this staff-only endpoint — fall back gracefully below
         }
       } catch (err) {
-        // Guests don't have access to this staff-only endpoint — fall back gracefully below
+        // Never let a backend hiccup leave the page stuck loading forever
       }
     };
     load();

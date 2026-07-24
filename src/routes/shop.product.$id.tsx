@@ -8,7 +8,7 @@ import useFetch from "@/hooks/useFetch";
 
 const getBaseUrl = () => {
   const envUrl = import.meta.env.VITE_BACKEND_URL;
-  const productionUrl = 'https://appliedbiotechbackend.onrender.com';
+  const productionUrl = 'https://mediumslateblue-ram-342044.hostingersite.com';
   if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
     if (!envUrl || envUrl.includes('localhost') || envUrl.includes('127.0.0.1')) return productionUrl;
   }

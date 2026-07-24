@@ -42,7 +42,7 @@ const WISH_KEY = "ab.shop.wishlist";
 
 function resolveBackendBase() {
   const envUrl = (import.meta as any).env?.VITE_BACKEND_URL;
-  const productionUrl = "https://appliedbiotechbackend.onrender.com";
+  const productionUrl = "https://mediumslateblue-ram-342044.hostingersite.com";
   if (typeof window !== "undefined" && !window.location.hostname.includes("localhost") && !window.location.hostname.includes("127.0.0.1")) {
     if (!envUrl || envUrl.includes("localhost") || envUrl.includes("127.0.0.1")) return productionUrl;
   }
@@ -56,9 +56,17 @@ const token = () =>
     : "";
 
 async function apiFetch(path: string) {
-  const res = await fetch(`${API_BASE}${path}`, {
-    headers: token() ? { Authorization: `Bearer ${token()}` } : {},
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 20000);
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      headers: token() ? { Authorization: `Bearer ${token()}` } : {},
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeoutId);
+  }
   if (!res.ok) throw new Error(`API ${res.status}`);
   return res.json();
 }

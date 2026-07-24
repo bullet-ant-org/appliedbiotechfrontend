@@ -7,16 +7,18 @@ const BACKEND_URL = (() => {
     !window.location.hostname.includes("localhost") &&
     !window.location.hostname.includes("127.0.0.1")) {
     if (!env || env.includes("localhost") || env.includes("127.0.0.1")) {
-      return "https://appliedbiotechbackend.onrender.com";
+      return "https://mediumslateblue-ram-342044.hostingersite.com";
     }
   }
-  return env || "https://appliedbiotechbackend.onrender.com";
+  return env || "https://mediumslateblue-ram-342044.hostingersite.com";
 })();
 
 export function backendFetch(path: string, options?: RequestInit) {
   const base = BACKEND_URL.replace(/\/$/, "");
   const p = path.startsWith("/") ? path : `/${path}`;
-  return fetch(`${base}${p}`, options);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 20000);
+  return fetch(`${base}${p}`, { ...options, signal: options?.signal ?? controller.signal }).finally(() => clearTimeout(timeoutId));
 }
 
 export type AcademyUser = { id?: string; _id?: string; email: string; name: string; phone?: string; role?: string };

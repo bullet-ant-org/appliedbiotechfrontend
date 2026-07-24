@@ -43,7 +43,14 @@ function useFetch<T = any>(): UseFetchResult<T> {
         headers.set("Authorization", `Bearer ${token}`);
       }
 
-      const response = await fetch(`${cleanBase}${cleanPath}`, { ...options, headers });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
+      let response: Response;
+      try {
+        response = await fetch(`${cleanBase}${cleanPath}`, { ...options, headers, signal: options?.signal ?? controller.signal });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       const contentType = response.headers.get("content-type");
       const isJson = contentType && contentType.includes("application/json");
