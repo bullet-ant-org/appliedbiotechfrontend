@@ -36,7 +36,8 @@ function VerifyPage() {
         try {
           // Try by reference first
           const res = await fetchData(`/api/v1/payments/order-by-reference/${reference}`);
-          if (res && res._id) {
+          const paidStatuses = ["paid", "processing", "shipped", "delivered", "completed"];
+          if (res && res._id && paidStatuses.includes(String(res.status || "").toLowerCase())) {
             setOrderDetails(res);
             setStatus("success");
             // Sync any academy course items into local enrollments
