@@ -21,7 +21,7 @@ export const Route = createFileRoute("/verify")({
 function VerifyPage() {
   const search = Route.useSearch();
   const reference = search.reference || search.trxref;
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+  const [status, setStatus] = useState<"loading" | "success" | "pending" | "error">("loading");
   const [orderDetails, setOrderDetails] = useState<any>(null);
   const [copied, setCopied] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -68,8 +68,9 @@ function VerifyPage() {
         } catch (_) {}
         if (attempt < 4) await new Promise(r => setTimeout(r, 1800));
       }
-      // Payment was confirmed by Paystack client-side — show success anyway
-      setStatus("success");
+      // Backend never confirmed the order after polling — don't fake a success.
+      // Paystack's client-side callback firing is not proof of a verified payment.
+      setStatus("pending");
     };
     verify();
   }, [reference, fetchData]);
@@ -239,6 +240,27 @@ function VerifyPage() {
                     </Link>
                   </div>
                 )}
+              </div>
+            </div>
+          ) : status === "pending" ? (
+            <div className="py-12 text-center">
+              <div className="h-16 w-16 rounded-full bg-amber-100 text-amber-600 grid place-items-center mx-auto mb-6">
+                <Loader2 className="h-8 w-8" />
+              </div>
+              <h1 className="font-display text-2xl font-bold">Still confirming your payment</h1>
+              <p className="mt-2 text-muted-foreground max-w-md mx-auto">
+                Paystack says the charge went through, but we're still waiting on final confirmation from our system. This can take a few minutes — you'll get an email once your order is fully verified. No need to pay again.
+              </p>
+              {reference && (
+                <p className="mt-3 text-xs text-muted-foreground font-mono">Reference: {reference}</p>
+              )}
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <button onClick={() => window.location.reload()} className="inline-flex items-center justify-center gap-2 rounded-full gradient-brand text-brand-foreground px-6 py-3 text-sm font-semibold shadow-brand hover:scale-[1.03] transition-transform">
+                  Check again
+                </button>
+                <Link to="/shop" className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:bg-accent transition-colors">
+                  <ShoppingBag className="h-4 w-4" /> Return to Shop
+                </Link>
               </div>
             </div>
           ) : (
