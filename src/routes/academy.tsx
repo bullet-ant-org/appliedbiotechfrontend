@@ -384,10 +384,10 @@ function AcademyPage() {
             <p className="mt-4 text-background/80 leading-relaxed">
               Browse photos from our hands-on labs, certification cohorts and instructor-led sessions with scientists across Nigeria — see what a session with Applied Biotech Academy actually looks like.
             </p>
-            <a href="https://drive.google.com/drive/folders/1biEwgOmz6yTBtQFkPG2CuzYRAt-fdwoc" target="_blank" rel="noopener noreferrer"
+            <Link to="/gallery"
               className="mt-7 inline-flex items-center gap-2 rounded-full bg-background text-[#052C54] px-7 py-3.5 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
               <Images className="h-4 w-4" /> View Previous Workshops <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
