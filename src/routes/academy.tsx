@@ -3,11 +3,12 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHero } from "@/components/site/PageHero";
 import { useReveal } from "@/hooks/use-reveal";
-import { GraduationCap, Clock, Users, Award, ArrowRight, PlayCircle, BookOpen, Star, Loader2, X, LogOut, Lock, LayoutDashboard, MessageCircle, UserPlus, CheckCircle2, CalendarDays } from "lucide-react";
+import { GraduationCap, Clock, Users, Award, ArrowRight, PlayCircle, BookOpen, Star, Loader2, X, LogOut, Lock, LayoutDashboard, MessageCircle, UserPlus, CheckCircle2, CalendarDays, Camera, Images } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import useFetch from "@/hooks/useFetch";
 import { useAcademy } from "@/lib/academy";
 import { toast } from "sonner";
+import workshopPhoto from "@/assets/hero-petri-group.jpg";
 
 export const Route = createFileRoute("/academy")({
   component: AcademyPage,
@@ -263,8 +264,8 @@ function AcademyPage() {
             { icon: Award, k: "94%", v: "Completion rate" },
             { icon: BookOpen, k: "30+", v: "Expert instructors" },
           ].map((s) => (
-            <div key={s.v} className="reveal rounded-2xl border border-border bg-card p-5 shadow-soft">
-              <s.icon className="h-6 w-6 text-primary" />
+            <div key={s.v} className="reveal rounded-2xl border border-border bg-card p-5 shadow-soft hover:shadow-brand hover:-translate-y-0.5 transition-all">
+              <div className="h-10 w-10 rounded-xl gradient-brand grid place-items-center"><s.icon className="h-5 w-5 text-brand-foreground" /></div>
               <div className="mt-3 font-display text-2xl font-bold">{s.k}</div>
               <div className="text-xs text-muted-foreground">{s.v}</div>
             </div>
@@ -292,11 +293,11 @@ function AcademyPage() {
 
           <div className="inline-flex p-1 rounded-xl bg-secondary mb-8">
             <button onClick={() => setAcademyTab("courses")}
-              className={`px-5 h-10 rounded-lg text-sm font-semibold transition-colors ${academyTab === "courses" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}>
+              className={`px-5 h-10 rounded-lg text-sm font-semibold transition-all ${academyTab === "courses" ? "gradient-brand text-brand-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}>
               Modular Courses
             </button>
             <button onClick={() => setAcademyTab("training")}
-              className={`px-5 h-10 rounded-lg text-sm font-semibold transition-colors ${academyTab === "training" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}>
+              className={`px-5 h-10 rounded-lg text-sm font-semibold transition-all ${academyTab === "training" ? "gradient-brand text-brand-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}>
               Workshops &amp; Training
             </button>
           </div>
@@ -364,6 +365,29 @@ function AcademyPage() {
                 )}
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* Workshop Gallery CTA */}
+      <section className="py-12 px-4">
+        <div className="reveal max-w-7xl mx-auto rounded-3xl overflow-hidden relative shadow-brand group">
+          <img src={workshopPhoto} alt="Applied Biotech workshop in session" className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#052C54]/95 via-[#052C54]/80 to-[#052C54]/40" />
+          <div className="relative px-6 py-14 sm:px-12 sm:py-16 max-w-xl">
+            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-background/70 font-semibold">
+              <Camera className="h-3.5 w-3.5" /> From the Academy Archive
+            </span>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl font-extrabold text-background leading-tight">
+              See our past workshops & trainings in action
+            </h2>
+            <p className="mt-4 text-background/80 leading-relaxed">
+              Browse photos from our hands-on labs, certification cohorts and instructor-led sessions with scientists across Nigeria — see what a session with Applied Biotech Academy actually looks like.
+            </p>
+            <a href="https://drive.google.com/drive/folders/1biEwgOmz6yTBtQFkPG2CuzYRAt-fdwoc" target="_blank" rel="noopener noreferrer"
+              className="mt-7 inline-flex items-center gap-2 rounded-full bg-background text-[#052C54] px-7 py-3.5 font-semibold shadow-soft hover:scale-[1.03] transition-transform">
+              <Images className="h-4 w-4" /> View Previous Workshops <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
